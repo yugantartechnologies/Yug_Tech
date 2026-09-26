@@ -225,12 +225,24 @@ export default function PerformanceMarketingAhmedabad() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {performanceFeatures.map((feat, idx) => (
-            <div key={idx} className="site-card bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center mb-6">
-                {feat.icon}
+            <div key={idx} className="site-card bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center mb-6">
+                  {feat.icon}
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{feat.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{feat.desc}</p>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{feat.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{feat.desc}</p>
+              <div className="pt-6 mt-6 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setBookingModal({ isOpen: true, service: { title: `Performance - ${feat.title}`, icon: "🎯" } })}
+                  className="inline-flex items-center justify-between w-full text-xs text-orange-700 font-bold hover:text-orange-900 bg-orange-50 hover:bg-orange-100 px-4 py-2.5 rounded-xl border border-orange-200/80 transition-all cursor-pointer"
+                >
+                  <span>Inquire Strategy</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-orange-600" />
+                </button>
+              </div>
             </div>
           ))}
         </div>

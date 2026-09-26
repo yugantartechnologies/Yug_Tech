@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
@@ -377,13 +376,14 @@ export default function WebsiteDevelopmentAhmedabad() {
                 </div>
 
                 <div className="pt-6 mt-6 border-t border-slate-100 relative z-10">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 text-xs text-sky-600 font-bold hover:text-sky-700 group-hover:translate-x-1.5 transition-all"
+                  <button
+                    type="button"
+                    onClick={() => setBookingModal({ isOpen: true, service: { title: `Website - ${o.title}`, icon: "🌐" } })}
+                    className="inline-flex items-center justify-between w-full text-xs text-sky-700 font-bold hover:text-sky-900 bg-sky-50 hover:bg-sky-100 px-4 py-2.5 rounded-xl border border-sky-200/80 transition-all cursor-pointer"
                   >
-                    Inquire For Details
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                    <span>Inquire For Details</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-sky-600 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             ))}

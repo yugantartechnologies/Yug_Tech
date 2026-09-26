@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
@@ -333,13 +332,14 @@ export default function SeoServicesAhmedabad() {
                 </div>
 
                 <div className="pt-6 mt-6 border-t border-slate-100 relative z-10">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 text-xs text-orange-600 font-bold hover:text-orange-700 group-hover:translate-x-1.5 transition-all"
+                  <button
+                    type="button"
+                    onClick={() => setBookingModal({ isOpen: true, service: { title: `SEO - ${o.title}`, icon: "🔍" } })}
+                    className="inline-flex items-center justify-between w-full text-xs text-orange-700 font-bold hover:text-orange-900 bg-orange-50 hover:bg-orange-100 px-4 py-2.5 rounded-xl border border-orange-200/80 transition-all cursor-pointer"
                   >
-                    Request Audit Review
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                    <span>Request Audit Review</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-orange-600 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             ))}

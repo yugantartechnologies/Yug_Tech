@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
@@ -335,13 +334,14 @@ export default function SocialMediaMarketingAhmedabad() {
                 </div>
 
                 <div className="pt-6 mt-6 border-t border-slate-100 relative z-10">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 text-xs text-blue-600 font-bold hover:text-blue-700 group-hover:translate-x-1.5 transition-all"
+                  <button
+                    type="button"
+                    onClick={() => setBookingModal({ isOpen: true, service: { title: `SMM - ${o.title}`, icon: "📱" } })}
+                    className="inline-flex items-center justify-between w-full text-xs text-blue-700 font-bold hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-4 py-2.5 rounded-xl border border-blue-200/80 transition-all cursor-pointer"
                   >
-                    Request Consultation
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                    <span>Request Consultation</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             ))}
