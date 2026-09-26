@@ -69,12 +69,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="hidden sm:inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs md:text-sm font-bold px-4 py-2 md:px-5 md:py-2.5 rounded-xl shadow-md shadow-sky-500/20 hover:shadow-sky-500/35 transition-all duration-300"
-          >
-            Get In Touch
-          </Link>
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
