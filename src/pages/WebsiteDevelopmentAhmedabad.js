@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
+import ServiceBookingModal from "../components/ServiceBookingModal";
 import { 
   Globe, 
   Code2, 
@@ -281,6 +282,8 @@ export default function WebsiteDevelopmentAhmedabad() {
     }
   ];
 
+  const [bookingModal, setBookingModal] = useState({ isOpen: false, service: null });
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       <Navbar />
@@ -308,13 +311,13 @@ export default function WebsiteDevelopmentAhmedabad() {
               We design, build, and optimize fast, SEO-friendly, and custom-styled web applications. Grow your online presence with conversion-focused corporate websites, custom CMS themes, and powerful e-commerce portals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white px-7 py-3.5 rounded-xl font-bold transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-1"
+              <button
+                onClick={() => setBookingModal({ isOpen: true, service: { title: "Website Development", icon: "🌐" } })}
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white px-7 py-3.5 rounded-xl font-bold transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-1 cursor-pointer"
               >
                 Get a Free Quote
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </button>
               <a
                 href="tel:9054372690"
                 className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
@@ -535,12 +538,12 @@ export default function WebsiteDevelopmentAhmedabad() {
               Contact our web development consultants in Ahmedabad. Let's build a fast, responsive, and secure website that drives conversions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Link
-                to="/contact"
-                className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5"
+              <button
+                onClick={() => setBookingModal({ isOpen: true, service: { title: "Website Development", icon: "🌐" } })}
+                className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 cursor-pointer"
               >
                 Request Free Consultation
-              </Link>
+              </button>
               <a
                 href="tel:9054372690"
                 className="border border-slate-700 hover:border-slate-500 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-3.5 rounded-xl transition duration-300"
@@ -551,6 +554,13 @@ export default function WebsiteDevelopmentAhmedabad() {
           </div>
         </div>
       </section>
+
+      {/* Booking Modal */}
+      <ServiceBookingModal
+        service={bookingModal.service}
+        isOpen={bookingModal.isOpen}
+        onClose={() => setBookingModal({ isOpen: false, service: null })}
+      />
 
       <Footer />
     </div>

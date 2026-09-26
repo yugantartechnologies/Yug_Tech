@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
+import ServiceBookingModal from "../components/ServiceBookingModal";
 import { 
   Search, 
   Compass, 
@@ -237,6 +238,8 @@ export default function SeoServicesAhmedabad() {
     }
   ];
 
+  const [bookingModal, setBookingModal] = useState({ isOpen: false, service: null });
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       <Navbar />
@@ -264,13 +267,13 @@ export default function SeoServicesAhmedabad() {
               Rank higher on Google, capture qualified search leads, and scale your brand visibility. We manage technical optimizations, sitemaps, on-page keywords, guest blog posts, and localized Google Maps GBP listings.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 hover:-translate-y-1"
+              <button
+                onClick={() => setBookingModal({ isOpen: true, service: { title: "SEO Services", icon: "🔍" } })}
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 hover:-translate-y-1 cursor-pointer"
               >
                 Request Free SEO Audit
                 <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
+              </button>
               <a
                 href="tel:9054372690"
                 className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-orange-400 bg-white hover:bg-orange-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
@@ -487,12 +490,12 @@ export default function SeoServicesAhmedabad() {
               Connect with SEO professionals in Ahmedabad. Let us construct an optimization pipeline that channels rankings into active prospects.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Link
-                to="/contact"
-                className="bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5"
+              <button
+                onClick={() => setBookingModal({ isOpen: true, service: { title: "SEO Services", icon: "🔍" } })}
+                className="bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 cursor-pointer"
               >
                 Request Free Audit Proposal
-              </Link>
+              </button>
               <a
                 href="tel:9054372690"
                 className="border border-slate-700 hover:border-slate-500 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-3.5 rounded-xl transition duration-300"
@@ -503,6 +506,13 @@ export default function SeoServicesAhmedabad() {
           </div>
         </div>
       </section>
+
+      {/* Booking Modal */}
+      <ServiceBookingModal
+        service={bookingModal.service}
+        isOpen={bookingModal.isOpen}
+        onClose={() => setBookingModal({ isOpen: false, service: null })}
+      />
 
       <Footer />
     </div>

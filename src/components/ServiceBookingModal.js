@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BASE_URL from "../BASEURL";
 
@@ -7,9 +7,18 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
     name: "",
     email: "",
     phone: "",
-    service: service?.title || "",
+    service: service?.title || "IT Service Inquiry",
     message: ""
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData((prev) => ({
+        ...prev,
+        service: service?.title || prev.service || "IT Service Inquiry",
+      }));
+    }
+  }, [isOpen, service]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
