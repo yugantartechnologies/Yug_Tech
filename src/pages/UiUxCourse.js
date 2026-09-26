@@ -100,7 +100,7 @@ export default function UiUxCourse() {
       <Navbar />
 
       <PageHeader title={course.title} subtitle="Master UI/UX Design"
-        bgImage="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&auto=format&fit=crop" />
+        bgImage="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1600&auto=format&fit=crop" />
 
       <main className="flex-grow py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">

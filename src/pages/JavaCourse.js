@@ -79,7 +79,7 @@ export default function JavaCourse() {
       <PageHeader
         title={course.title}
         subtitle="Master Java Full Stack Development"
-          bgImage="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&auto=format&fit=crop"
+        bgImage="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&auto=format&fit=crop"
       />
 
       <main className="flex-grow py-24 bg-slate-50">

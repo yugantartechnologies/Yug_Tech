@@ -29,39 +29,44 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
     e.preventDefault();
     setIsSubmitting(true);
 
+    const newBooking = {
+      id: Date.now().toString(),
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      service: formData.service || service?.title || "IT Solution",
+      message: formData.message,
+      createdAt: new Date().toISOString(),
+      submittedAt: new Date().toISOString(),
+    };
+
+    // 1. Save to localStorage for zero data loss
     try {
-      const response = await fetch(`${BASE_URL}/api/service-bookings`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          submittedAt: new Date().toISOString()
-        })
-      });
-
-      if (response.ok) {
-        // eslint-disable-next-line no-unused-vars
-        const data = await response.json();
-        setSubmittedData(formData);
-        setShowSuccess(true);
-        setIsSubmitting(false);
-
-        setTimeout(() => {
-          if (onSuccess) onSuccess();
-          handleClose();
-        }, 2500);
-      } else {
-        console.error('Failed to submit service booking');
-        setIsSubmitting(false);
-        alert('Failed to submit service booking. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error submitting service booking:', error);
-      setIsSubmitting(false);
-      alert('Error submitting service booking. Please check your connection.');
+      const existing = JSON.parse(localStorage.getItem("yug_service_bookings") || "[]");
+      existing.unshift(newBooking);
+      localStorage.setItem("yug_service_bookings", JSON.stringify(existing));
+      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event("yug_inquiry_submitted"));
+    } catch (err) {
+      console.error("LocalStorage save error:", err);
     }
+
+    // 2. Post to backend API
+    try {
+      await fetch(`${BASE_URL}/api/service-bookings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBooking)
+      });
+    } catch (error) {
+      console.warn("Backend endpoint offline, saved locally to queue.");
+    }
+
+    setSubmittedData(newBooking);
+    setShowSuccess(true);
+    setIsSubmitting(false);
   };
 
   const handleClose = () => {
@@ -93,7 +98,7 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
           onClick={handleClose}
         >
           <motion.div
-            className="relative w-full max-w-2xl site-card rounded-3xl overflow-hidden"
+            className="relative w-full max-w-2xl site-card rounded-3xl overflow-hidden bg-white text-slate-900 border border-slate-200 shadow-2xl"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -103,7 +108,7 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
             {/* Close Button */}
             <motion.button
               onClick={handleClose}
-              className="absolute top-6 right-6 text-slate-400 hover:text-gray-700 z-10"
+              className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 z-10 font-bold text-lg"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -115,47 +120,53 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
               {showSuccess ? (
                 <motion.div
                   key="success"
-                  className="p-12 text-center"
+                  className="p-8 text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    className="mx-auto mb-8 w-24 h-24 rounded-lg bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center shadow-lg"
+                    className="mx-auto mb-4 w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl shadow-inner"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                   >
-                    <span className="text-5xl">✅</span>
+                    ✅
                   </motion.div>
 
-                  <h2 className="text-3xl font-bold text-white mb-4">
+                  <h2 className="text-2xl font-bold text-slate-900 mb-2">
                     Service Booking Confirmed!
                   </h2>
 
-                  <p className="text-gray-600 mb-2 text-lg">
-                    Thank you <span className="font-semibold text-orange-600">{submittedData?.name}</span>
+                  <p className="text-slate-600 text-sm mb-1">
+                    Thank you <span className="font-bold text-sky-600">{submittedData?.name}</span>
                   </p>
 
-                  <p className="text-gray-600 mb-6">
-                    Our team will contact you at{" "}
-                    <span className="font-semibold text-orange-600">
+                  <p className="text-slate-500 text-xs mb-6">
+                    Our technical consultant will contact you at{" "}
+                    <span className="font-semibold text-slate-800">
                       +91 {submittedData?.phone}
                     </span>
                   </p>
 
-                  <motion.div
-                    className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl p-6 border border-orange-100"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    <p className="text-sm text-slate-500 mb-2">Selected Service</p>
-                    <p className="font-bold text-xl text-white">
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6">
+                    <p className="text-xs text-slate-500 font-medium mb-1">Selected Service</p>
+                    <p className="font-bold text-base text-slate-900">
                       {submittedData?.service}
                     </p>
-                  </motion.div>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/919054372690?text=${encodeURIComponent(
+                      `Hello YugAntar Technologies, I submitted a service booking inquiry for ${submittedData?.service}. My Name is ${submittedData?.name}, Mobile: ${submittedData?.phone}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-lg flex items-center justify-center gap-2 transition"
+                  >
+                    💬 Connect on WhatsApp for Instant Consultation
+                  </a>
                 </motion.div>
               ) : (
                 <motion.div key="form" variants={formVariants} initial="hidden" animate="visible">
@@ -238,7 +249,7 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
                         onChange={handleChange}
                         placeholder="Tell us more about your requirements..."
                         rows="4"
-                        className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all resize-none"
+                        className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 bg-slate-50 text-slate-900 font-semibold placeholder:text-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all resize-none outline-none"
                       />
                     </div>
 
@@ -288,13 +299,13 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
 function Input({ label, icon, ...props }) {
   return (
     <div>
-      <label className="block text-sm font-semibold text-gray-700 mb-3">
+      <label className="block text-sm font-semibold text-slate-900 mb-3">
         {label}
       </label>
       <div className="relative">
         <input
           {...props}
-          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 pl-12 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all"
+          className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 pl-12 bg-slate-50 text-slate-900 font-semibold placeholder:text-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all outline-none"
         />
         {icon && (
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">

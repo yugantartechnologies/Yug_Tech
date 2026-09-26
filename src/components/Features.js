@@ -12,7 +12,7 @@ export default function Features() {
   const features = [
     {
       title: "Industry-Oriented Courses",
-      desc: "Master MERN Stack, Python, AI & more with hands-on projects.",
+      desc: "Master MERN Stack, Python, Data Science & more with hands-on projects.",
       icon: <BookOpen className="w-7 h-7" />,
       iconBg: "bg-indigo-50 border-indigo-100 text-indigo-600",
       hoverStyle: "hover:border-indigo-400 hover:from-indigo-50/20 hover:to-white hover:shadow-[0_20px_40px_rgba(99,102,241,0.06)]",

@@ -108,6 +108,13 @@ const routeMeta = [
     image: DEFAULT_IMAGE,
   },
   {
+    path: "/performance-marketing-ahmedabad",
+    title: "Performance Marketing Ahmedabad - Meta Ads, Google Ads & Lead Generation",
+    description:
+      "High-ROI Performance Marketing services in Ahmedabad. Maximize conversions with data-driven Google Ads, Meta Ads, PPC campaigns, and lead generation.",
+    image: DEFAULT_IMAGE,
+  },
+  {
     path: "/blog",
     title: "Tech Blog - YugAntar Technologies",
     description:
@@ -123,23 +130,23 @@ const routeMeta = [
   },
   {
     path: "/internship",
-    title: "Internship Program - YugAntar Technologies",
+    title: "Skill-Based Training & Internship Program Ahmedabad - YugAntar Technologies",
     description:
-      "Apply for software development internships with real projects, mentorship, and placement support.",
+      "Skill-based practical training, live real-world project experience, and recognized IT internships in Ahmedabad with placement support.",
     image: DEFAULT_IMAGE,
   },
   {
     path: "/about",
-    title: "About YugAntar Technologies - IT Training & Development",
+    title: "About YugAntar Technologies - IT Services & Training Institute",
     description:
-      "Learn more about YugAntar Technologies, our mission, values, and track record delivering quality IT training and software services.",
+      "Learn more about YugAntar Technologies in Ahmedabad. We deliver custom website development, SEO, SMM, Performance Marketing, and skill-based IT training.",
     image: DEFAULT_IMAGE,
   },
   {
     path: "/contact",
-    title: "Contact YugAntar Technologies - Get a Free Consultation",
+    title: "Contact YugAntar Technologies - Get Free Digital & Training Consultation",
     description:
-      "Get in touch with YugAntar Technologies for training, software development, and digital marketing services.",
+      "Contact YugAntar Technologies in Ahmedabad for website development, SEO, SMM, performance marketing & IT training.",
     image: DEFAULT_IMAGE,
   },
   {
@@ -195,19 +202,14 @@ export default function MetaTags() {
       name: "YugAntar Technologies & Training Institute",
       url: SITE_URL,
       image: `${SITE_URL}/YugAntar_Technologies.png`,
-      telephone: "+91-6355582605",
+      telephone: "+91-9054372690",
+      email: "info@yugantartechnologies.com",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "204, Yash Aqua, Vijay Cross Road",
-        addressLocality: "Navrangpura",
+        addressLocality: "Ahmedabad",
         addressRegion: "Gujarat",
-        postalCode: "380009",
+        postalCode: "380000",
         addressCountry: "IN",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 23.033863,
-        longitude: 72.585022,
       },
       sameAs: [
         "https://www.facebook.com/YugAntartechnologies",
@@ -216,7 +218,7 @@ export default function MetaTags() {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+91-6355582605",
+        telephone: "+91-9054372690",
         contactType: "customer service",
         areaServed: "IN"
       }

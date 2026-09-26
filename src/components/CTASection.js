@@ -1,8 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { Users, GraduationCap, Briefcase } from "lucide-react";
+import FreeConsultationModal from "./FreeConsultationModal";
 
 export default function CTASection({ onQuickEnroll }) {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+
   const stats = [
     { label: "Students Trained", value: "1200+", color: "hover:border-indigo-400 hover:shadow-[0_15px_30px_rgba(99,102,241,0.06)] hover:from-indigo-50/20", accent: "bg-indigo-500" },
     { label: "Live Projects", value: "75+", color: "hover:border-emerald-400 hover:shadow-[0_15px_30px_rgba(16,185,129,0.06)] hover:from-emerald-50/20", accent: "bg-emerald-500" },
@@ -30,7 +32,7 @@ export default function CTASection({ onQuickEnroll }) {
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <button 
             onClick={onQuickEnroll} 
-            className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 px-7 py-3.5 rounded-xl font-bold text-white shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 px-7 py-3.5 rounded-xl font-bold text-white shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
           >
             Enroll Now
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,12 +40,13 @@ export default function CTASection({ onQuickEnroll }) {
             </svg>
           </button>
 
-          <Link 
-            to="/contact" 
-            className="px-7 py-3.5 border border-slate-200 text-slate-700 hover:text-slate-900 font-semibold rounded-xl bg-white hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 hover:-translate-y-0.5"
+          <button 
+            type="button"
+            onClick={() => setIsConsultationOpen(true)}
+            className="px-7 py-3.5 border border-slate-200 text-slate-700 hover:text-slate-900 font-semibold rounded-xl bg-white hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
           >
-            Book Consultation
-          </Link>
+            Book Free Consultation
+          </button>
         </div>
 
         {/* Stats Section */}
@@ -87,6 +90,12 @@ export default function CTASection({ onQuickEnroll }) {
         </div>
 
       </div>
+
+      <FreeConsultationModal
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+        defaultService="General IT Consultation"
+      />
     </section>
   );
 }

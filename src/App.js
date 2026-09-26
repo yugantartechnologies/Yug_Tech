@@ -8,6 +8,7 @@ import SeoServicesAhmedabad from './pages/SeoServicesAhmedabad';
 import SocialMediaMarketingAhmedabad from './pages/SocialMediaMarketingAhmedabad';
 import WebsiteDevelopmentAhmedabad from './pages/WebsiteDevelopmentAhmedabad';
 import GoogleBusinessProfileManagementAhmedabad from './pages/GoogleBusinessProfileManagementAhmedabad';
+import PerformanceMarketingAhmedabad from './pages/PerformanceMarketingAhmedabad';
 import Internship from './pages/Internship';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -26,9 +27,10 @@ import AdminInternshipList from './admin/AdminInternshipList';
 import AdminCourseInquiries from './admin/AdminCourseInquiries';
 import AdminGeneralInquiries from './admin/AdminGeneralInquiries';
 import AdminServiceInquiries from './admin/AdminServiceInquiries';
+import AdminFreeConsultations from './admin/AdminFreeConsultations';
+import AdminTeamConsultations from './admin/AdminTeamConsultations';
 import Attendance from './pages/Attendance';
 import AdminAttendance from './admin/AdminAttendance';
-import AdminStudents from './admin/AdminStudents';
 import AdminFaq from './admin/AdminFaq';
 // import FloatingEnrollButton from './components/FloatingEnrollButton';
 import StudentRegistration from './components/StudentRegistration';
@@ -65,6 +67,7 @@ function App() {
           <Route path="/social-media-marketing-ahmedabad" element={<SocialMediaMarketingAhmedabad />} />
           <Route path="/website-development-ahmedabad" element={<WebsiteDevelopmentAhmedabad />} />
           <Route path="/google-business-profile-management-ahmedabad" element={<GoogleBusinessProfileManagementAhmedabad />} />
+          <Route path="/performance-marketing-ahmedabad" element={<PerformanceMarketingAhmedabad />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/backlink-guide" element={<BacklinkGuide />} />
           <Route path="/internship" element={<Internship />} />
@@ -76,10 +79,11 @@ function App() {
           <Route path="/admin/internships" element={<AdminInternshipList />} />
           <Route path="/admin/general-inquiries" element={<AdminGeneralInquiries />} />
           <Route path="/admin/service-inquiries" element={<AdminServiceInquiries />} />
+          <Route path="/admin/free-consultations" element={<AdminFreeConsultations />} />
+          <Route path="/admin/team-consultations" element={<AdminTeamConsultations />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/admin/attendance" element={<AdminAttendance />} />
           <Route path="/admin/Fqa" element={<AdminFaq />} />
-          <Route path="/admin/students" element={<AdminStudents />} />
           <Route path="/registration" element={<StudentRegistration />} />
         </Routes>
         <WhatsAppButton />

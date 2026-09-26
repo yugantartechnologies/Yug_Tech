@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import FAQSection from "./FAQSection";
+import FreeConsultationModal from "./FreeConsultationModal";
 
 export default function ServicePageTemplate({
   title,
@@ -11,6 +11,8 @@ export default function ServicePageTemplate({
   highlights = [],
   faqItems = [],
 }) {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <Navbar />
@@ -47,21 +49,28 @@ export default function ServicePageTemplate({
             Talk to our expert team for a free consultation and get a custom quote tailored for your business growth.
           </p>
           <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              to="/contact"
-              className="px-7 py-3.5 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl font-bold hover:from-sky-600 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-sky-500/10 hover:shadow-sky-500/20 hover:-translate-y-0.5"
+            <button
+              type="button"
+              onClick={() => setIsConsultationOpen(true)}
+              className="px-7 py-3.5 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl font-bold hover:from-sky-600 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-sky-500/10 hover:shadow-sky-500/20 hover:-translate-y-0.5 cursor-pointer"
             >
               Book Free Consultation
-            </Link>
+            </button>
             <a
-              href="tel:+916355582605"
+              href="tel:+919054372690"
               className="px-7 py-3 border-2 border-slate-700 text-slate-200 hover:text-white rounded-xl font-bold hover:bg-slate-850 hover:border-slate-600 transition-all duration-300 hover:-translate-y-0.5"
             >
-              Call +91 6355582605
+              Call +91 9054372690
             </a>
           </div>
         </div>
       </section>
+
+      <FreeConsultationModal
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+        defaultService={title || "General Consultation"}
+      />
 
       <FAQSection items={faqItems} schemaId={`faq-${title.toLowerCase().replace(/\s+/g, "-")}`} />
       <Footer />

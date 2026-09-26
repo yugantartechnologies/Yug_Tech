@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
 import BASE_URL from "../BASEURL";
+import { Award, Search, Trash2, Mail, Phone, Calendar, User, RefreshCw } from "lucide-react";
 
 const AdminInternshipList = () => {
   const [applications, setApplications] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,23 +17,71 @@ const AdminInternshipList = () => {
     }
   }, [navigate]);
 
-  useEffect(() => {
-    const fetchInternshipApplications = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/api/internship-inquiries`);
-        if (response.ok) {
-          const data = await response.json();
-          setApplications(data);
-        } else {
-          console.error("Failed to fetch applications");
-        }
-      } catch (error) {
-        console.error("Error fetching applications:", error);
-      }
-    };
+  const loadApplications = async () => {
+    setIsSyncing(true);
+    let localData = [];
+    try {
+      localData = JSON.parse(localStorage.getItem("yug_internship_inquiries") || "[]");
+    } catch (e) {
+      console.error("Local storage read error", e);
+    }
 
-    fetchInternshipApplications();
+    let remoteData = [];
+    try {
+      const response = await fetch(`${BASE_URL}/api/internship-inquiries`);
+      if (response.ok) {
+        remoteData = await response.json();
+      }
+    } catch (e) {
+      console.log("Backend offline or endpoint unmapped, using local storage queue.");
+    }
+
+    // Merge and deduplicate records by id or unique attributes
+    const combinedMap = new Map();
+    [...remoteData, ...localData].forEach((item) => {
+      const key = item._id || item.id || `${item.email}_${item.createdAt || item.submittedAt}`;
+      if (!combinedMap.has(key)) {
+        combinedMap.set(key, item);
+      }
+    });
+
+    setApplications(Array.from(combinedMap.values()));
+    setIsSyncing(false);
+  };
+
+  useEffect(() => {
+    loadApplications();
+    const interval = setInterval(loadApplications, 3000);
+    const handleSync = () => loadApplications();
+    window.addEventListener("storage", handleSync);
+    window.addEventListener("yug_inquiry_submitted", handleSync);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("storage", handleSync);
+      window.removeEventListener("yug_inquiry_submitted", handleSync);
+    };
   }, []);
+
+  const handleDelete = (idToDelete) => {
+    if (!window.confirm("Are you sure you want to delete this internship application record?")) return;
+
+    // Remove from localStorage
+    try {
+      const existing = JSON.parse(localStorage.getItem("yug_internship_inquiries") || "[]");
+      const updated = existing.filter(
+        (item) => (item._id || item.id) !== idToDelete
+      );
+      localStorage.setItem("yug_internship_inquiries", JSON.stringify(updated));
+    } catch (e) {
+      console.error("Error updating local storage", e);
+    }
+
+    // Update state
+    setApplications((prev) =>
+      prev.filter((item) => (item._id || item.id) !== idToDelete)
+    );
+  };
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -38,6 +89,17 @@ const AdminInternshipList = () => {
       navigate("/admin/login");
     }
   };
+
+  const filteredApplications = applications.filter((app) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      (app.name && app.name.toLowerCase().includes(term)) ||
+      (app.email && app.email.toLowerCase().includes(term)) ||
+      (app.phone && app.phone.toLowerCase().includes(term)) ||
+      (app.internship && app.internship.toLowerCase().includes(term)) ||
+      (app.experience && app.experience.toLowerCase().includes(term))
+    );
+  });
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex">
@@ -47,8 +109,8 @@ const AdminInternshipList = () => {
         onLogout={handleLogout}
       />
 
-      <div className="flex-1 p-4 md:p-8">
-        {/* Mobile Menu Button */}
+      <div className="flex-1 p-4 md:p-8 overflow-x-hidden">
+        {/* Mobile Hamburger Header */}
         <div className="md:hidden mb-4">
           <button
             onClick={() => setSidebarOpen(true)}
@@ -58,83 +120,191 @@ const AdminInternshipList = () => {
           </button>
         </div>
 
-        <h1 className="text-2xl md:text-3xl font-extrabold mb-6 tracking-tight text-white">
-          Internship Applications
-        </h1>
+        {/* Page Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                <Award className="w-6 h-6" />
+              </div>
+              <div>
+                <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">
+                  Internship Applications
+                </h1>
+                <p className="text-xs text-slate-400 mt-1">
+                  Applications submitted for student internships and career training programs.
+                </p>
+              </div>
+            </div>
+          </div>
 
-        {/* No Data */}
-        {applications.length === 0 ? (
-          <p className="text-slate-400">No applications found.</p>
+          {/* Action Bar & Search */}
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <button
+              onClick={loadApplications}
+              disabled={isSyncing}
+              className="bg-slate-900 border border-slate-800 text-slate-300 hover:text-white px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 hover:bg-slate-800 transition"
+              title="Refresh Data"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 text-purple-400 ${isSyncing ? "animate-spin" : ""}`} />
+              <span>Refresh</span>
+            </button>
+
+            <div className="relative w-full sm:w-72">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search by applicant, phone, program..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-slate-900 border border-slate-800 text-slate-200 pl-10 pr-4 py-2 rounded-xl text-sm outline-none focus:border-purple-500 transition"
+              />
+            </div>
+          </div>
+        </div>
+
+        {filteredApplications.length === 0 ? (
+          <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-12 text-center text-slate-400">
+            <Award className="w-12 h-12 text-slate-600 mx-auto mb-3" />
+            <p className="text-lg font-bold text-slate-300">No Applications Found</p>
+            <p className="text-sm text-slate-500 mt-1">Submitted internship application forms will appear here.</p>
+          </div>
         ) : (
           <>
-            {/* ✅ Desktop Table */}
-            <div className="hidden md:block bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
               <table className="min-w-full divide-y divide-slate-800">
                 <thead className="bg-slate-900">
                   <tr>
-                    {["Name", "Email", "Phone", "Internship", "Experience", "Submitted At"].map(
-                      (head) => (
-                        <th
-                          key={head}
-                          className="px-6 py-3.5 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider"
-                        >
-                          {head}
-                        </th>
-                      )
-                    )}
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Applicant Name
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Contact Details
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Internship Program
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Experience
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Submitted Date
+                    </th>
+                    <th className="px-6 py-4 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Action
+                    </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800 bg-slate-950/20">
-                  {applications.map((app, index) => (
-                    <tr key={app._id || app.id || index} className="hover:bg-slate-800/40 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-slate-100">{app.name}</td>
-                      <td className="px-6 py-4 text-slate-300">{app.email}</td>
-                      <td className="px-6 py-4 text-slate-400">{app.phone}</td>
-                      <td className="px-6 py-4 text-slate-300">{app.internship}</td>
-                      <td className="px-6 py-4">
-                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                          {app.experience}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-slate-450 text-sm">
-                        {new Date(app.createdAt).toLocaleString()}
-                      </td>
-                    </tr>
-                  ))}
+                <tbody className="divide-y divide-slate-800 bg-slate-950/30">
+                  {filteredApplications.map((app, index) => {
+                    const recordId = app._id || app.id || index;
+                    const dateStr = app.createdAt || app.submittedAt;
+                    return (
+                      <tr key={recordId} className="hover:bg-slate-900/60 transition-colors">
+                        <td className="px-6 py-4 font-semibold text-white">
+                          <div className="flex items-center gap-2">
+                            <User className="w-4 h-4 text-purple-400" />
+                            <span>{app.name}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-slate-300">
+                          <div className="space-y-1">
+                            <a
+                              href={`tel:${app.phone}`}
+                              className="flex items-center gap-1.5 text-purple-400 hover:underline"
+                            >
+                              <Phone className="w-3.5 h-3.5" />
+                              <span>{app.phone}</span>
+                            </a>
+                            <a
+                              href={`mailto:${app.email}`}
+                              className="flex items-center gap-1.5 text-slate-400 hover:text-slate-200"
+                            >
+                              <Mail className="w-3.5 h-3.5" />
+                              <span className="text-xs">{app.email}</span>
+                            </a>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-slate-200 font-medium">
+                          {app.internship || "IT Internship"}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                            {app.experience || "Fresher"}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-xs text-slate-400">
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                            <span>
+                              {dateStr ? new Date(dateStr).toLocaleString() : "Recent"}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <button
+                            onClick={() => handleDelete(recordId)}
+                            className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition"
+                            title="Delete Application"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
 
-            {/* ✅ Mobile Cards */}
+            {/* Mobile Cards View */}
             <div className="md:hidden space-y-4">
-              {applications.map((app, index) => (
-                <div
-                  key={app._id || app.id || index}
-                  className="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-3 shadow-md"
-                >
-                  <div className="flex justify-between items-start border-b border-slate-800 pb-2">
-                    <h3 className="font-bold text-slate-100 text-lg">{app.name}</h3>
-                    <span className="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-full font-semibold">
-                      {app.experience}
-                    </span>
-                  </div>
+              {filteredApplications.map((app, index) => {
+                const recordId = app._id || app.id || index;
+                const dateStr = app.createdAt || app.submittedAt;
+                return (
+                  <div
+                    key={recordId}
+                    className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-lg"
+                  >
+                    <div className="flex items-start justify-between border-b border-slate-800 pb-3 gap-2">
+                      <div>
+                        <h3 className="font-bold text-white text-lg">{app.name}</h3>
+                        <span className="inline-block text-xs bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2.5 py-0.5 rounded-full font-semibold mt-1">
+                          {app.internship || "IT Internship"}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => handleDelete(recordId)}
+                        className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition shrink-0"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
 
-                  <div className="space-y-1.5 text-sm text-slate-350">
-                    <p>
-                      <strong className="text-slate-400 font-medium">Email:</strong> {app.email}
-                    </p>
-                    <p>
-                      <strong className="text-slate-400 font-medium">Phone:</strong> {app.phone}
-                    </p>
-                    <p>
-                      <strong className="text-slate-400 font-medium">Internship:</strong> {app.internship}
-                    </p>
+                    <div className="space-y-2 text-sm text-slate-300">
+                      <a href={`tel:${app.phone}`} className="flex items-center gap-2 text-purple-400">
+                        <Phone className="w-4 h-4" />
+                        <span>{app.phone}</span>
+                      </a>
+                      <a href={`mailto:${app.email}`} className="flex items-center gap-2 text-slate-400">
+                        <Mail className="w-4 h-4" />
+                        <span>{app.email}</span>
+                      </a>
+                      <div className="pt-2 border-t border-slate-800/80">
+                        <p className="text-xs font-semibold text-slate-400 uppercase">Experience:</p>
+                        <p className="text-sm text-slate-200 mt-1">{app.experience || "Fresher"}</p>
+                      </div>
+                    </div>
+
+                    <div className="text-xs text-slate-500 pt-2 border-t border-slate-800/60 flex items-center justify-between">
+                      <span>Submitted:</span>
+                      <span>{dateStr ? new Date(dateStr).toLocaleString() : "Recent"}</span>
+                    </div>
                   </div>
-                  <div className="text-xs text-slate-500 pt-2 border-t border-slate-800/60 font-mono">
-                    Submitted: {new Date(app.createdAt).toLocaleString()}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </>
         )}

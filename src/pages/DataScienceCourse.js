@@ -20,8 +20,8 @@ export default function DataScienceCourse() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const faqItems = [
     {
-      question: "What is included in the Data Science and AI/ML course?",
-      answer: "The course includes Python, machine learning, deep learning, NLP, and real-world project practice.",
+      question: "What is included in the Data Science & Machine Learning course?",
+      answer: "The course includes Python, machine learning, data visualization, statistical modeling, and real-world project practice.",
     },
     {
       question: "Do I need advanced coding knowledge before joining?",
@@ -71,7 +71,7 @@ export default function DataScienceCourse() {
     careerOpportunities: [
       { title: "Data Scientist", description: "Analyze complex data sets and extract insights.", icon: <ChartBarIcon className="w-8 h-8 text-orange-500" /> },
       { title: "Machine Learning Engineer", description: "Build and deploy ML models in production.", icon: <CpuChipIcon className="w-8 h-8 text-green-500" /> },
-      { title: "AI Engineer", description: "Develop artificial intelligence solutions.", icon: <EyeIcon className="w-8 h-8 text-purple-500" /> },
+      { title: "Business Intelligence Analyst", description: "Develop data analytics & reporting dashboards.", icon: <EyeIcon className="w-8 h-8 text-purple-500" /> },
       { title: "Data Analyst", description: "Interpret data and create reports for decision making.", icon: <PresentationChartLineIcon className="w-8 h-8 text-orange-500" /> },
     ],
     stats: [
@@ -85,8 +85,8 @@ export default function DataScienceCourse() {
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
       <Navbar />
 
-      <PageHeader title={course.title} subtitle="Master Data Science & AI/ML"
-        bgImage="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&auto=format&fit=crop" />
+      <PageHeader title={course.title} subtitle="Master Data Science & Predictive Analytics"
+        bgImage="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&auto=format&fit=crop" />
 
       <main className="flex-grow py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">

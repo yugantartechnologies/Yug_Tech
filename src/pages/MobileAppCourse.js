@@ -78,7 +78,7 @@ export default function MobileAppCourse() {
       <PageHeader
         title={course.title}
         subtitle="Master Mobile App Development"
-          bgImage="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&auto=format&fit=crop"
+        bgImage="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1600&auto=format&fit=crop"
       />
 
       <main className="flex-grow py-24 bg-slate-50">

@@ -10,7 +10,7 @@ import {
   Rocket,
   Globe,
   Code,
-  Smartphone,
+  Megaphone,
   Palette,
   BarChart3,
   Server,
@@ -20,17 +20,25 @@ export default function Internship() {
 
   const [selectedInternship, setSelectedInternship] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedIcons, setClickedIcons] = useState({});
 
   useEffect(() => {
-    document.title = "Internship Programs - YugAntar Technologies";
+    document.title = "Skill-Based Training & Internship Programs - YugAntar Technologies";
   }, []);
+
+  const toggleIconColor = (id) => {
+    setClickedIcons((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   const internshipPrograms = [
     {
       title: "Web Development Internship",
       duration: "3 Months",
       skills: ["HTML", "CSS", "JavaScript", "React", "Node.js"],
-      icon: <Globe className="w-12 h-12 text-orange-500" />,
+      icon: <Globe className="w-8 h-8" />,
       description:
         "Build modern websites and web applications while working on real projects with our development team.",
     },
@@ -38,23 +46,23 @@ export default function Internship() {
       title: "Python Development Internship",
       duration: "3 Months",
       skills: ["Python", "Flask", "Django", "APIs", "Databases"],
-      icon: <Code className="w-12 h-12 text-orange-500" />,
+      icon: <Code className="w-8 h-8" />,
       description:
         "Learn backend development and build scalable applications using modern Python frameworks.",
     },
     {
-      title: "Mobile App Development Internship",
+      title: "Digital Marketing Internship",
       duration: "3 Months",
-      skills: ["Flutter", "React Native", "Firebase"],
-      icon: <Smartphone className="w-12 h-12 text-orange-500" />,
+      skills: ["SEO", "SMM", "Google Ads", "Meta Ads", "Content Marketing"],
+      icon: <Megaphone className="w-8 h-8" />,
       description:
-        "Create cross-platform mobile applications and understand the full mobile development lifecycle.",
+        "Master SEO, social media advertising, PPC campaigns, and lead generation strategies on live client projects.",
     },
     {
       title: "UI / UX Design Internship",
       duration: "3 Months",
       skills: ["Figma", "Wireframing", "Prototyping"],
-      icon: <Palette className="w-12 h-12 text-orange-500" />,
+      icon: <Palette className="w-8 h-8" />,
       description:
         "Design modern user interfaces and learn how to create intuitive digital experiences.",
     },
@@ -62,7 +70,7 @@ export default function Internship() {
       title: "Data Science Internship",
       duration: "3 Months",
       skills: ["Python", "ML", "Data Analysis", "Visualization"],
-      icon: <BarChart3 className="w-12 h-12 text-amber-400" />,
+      icon: <BarChart3 className="w-8 h-8" />,
       description:
         "Work with real datasets and learn machine learning, data analysis, and visualization techniques.",
     },
@@ -70,17 +78,17 @@ export default function Internship() {
       title: "Java Development Internship",
       duration: "3 Months",
       skills: ["Java", "Spring Boot", "REST APIs"],
-      icon: <Server className="w-12 h-12 text-purple-400" />,
+      icon: <Server className="w-8 h-8" />,
       description:
         "Develop enterprise-grade applications using modern Java frameworks and backend architecture.",
     },
   ];
 
   const benefits = [
-    { icon: <Briefcase className="w-10 h-10 mx-auto text-orange-500" />, title: "Live Projects", desc: "Work on real industry projects." },
-    { icon: <GraduationCap className="w-10 h-10 mx-auto text-orange-500" />, title: "Expert Mentors", desc: "Guidance from experienced developers." },
-    { icon: <Award className="w-10 h-10 mx-auto text-amber-400" />, title: "Certification", desc: "Internship completion certificate." },
-    { icon: <Rocket className="w-10 h-10 mx-auto text-orange-500" />, title: "Career Support", desc: "Interview preparation & career guidance." },
+    { icon: <Briefcase className="w-8 h-8" />, title: "Live Projects", desc: "Work on real client & industry projects." },
+    { icon: <GraduationCap className="w-8 h-8" />, title: "Skill-Based Training", desc: "Practical hands-on developer training." },
+    { icon: <Award className="w-8 h-8" />, title: "Certification", desc: "Recognized internship certificate." },
+    { icon: <Rocket className="w-8 h-8" />, title: "Career Support", desc: "100% placement & interview guidance." },
   ];
 
   const openModal = (program) => {
@@ -89,7 +97,7 @@ export default function Internship() {
   };
 
   return (
-    <div className="bg-slate-50 text-slate-900">
+    <div className="bg-slate-50 text-slate-900 font-sans">
 
       <Navbar />
 
@@ -98,17 +106,16 @@ export default function Internship() {
       <section className="py-24 text-center max-w-7xl mx-auto px-6">
 
         <h1 className="text-3xl lg:text-5xl font-bold leading-snug mb-4 text-slate-900">
-          Internship Programs
+          Skill-Based Training & <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">Live Project Internships</span>
         </h1>
 
         <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
-          Start your career with hands-on industry internships.  
-          Gain practical experience, build real projects, and learn from expert mentors.
+          Launch your career with practical skill-based training and real-world project internships in Ahmedabad. Work on live production code, learn from industry experts, and get certified.
         </p>
 
         <a
           href="#programs"
-          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-2 rounded-xl font-bold text-slate-900 shadow-xl "
+          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl shadow-blue-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300"
         >
           Explore Programs
         </a>
@@ -128,17 +135,29 @@ export default function Internship() {
 
         {/* Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {benefits.map((b, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -8 }}
-              className="site-card rounded-3xl p-8 text-center text-slate-900"
-            >
-              <div className="mb-4">{b.icon}</div>
-              <h3 className="text-xl font-bold mb-2 text-slate-900">{b.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{b.desc}</p>
-            </motion.div>
-          ))}
+          {benefits.map((b, i) => {
+            const isOrange = clickedIcons[`benefit-${i}`];
+            return (
+              <motion.div
+                key={i}
+                whileHover={{ y: -8 }}
+                onClick={() => toggleIconColor(`benefit-${i}`)}
+                className="site-card rounded-3xl p-8 text-center text-slate-900 border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
+              >
+                <div
+                  className={`mb-4 w-16 h-16 mx-auto rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                    isOrange
+                      ? "bg-gradient-to-br from-orange-500 to-amber-500 text-white border-2 border-orange-400 shadow-lg shadow-orange-500/40 scale-110"
+                      : "bg-sky-50 border border-sky-100 text-sky-600 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:border-orange-400 group-hover:shadow-lg group-hover:shadow-orange-500/30 group-hover:scale-110"
+                  }`}
+                >
+                  {b.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-orange-600 transition-colors">{b.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{b.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* ================== INTERNSHIP CONTENT ================== */}
@@ -150,7 +169,7 @@ export default function Internship() {
           <p className="text-slate-600 leading-8">
             We believe that practical experience is essential for building a successful career.
             That is why YugAntar Technologies offers an{" "}
-            <a href="/internship-program-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/internship-program-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               IT Internship Program in Ahmedabad
             </a>{" "}
             for students enrolled in our courses. Our internship programs are designed to bridge
@@ -159,15 +178,15 @@ export default function Internship() {
 
           <p className="text-slate-600 leading-8">
             Students from our{" "}
-            <a href="/mern-stack-course-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/mern-stack-course-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               MERN Stack Development Course
             </a>
             ,{" "}
-            <a href="/ui-ux-design-course-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/ui-ux-design-course-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               UI UX Design Course
             </a>
             , and{" "}
-            <a href="/digital-marketing-course-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/digital-marketing-course-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               Digital Marketing Course
             </a>{" "}
             can participate in real-world projects during their internship. This hands-on
@@ -193,7 +212,7 @@ export default function Internship() {
 
           <p className="text-slate-600 leading-8">
             We offer{" "}
-            <a href="/website-development-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/website-development-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               Website Development Services in Ahmedabad
             </a>{" "}
             including landing pages, static websites, dynamic applications, and
@@ -202,7 +221,7 @@ export default function Internship() {
 
           <p className="text-slate-600 leading-8">
             Our{" "}
-            <a href="/seo-services-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/seo-services-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               SEO Services in Ahmedabad
             </a>{" "}
             focus on improving search engine rankings using on-page SEO, technical SEO,
@@ -211,7 +230,7 @@ export default function Internship() {
 
           <p className="text-slate-600 leading-8">
             Businesses can also grow their brand with our{" "}
-            <a href="/social-media-marketing-ahmedabad" className="text-orange-500 font-semibold hover:underline">
+            <a href="/social-media-marketing-ahmedabad" className="text-sky-600 font-semibold hover:underline">
               Social Media Marketing Services in Ahmedabad
             </a>{" "}
             where we manage platforms like Instagram, Facebook, and LinkedIn to
@@ -262,57 +281,66 @@ export default function Internship() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            {internshipPrograms.map((p, i) => (
-
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.03 }}
-                className="site-card rounded-3xl p-8 flex flex-col h-full"
-              >
-
-                <div className="mb-6 flex items-center justify-center w-16 h-16 rounded-xl bg-white border border-slate-200 text-slate-900 transition-all duration-500">
-                  {p.icon}
-                </div>
-
-                <h3 className="text-xl font-bold mb-2 text-slate-900">
-                  {p.title}
-                </h3>
-
-                <div className="mb-4">
-                  <span className="text-xs px-3 py-1 rounded-lg bg-orange-500/10 text-orange-500 border border-orange-500/20 font-semibold">
-                    {p.duration}
-                  </span>
-                </div>
-
-                <p className="text-slate-600 mt-2 mb-5 leading-relaxed text-sm flex-grow">
-                  {p.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-
-                  {p.skills.map((s, idx) => (
-
-                    <span
-                      key={idx}
-                      className="text-xs px-3 py-1 bg-slate-100 border border-slate-700 text-slate-600 rounded-lg"
-                    >
-                      {s}
-                    </span>
-
-                  ))}
-
-                </div>
-
-                <button
-                  onClick={() => openModal(p)}
-                  className="w-full inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-2.5 rounded-xl font-bold text-slate-900 shadow-xl hover:from-blue-500 hover:to-blue-600 transition duration-300 mt-auto"
+            {internshipPrograms.map((p, i) => {
+              const isOrange = clickedIcons[`program-${i}`];
+              return (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.03 }}
+                  className="group site-card rounded-3xl p-8 flex flex-col h-full bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300"
                 >
-                  Apply Now
-                </button>
 
-              </motion.div>
+                  <div
+                    onClick={() => toggleIconColor(`program-${i}`)}
+                    title="Click to toggle orange color"
+                    className={`mb-6 flex items-center justify-center w-16 h-16 rounded-2xl transition-all duration-400 cursor-pointer ${
+                      isOrange
+                        ? "bg-gradient-to-br from-orange-500 to-amber-500 text-white border-2 border-orange-400 shadow-xl shadow-orange-500/40 scale-110 rotate-3"
+                        : "bg-sky-50 border border-sky-100 text-sky-600 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:border-orange-400 group-hover:shadow-lg group-hover:shadow-orange-500/30 group-hover:scale-110"
+                    }`}
+                  >
+                    {p.icon}
+                  </div>
 
-            ))}
+                  <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-orange-600 transition-colors">
+                    {p.title}
+                  </h3>
+
+                  <div className="mb-4">
+                    <span className="text-xs px-3 py-1 rounded-lg bg-sky-100 text-sky-700 border border-sky-200 font-semibold">
+                      {p.duration}
+                    </span>
+                  </div>
+
+                  <p className="text-slate-600 mt-2 mb-5 leading-relaxed text-sm flex-grow">
+                    {p.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+
+                    {p.skills.map((s, idx) => (
+
+                      <span
+                        key={idx}
+                        className="text-xs px-3 py-1 bg-slate-100 border border-slate-200 text-slate-700 rounded-lg font-medium"
+                      >
+                        {s}
+                      </span>
+
+                    ))}
+
+                  </div>
+
+                  <button
+                    onClick={() => openModal(p)}
+                    className="w-full inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold py-3 px-5 rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/35 transition-all duration-300 mt-auto cursor-pointer"
+                  >
+                    Apply Now
+                  </button>
+
+                </motion.div>
+              );
+            })}
 
           </div>
 
@@ -334,7 +362,7 @@ export default function Internship() {
 
         <a
           href="#programs"
-          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-7 py-3.5 rounded-xl font-bold text-slate-900 shadow-xl hover:from-blue-500 hover:to-blue-600 transition-all duration-300"
+          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300"
         >
           Apply for Internship
         </a>

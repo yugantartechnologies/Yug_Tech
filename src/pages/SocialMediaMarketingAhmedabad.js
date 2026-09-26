@@ -9,13 +9,136 @@ import {
   Target, 
   Video, 
   Users, 
-  Sparkles, 
   ArrowRight, 
   CheckCircle, 
   Shield, 
   Send,
   MessageSquare
 } from "lucide-react";
+
+import { 
+  FaInstagram, 
+  FaPlay 
+} from "react-icons/fa";
+
+function SmmHeroMockup() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const images = [
+    {
+      url: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
+      caption: "1.4M+ Viral Reel Views & Instagram Ads"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1200&auto=format&fit=crop",
+      caption: "Social Media Content Calendar & Grids"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop",
+      caption: "Meta Paid Ads & 4.8x ROAS Dashboard"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop",
+      caption: "Target Inbound Lead Acquisition"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1200&auto=format&fit=crop",
+      caption: "Influencer & Brand Perception Scaling"
+    }
+  ];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % images.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="w-full max-w-xl relative group text-left font-sans select-none my-auto">
+      {/* Ambient Glow */}
+      <div className="absolute -inset-3 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 rounded-[2.5rem] blur-2xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
+
+      {/* Floating Top Badge */}
+      <div className="absolute -top-4 -right-2 z-30 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl flex items-center gap-2">
+        <FaPlay className="w-3 h-3 text-white fill-white" />
+        <span>1.4M+ Viral Reel Views</span>
+      </div>
+
+      {/* Floating Bottom Badge */}
+      <div className="absolute -bottom-4 -left-2 z-30 bg-slate-900/90 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl border border-slate-700 backdrop-blur-md flex items-center gap-2">
+        <span className="text-emerald-400 font-extrabold">4.8x ROAS</span>
+        <span className="text-slate-300">Meta Paid Campaigns</span>
+      </div>
+
+      {/* Main Glass Frame */}
+      <div className="relative bg-slate-950 border border-slate-800 rounded-[2.25rem] p-5 shadow-2xl overflow-hidden backdrop-blur-xl">
+        {/* Browser Top Bar */}
+        <div className="flex items-center justify-between mb-3 bg-slate-900 p-2.5 rounded-2xl border border-slate-800">
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-rose-500" />
+            <span className="w-3 h-3 rounded-full bg-amber-500" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500" />
+          </div>
+          <div className="bg-slate-800/90 px-4 py-1 rounded-xl text-xs text-slate-200 font-mono flex items-center gap-1.5">
+            <FaInstagram className="text-pink-400 w-3 h-3" />
+            <span className="font-bold">SMM Viral Engine</span>
+          </div>
+          <span className="text-[11px] font-bold text-pink-400 bg-pink-950 px-2.5 py-0.5 rounded-full border border-pink-800">
+            {currentSlide + 1} / {images.length}
+          </span>
+        </div>
+
+        {/* Clean Image Carousel Box (No text clutter!) */}
+        <div className="relative h-72 md:h-80 rounded-2xl overflow-hidden border border-slate-800 group/slide">
+          <img
+            key={currentSlide}
+            src={images[currentSlide].url}
+            alt={images[currentSlide].caption}
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 transform scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+
+          {/* Minimal Caption Chip */}
+          <div className="absolute bottom-4 left-4 z-10 bg-slate-950/90 border border-pink-400/30 text-white px-3.5 py-1.5 rounded-xl backdrop-blur-md text-xs font-bold flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
+            <span>{images[currentSlide].caption}</span>
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-sm font-bold opacity-0 group-hover/slide:opacity-100 transition"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % images.length)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-sm font-bold opacity-0 group-hover/slide:opacity-100 transition"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Bottom Slide Dots Only */}
+        <div className="flex items-center justify-between mt-3 px-1">
+          <span className="text-[11px] text-slate-400 font-mono">Live SMM Portfolio</span>
+          <div className="flex gap-1.5">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === currentSlide ? "bg-pink-400 w-5" : "bg-slate-800 w-2"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function SocialMediaMarketingAhmedabad() {
   const [activeTab, setActiveTab] = useState(0);
@@ -24,37 +147,37 @@ export default function SocialMediaMarketingAhmedabad() {
     {
       title: "Social Media Management (SMM)",
       description: "Manage accounts on Instagram, Facebook, and LinkedIn with continuous visual scheduling, matching your brand layout guidelines.",
-      icon: <Users className="w-8 h-8 text-sky-500" />,
+      icon: <Users className="w-7 h-7" />,
       features: ["Custom post planning", "Captions & hashtag audits", "Continuous content calendars", "Multi-profile synchronization"]
     },
     {
       title: "Creative Content Design & Copywriting",
       description: "Design premium corporate graphics, visual banners, and write brand copy that connects with your target audience.",
-      icon: <PenTool className="w-8 h-8 text-blue-500" />,
+      icon: <PenTool className="w-7 h-7" />,
       features: ["Custom graphic grids", "Corporate branding templates", "High-conversion caption writing", "Carousel post structures"]
     },
     {
       title: "Targeted Paid Ad Campaigns",
       description: "Create and optimize Meta Ads (Facebook & Instagram) and LinkedIn ads, targeting relevant demographics and search profiles.",
-      icon: <Target className="w-8 h-8 text-sky-500" />,
+      icon: <Target className="w-7 h-7" />,
       features: ["Demographic & location filters", "Lead capture forms setup", "Pixel tracking configuration", "Daily budget optimization"]
     },
     {
       title: "Vertical Reels & Video Marketing",
       description: "Script, storyboard, and edit viral short-form videos and vertical reels designed to capture organic reach.",
-      icon: <Video className="w-8 h-8 text-blue-500" />,
+      icon: <Video className="w-7 h-7" />,
       features: ["Reels & Shorts editing", "Scriptboarding & hooks research", "Trending audio selection", "Call-to-action prompts"]
     },
     {
       title: "Customer Engagement & Support",
       description: "Monitor message requests, respond to comments, and manage brand sentiment to convert fans into direct buyers.",
-      icon: <MessageSquare className="w-8 h-8 text-sky-500" />,
+      icon: <MessageSquare className="w-7 h-7" />,
       features: ["Comment reply scripts", "Direct message filters", "Review monitoring logs", "Customer feedback synchronization"]
     },
     {
       title: "Influencer Campaigns & Outreach",
       description: "Connect with local influencers in Ahmedabad to expand brand reach and run promotional events.",
-      icon: <Sparkles className="w-8 h-8 text-blue-500" />,
+      icon: <Megaphone className="w-7 h-7" />,
       features: ["Influencer selection audits", "Outreach & negotiations", "Content approval grids", "Campaign tracking logs"]
     }
   ];
@@ -117,87 +240,63 @@ export default function SocialMediaMarketingAhmedabad() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       <Navbar />
 
       {/* Hero Header Section */}
-      <section className="relative pt-36 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-36 pb-20 px-6 overflow-hidden bg-gradient-to-b from-blue-50/70 via-sky-50/30 to-white border-b border-slate-200/60">
         {/* Glow visuals */}
-        <div className="absolute top-10 left-1/4 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute bottom-5 right-1/4 h-80 w-80 rounded-full bg-sky-500/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.05),transparent_45%)]" />
+        <div className="absolute top-10 left-1/4 h-80 w-80 rounded-full bg-blue-300/20 blur-3xl" />
+        <div className="absolute bottom-5 right-1/4 h-80 w-80 rounded-full bg-sky-300/20 blur-3xl" />
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10">
           <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               SMM Services Ahmedabad
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 tracking-tight">
               Build Brand Buzz <br />
               With Strategic <br />
-              <span className="bg-gradient-to-r from-blue-400 via-sky-500 to-indigo-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600 bg-clip-text text-transparent">
                 Social Marketing
               </span>
             </h1>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
               Grow followers, build brand authority, and acquire target sales leads. We handle content creation calendars, graphic banner design, video reels editing, and Meta/LinkedIn paid campaign management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-600 hover:to-sky-700 text-white font-bold px-6 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-blue-500/20 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-sky-600 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-1"
               >
                 Get Social Audit Proposal
                 <ArrowRight className="w-4 h-4 text-white" />
               </Link>
               <a
-                href="tel:7859982605"
-                className="inline-flex items-center justify-center gap-2 border border-slate-700 hover:border-slate-500 hover:bg-slate-900/50 text-white px-6 py-3.5 rounded-xl font-semibold transition duration-300"
+                href="tel:9054372690"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-blue-400 bg-white hover:bg-blue-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
               >
-                Consult Consultant: 7859982605
+                Call: 9054372690
               </a>
             </div>
           </div>
 
           <div className="lg:col-span-5 flex justify-center">
-            {/* Visual web mockup code container */}
-            <div className="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-2xl relative group overflow-hidden">
-              <div className="absolute -inset-px bg-gradient-to-tr from-blue-500/10 to-sky-500/10 opacity-0 group-hover:opacity-100 transition duration-700 rounded-2xl" />
-              <div className="flex items-center gap-2 mb-4 border-b border-slate-850 pb-3">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="text-xs text-slate-500 ml-2 font-mono">social_manager.py</span>
-              </div>
-              <div className="font-mono text-xs text-sky-300/95 space-y-2 leading-relaxed">
-                <p><span className="text-pink-500">class</span> <span className="text-blue-400">SocialCampaign</span>:</p>
-                <p className="pl-4"><span className="text-pink-500">def</span> <span className="text-emerald-400">scale_accounts</span>(self):</p>
-                <p className="pl-8 text-slate-400"># Ads & Organic Campaigns</p>
-                <p className="pl-8">self.meta_ads = <span className="text-amber-300">"Lead_Generation_Leads"</span></p>
-                <p className="pl-8">self.graphics = <span className="text-amber-300">"Branded_Visual_Posts"</span></p>
-                <p className="pl-8">self.video_reels = <span className="text-amber-300">"Viral_Short_Reels"</span></p>
-                <p className="pl-8">self.engagement = <span className="text-amber-300">"Message_Replies_100"</span></p>
-                <p className="pl-8"><span className="text-pink-500">return</span> <span className="text-emerald-400">"High_Brand_Authority"</span></p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-slate-850 flex items-center justify-between text-xs text-slate-500">
-                <span>Facebook + Instagram</span>
-                <span className="text-blue-500 animate-pulse">● Ads Operational</span>
-              </div>
-            </div>
+            <SmmHeroMockup />
           </div>
         </div>
       </section>
 
       {/* Services Grid ("What We Offer") */}
-      <section className="py-24 px-6 bg-slate-900/30 border-t border-slate-900">
+      <section className="py-24 px-6 bg-white border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <span className="text-blue-400 font-mono text-sm tracking-wider uppercase">Our Offerings</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <span className="text-blue-600 font-mono text-sm tracking-wider uppercase font-semibold">Our Offerings</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Professional Social Media Campaigns
             </h2>
-            <p className="text-slate-450 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
               We manage all dimensions of brand storytelling, graphic grids, and paid target advertising formats.
             </p>
           </div>
@@ -206,36 +305,39 @@ export default function SocialMediaMarketingAhmedabad() {
             {offerings.map((o, idx) => (
               <div
                 key={idx}
-                className="group premium-card-hover bg-slate-900/60 border border-slate-850 p-8 rounded-2xl flex flex-col justify-between"
+                className="group relative bg-white border border-slate-200/90 p-8 rounded-3xl flex flex-col justify-between shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-blue-500/15 hover:border-blue-400/60 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
               >
-                <div className="space-y-5">
-                  <div className="inline-flex p-3 rounded-xl bg-slate-950 border border-slate-800 transition-all duration-300 group-hover:scale-110">
+                {/* Subtle Hover Gradient Accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100/40 rounded-full blur-2xl group-hover:bg-blue-200/60 transition-all duration-500 -mr-10 -mt-10 pointer-events-none" />
+
+                <div className="space-y-5 relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-sky-500 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/30 transition-all duration-500">
                     {o.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                     {o.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
                     {o.description}
                   </p>
                   
-                  <ul className="space-y-2 pt-2 text-xs text-slate-350">
+                  <ul className="space-y-2.5 pt-2 text-xs font-medium text-slate-600">
                     {o.features.map((feat, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" />
+                      <li key={i} className="flex items-center gap-2.5">
+                        <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
                         <span>{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-850">
+                <div className="pt-6 mt-6 border-t border-slate-100 relative z-10">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-1 text-xs text-blue-400 font-bold hover:text-blue-300 group-hover:gap-2 transition-all"
+                    className="inline-flex items-center gap-2 text-xs text-blue-600 font-bold hover:text-blue-700 group-hover:translate-x-1.5 transition-all"
                   >
-                    Request consultation
-                    <ArrowRight className="w-3 h-3" />
+                    Request Consultation
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -245,14 +347,14 @@ export default function SocialMediaMarketingAhmedabad() {
       </section>
 
       {/* Interactive Tabs / Process steps */}
-      <section className="py-24 px-6 bg-slate-950">
+      <section className="py-24 px-6 bg-slate-50/80 border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <span className="text-blue-400 font-mono text-sm tracking-wider uppercase">Our Execution Flow</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <span className="text-blue-600 font-mono text-sm tracking-wider uppercase font-semibold">Our Execution Flow</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Social Media Strategy Roadmap
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
               We translate conceptual goals into active engagements following a structured calendar roadmap.
             </p>
           </div>
@@ -264,36 +366,40 @@ export default function SocialMediaMarketingAhmedabad() {
                 <button
                   key={i}
                   onClick={() => setActiveTab(i)}
-                  className={`w-full text-left p-5 rounded-xl border transition-all duration-300 flex items-center justify-between group ${
+                  className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between group cursor-pointer ${
                     activeTab === i
-                      ? "bg-slate-900 border-blue-500/40 text-white shadow-xl shadow-blue-500/5"
-                      : "bg-slate-900/30 border-slate-850 hover:bg-slate-900/50 hover:border-slate-800 text-slate-400 hover:text-slate-200"
+                      ? "bg-white border-2 border-blue-500 text-slate-900 shadow-xl shadow-blue-500/10 scale-[1.02]"
+                      : "bg-white/80 border border-slate-200/90 hover:bg-white hover:border-slate-300 text-slate-600 hover:text-slate-900"
                   }`}
                 >
                   <div className="flex items-center gap-4">
-                    <span className={`text-sm font-bold font-mono px-2.5 py-1 rounded bg-slate-950 border ${
-                      activeTab === i ? "border-blue-500/30 text-blue-400" : "border-slate-800 text-slate-500"
+                    <span className={`text-xs font-bold font-mono px-3 py-1 rounded-lg border ${
+                      activeTab === i 
+                        ? "border-blue-300 bg-blue-50 text-blue-700" 
+                        : "border-slate-200 bg-slate-100 text-slate-500"
                     }`}>
                       {step.number}
                     </span>
                     <span className="font-bold text-sm sm:text-base">{step.title}</span>
                   </div>
                   <ArrowRight className={`w-4 h-4 transition-transform ${
-                    activeTab === i ? "text-blue-400 translate-x-1" : "text-slate-600 group-hover:translate-x-0.5"
+                    activeTab === i ? "text-blue-600 translate-x-1" : "text-slate-400 group-hover:translate-x-0.5"
                   }`} />
                 </button>
               ))}
             </div>
 
             {/* Right detail card */}
-            <div className="lg:col-span-7 bg-slate-900/50 border border-slate-850 p-8 rounded-2xl relative overflow-hidden min-h-[250px] flex flex-col justify-center">
-              <div className="absolute top-[-30px] right-[-30px] text-[120px] font-extrabold font-mono text-slate-800/10 select-none">
+            <div className="lg:col-span-7 bg-white border border-slate-200/90 shadow-xl shadow-slate-200/60 p-8 sm:p-10 rounded-3xl relative overflow-hidden min-h-[260px] flex flex-col justify-center border-l-4 border-l-blue-500">
+              <div className="absolute top-[-30px] right-[-30px] text-[130px] font-extrabold font-mono text-slate-100 select-none pointer-events-none">
                 {processSteps[activeTab].number}
               </div>
               <div className="space-y-4 relative z-10">
-                <span className="text-xs font-semibold uppercase tracking-wider text-blue-400 font-mono">Stage Details</span>
-                <h3 className="text-2xl font-bold text-white">{processSteps[activeTab].title}</h3>
-                <p className="text-slate-350 text-base leading-relaxed">
+                <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 font-mono bg-blue-50 px-3 py-1 rounded-md border border-blue-100 inline-block w-fit">
+                  Stage Details
+                </span>
+                <h3 className="text-2xl font-bold text-slate-900">{processSteps[activeTab].title}</h3>
+                <p className="text-slate-600 text-base leading-relaxed font-normal">
                   {processSteps[activeTab].detail}
                 </p>
               </div>
@@ -303,22 +409,25 @@ export default function SocialMediaMarketingAhmedabad() {
       </section>
 
       {/* Tech Stack Grid / Platforms */}
-      <section className="py-20 px-6 bg-slate-900/20 border-t border-b border-slate-900">
+      <section className="py-20 px-6 bg-white border-b border-slate-200/80">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-12 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-12 tracking-tight">
             Our Marketing & Design Platforms
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(toolsets).map(([category, items], i) => (
-              <div key={i} className="group premium-card-hover bg-slate-900/60 border border-slate-850 p-6 rounded-2xl space-y-4">
-                <h3 className="font-bold text-blue-450 border-b border-slate-800 pb-2 text-sm uppercase tracking-wider font-mono">
+              <div 
+                key={i} 
+                className="group bg-slate-50/80 border border-slate-200/90 p-7 rounded-3xl space-y-4 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 hover:bg-white hover:-translate-y-1.5 transition-all duration-300"
+              >
+                <h3 className="font-bold text-blue-600 border-b border-slate-200 pb-3 text-xs uppercase tracking-wider font-mono">
                   {category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {items.map((item, idx) => (
                     <span
                       key={idx}
-                      className="px-2.5 py-1.5 text-xs rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-medium hover:border-blue-500/30 transition cursor-default"
+                      className="px-3 py-1.5 text-xs rounded-xl bg-white border border-slate-200/90 text-slate-700 font-medium shadow-xs transition-all duration-300 hover:scale-105 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 cursor-default"
                     >
                       {item}
                     </span>
@@ -331,30 +440,33 @@ export default function SocialMediaMarketingAhmedabad() {
       </section>
 
       {/* Key Benefits of Yugantar */}
-      <section className="py-24 px-6 bg-slate-950">
+      <section className="py-24 px-6 bg-slate-50/60 border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-3">
-            <h2 className="text-3xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
               Why Partner with Yugantar for SMM
             </h2>
-            <p className="text-slate-450 text-sm sm:text-base max-w-xl mx-auto">
+            <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
               We design target social campaigns that increase visibility and conversions.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Targeted Paid Lead Ads", desc: "We design conversion-optimized forms that capture active sales prospects on Meta and LinkedIn.", icon: <Send className="w-6 h-6 text-sky-400" /> },
-              { title: "Brand Cohesive Aesthetics", desc: "Our graphic designers maintain consistent colors, layouts, and typography across all post grids.", icon: <PenTool className="w-6 h-6 text-blue-450" /> },
-              { title: "Cost-Per-Lead Audits", desc: "We review CTR and CPL stats weekly to ensure maximum return on advertising budgets.", icon: <Megaphone className="w-6 h-6 text-sky-400" /> },
-              { title: "Content Verification", desc: "We share draft calendar proposals so you can review copy and visual updates before launch.", icon: <Shield className="w-6 h-6 text-blue-500" /> }
+              { title: "Targeted Paid Lead Ads", desc: "We design conversion-optimized forms that capture active sales prospects on Meta and LinkedIn.", icon: <Send className="w-6 h-6 text-sky-600" /> },
+              { title: "Brand Cohesive Aesthetics", desc: "Our graphic designers maintain consistent colors, layouts, and typography across all post grids.", icon: <PenTool className="w-6 h-6 text-blue-600" /> },
+              { title: "Cost-Per-Lead Audits", desc: "We review CTR and CPL stats weekly to ensure maximum return on advertising budgets.", icon: <Megaphone className="w-6 h-6 text-sky-600" /> },
+              { title: "Content Verification", desc: "We share draft calendar proposals so you can review copy and visual updates before launch.", icon: <Shield className="w-6 h-6 text-blue-600" /> }
             ].map((benefit, i) => (
-              <div key={i} className="p-6 bg-slate-900/40 border border-slate-850 rounded-xl space-y-4">
-                <div className="p-3 bg-slate-950 rounded-xl w-fit border border-slate-800">
+              <div 
+                key={i} 
+                className="group bg-white border border-slate-200/90 p-7 rounded-3xl shadow-md shadow-slate-200/40 hover:shadow-2xl hover:shadow-blue-500/15 hover:border-blue-300 hover:-translate-y-2 transition-all duration-400 space-y-4"
+              >
+                <div className="p-3.5 bg-blue-50 rounded-2xl w-fit border border-blue-100 text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                   {benefit.icon}
                 </div>
-                <h3 className="font-bold text-white text-base">{benefit.title}</h3>
-                <p className="text-slate-450 text-xs sm:text-sm leading-relaxed">{benefit.desc}</p>
+                <h3 className="font-bold text-slate-900 text-base">{benefit.title}</h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">{benefit.desc}</p>
               </div>
             ))}
           </div>
@@ -362,32 +474,32 @@ export default function SocialMediaMarketingAhmedabad() {
       </section>
 
       {/* FAQs Section */}
-      <FAQSection items={faqItems} schemaId="smm-services-faq-schema" themeColor="blue" />
+      <FAQSection items={faqItems} schemaId="smm-services-faq-schema" themeColor="blue" isLight={true} />
 
       {/* Bottom CTA Block */}
       <section className="py-20 px-6 max-w-6xl mx-auto w-full">
-        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-blue-950 rounded-3xl p-8 sm:p-16 text-center border border-slate-850 shadow-2xl">
-          <div className="absolute top-0 right-0 h-60 w-60 rounded-full bg-blue-500/5 blur-3xl" />
+        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-sky-950 rounded-3xl p-8 sm:p-14 text-center border border-slate-800 shadow-2xl">
+          <div className="absolute top-0 right-0 h-60 w-60 rounded-full bg-blue-500/10 blur-3xl" />
           
           <div className="max-w-xl mx-auto space-y-6 relative z-10">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
               Ready to Accelerate Your Social Channels?
             </h2>
-            <p className="text-slate-350 text-sm sm:text-base leading-relaxed">
-              Connect with social media marketing strategists in Navrangpura, Ahmedabad. Let us deploy paid campaigns and creative content assets to build active leads.
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Connect with social media marketing strategists in Ahmedabad. Let us deploy paid campaigns and creative content assets to build active leads.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
               <Link
                 to="/contact"
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-7 py-3 rounded-xl transition duration-300 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20"
+                className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5"
               >
                 Request Custom Campaign Plan
               </Link>
               <a
-                href="tel:7859982605"
-                className="border border-slate-700 hover:border-slate-500 bg-slate-950 hover:bg-slate-900 text-white font-semibold px-7 py-3 rounded-xl transition duration-300"
+                href="tel:9054372690"
+                className="border border-slate-700 hover:border-slate-500 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-3.5 rounded-xl transition duration-300"
               >
-                Call: 7859982605
+                Call: 9054372690
               </a>
             </div>
           </div>

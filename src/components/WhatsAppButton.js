@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Edit `phone` and `message` as needed. Phone should be in international format without + or dashes (e.g. 919812345678).
-// User-provided number: 7859982605 (India), add country code 91
-const phone = '917859982605';
+// User-provided number: 9054372690 (India), add country code 91
+const phone = '919054372690';
 const message = 'Hello%2C%20I%20would%20like%20to%20enquire%20about%20your%20services.'; // already URL-encoded
 
 export default function WhatsAppButton() {

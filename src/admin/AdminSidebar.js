@@ -4,10 +4,10 @@ import {
   BookOpen, 
   MessageSquare, 
   Briefcase, 
+  PhoneCall,
+  CalendarCheck,
   Award, 
-  GraduationCap, 
   HelpCircle, 
-  CalendarCheck, 
   LogOut 
 } from "lucide-react";
 
@@ -76,6 +76,16 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen, onLogout }) 
               <Briefcase className="w-5 h-5" /> 
               <span>Service Inquiries</span>
             </NavLink>
+
+            <NavLink to="/admin/free-consultations" className={linkClass}>
+              <CalendarCheck className="w-5 h-5 text-sky-400" /> 
+              <span>Free Consultations</span>
+            </NavLink>
+
+            <NavLink to="/admin/team-consultations" className={linkClass}>
+              <PhoneCall className="w-5 h-5" /> 
+              <span>Team Consultations</span>
+            </NavLink>
           </div>
 
           <div className="mb-2">
@@ -83,16 +93,6 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen, onLogout }) 
             <NavLink to="/admin/internships" className={linkClass}>
               <Award className="w-5 h-5" /> 
               <span>Internships</span>
-            </NavLink>
-
-            <NavLink to="/admin/students" className={linkClass}>
-              <GraduationCap className="w-5 h-5" /> 
-              <span>Manage Students</span>
-            </NavLink>
-
-            <NavLink to="/admin/attendance" className={linkClass}>
-              <CalendarCheck className="w-5 h-5" />
-              <span>Attendance</span>
             </NavLink>
 
             <NavLink to="/admin/Fqa" className={linkClass}>

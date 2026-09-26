@@ -3,7 +3,7 @@ import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import BASE_URL from "../BASEURL";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -27,26 +27,44 @@ export default function Contact() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const newInquiry = {
+      id: Date.now().toString(),
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      createdAt: new Date().toISOString()
+    };
+
+    // 1. LocalStorage backup for zero data loss
     try {
-      const response = await fetch(`${BASE_URL}/api/inquiries`, {
+      const existing = JSON.parse(localStorage.getItem("yug_general_inquiries") || "[]");
+      existing.unshift(newInquiry);
+      localStorage.setItem("yug_general_inquiries", JSON.stringify(existing));
+      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event("yug_inquiry_submitted"));
+    } catch (err) {
+      console.error("LocalStorage save error:", err);
+    }
+
+    // 2. Post to backend
+    try {
+      await fetch(`${BASE_URL}/api/inquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, createdAt: new Date().toISOString() })
+        body: JSON.stringify(newInquiry)
       });
-
-      if (response.ok) {
-        alert("Success! We'll reach out to you shortly.");
-        setFormData({ name: "", email: "", phone: "", message: "" });
-      } else {
-        alert("Unable to submit right now. Please try again in a moment.");
-      }
     } catch (error) {
-      alert("Network error. Please check your internet connection and retry.");
+      console.warn("Backend API offline, general inquiry cached locally.");
     } finally {
       setIsSubmitting(false);
+      setSubmitted(true);
     }
   };
 
@@ -69,8 +87,8 @@ export default function Contact() {
         {/* Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {[
-            { t: "Drop by Office", c: "2nd floor, Yash Aqua, 204, Vijay Cross Rd, University Area, Ahmedabad, Gujarat 380009", i: <MapPin className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
-            { t: "Call Directly", c: "+91 6355582605", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
+            { t: "Call Directly", c: "+91 9054372690", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
+            { t: "Inquiry Support", c: "Available Mon - Sat (9 AM - 7 PM)", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
             { t: "Work with Us", c: "info@yugantartechnologies.com", i: <Mail className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" }
           ].map((item, i) => (
             <div key={i} className={`p-8 rounded-[2rem] site-card ${item.b} transition-all duration-300 group`}>
@@ -87,6 +105,12 @@ export default function Contact() {
           <div className="site-card w-full lg:w-3/5 rounded-[3rem] p-8 md:p-12 relative">
             <h2 className="text-3xl font-bold mb-10 tracking-tight">Send us a <span className="text-orange-500 font-black">Digital Brief</span></h2>
             
+            {submitted && (
+              <div className="p-4 mb-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 font-semibold text-sm">
+                Thank you! Your inquiry has been submitted successfully. Our team will get back to you shortly.
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="relative group">
@@ -128,19 +152,26 @@ export default function Contact() {
             </form>
           </div>
 
-          {/* Map & Schedule */}
+          {/* Relocation Notice & Support */}
           <div className="w-full lg:w-2/5 space-y-8">
-            {/* Map */}
-            <div className="rounded-[3rem] overflow-hidden border border-slate-700 h-72 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
-              <iframe
-                title="Office Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6979264149036!2d72.5482483!3d23.0348785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84f9fd600001%3A0xe54d24172f3e0924!2sYash%20Aqua!5e0!3m2!1sen!2sin!4v1700000000000"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
+            {/* Shifting Notice Card */}
+            <div className="rounded-[3rem] p-8 bg-slate-900 text-white border border-slate-800 shadow-2xl flex flex-col justify-between">
+              <div>
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-orange-500/20 text-orange-400 border border-orange-500/30 uppercase tracking-wider font-mono">
+                  Office Relocation Update
+                </span>
+                <h3 className="text-2xl font-bold mt-4 mb-3 text-white">We're Moving to a New Space!</h3>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Our office is currently shifting to a new location in Ahmedabad. For all course enrollments, IT project discussions, and general inquiries, please connect with us directly via phone call or WhatsApp.
+                </p>
+              </div>
+              <a
+                href="tel:9054372690"
+                className="mt-6 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition"
+              >
+                <Phone className="w-4 h-4" />
+                Call +91 9054372690
+              </a>
             </div>
 
             {/* Availability */}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin, Clock } from "lucide-react";
+import { Phone, Mail, Instagram, Facebook, Linkedin, Clock } from "lucide-react";
 
 const logo = "/Yuganter_Technologies.png";
 
@@ -29,7 +29,7 @@ export default function Footer() {
                 />
                 <div>
                   <h2 className="text-xl font-bold text-white leading-tight">
-                    Yugantar <span className="text-sky-400">technologies</span>
+                    Yugantar <span className="text-sky-400">Technologies</span>
                   </h2>
                   <p className="text-[9px] tracking-[0.18em] uppercase text-sky-300 mt-1 font-semibold">
                     TRAINING AND IT SOLUTION
@@ -119,24 +119,12 @@ export default function Footer() {
                 Get In Touch
               </h3>
               <div className="space-y-4 text-sm text-slate-400">
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=204+Yash+Aqua+Vijay+Cross+Road+Navrangpura+Ahmedabad"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-3 hover:text-white transition group"
-                  aria-label="Address"
-                >
-                  <MapPin className="text-sky-400 mt-1 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" size={18} />
-                  <div>
-                    <p className="font-semibold text-white group-hover:text-sky-300 transition-colors">Visit Our Location</p>
-                    <p className="leading-relaxed text-slate-400 mt-0.5">204, Yash Aqua, Vijay Cross Road, Navrangpura, Ahmedabad</p>
-                    <p className="text-xs text-sky-300 mt-1 font-medium underline">Open in Google Maps</p>
-                  </div>
-                </a>
-
-                <a href="tel:7859982605" className="flex items-center gap-3 hover:text-white transition group" aria-label="Phone number">
+                <a href="tel:9054372690" className="flex items-center gap-3 hover:text-white transition group" aria-label="Phone number">
                   <Phone className="text-sky-400 flex-shrink-0 transition-transform duration-300 group-hover:rotate-12" size={18} />
-                  <p className="text-slate-450 group-hover:text-sky-300 transition-colors font-medium">Call: 7859982605</p>
+                  <div>
+                    <p className="font-semibold text-white group-hover:text-sky-300 transition-colors">Call For Inquiry</p>
+                    <p className="text-sky-400 font-bold text-base mt-0.5">+91 9054372690</p>
+                  </div>
                 </a>
 
                 <a href="mailto:info@yugantartechnologies.com" className="flex items-center gap-3 hover:text-white transition group" aria-label="Email address">

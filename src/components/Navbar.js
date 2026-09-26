@@ -43,7 +43,7 @@ export default function Navbar() {
           />
           <div>
             <h1 className="text-base md:text-xl font-bold text-white leading-none whitespace-nowrap">
-              Yugantar <span className="text-sky-400">technologies</span>
+              Yugantar <span className="text-sky-400">Technologies</span>
             </h1>
             <p className="text-[9px] md:text-[10px] text-sky-300 tracking-[0.18em] uppercase mt-1.5 font-semibold">
               TRAINING AND IT SOLUTION
@@ -71,26 +71,24 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             to="/contact"
-            className="button-secondary cursor-magnet hidden lg:inline-flex"
+            className="hidden sm:inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs md:text-sm font-bold px-4 py-2 md:px-5 md:py-2.5 rounded-xl shadow-md shadow-sky-500/20 hover:shadow-sky-500/35 transition-all duration-300"
           >
-            Contact Us
-            <span className="button-arrow">→</span>
+            Get In Touch
           </Link>
-
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="xl:hidden p-2 text-slate-200 bg-white/10 rounded-2xl border border-white/10 transition hover:bg-white/15"
+            className="xl:hidden p-2.5 text-slate-200 bg-white/10 rounded-xl border border-white/10 transition hover:bg-white/15 active:scale-95"
             aria-label="Toggle Menu"
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {isOpen && (
-        <div className="xl:hidden bg-slate-950/95 border-t border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.24)] backdrop-blur-3xl">
-          <nav className="flex flex-col p-4 gap-2">
+        <div className="xl:hidden bg-slate-950/98 border-t border-white/10 shadow-2xl backdrop-blur-3xl animate-fadeIn">
+          <nav className="flex flex-col p-4 gap-1.5">
             {navItems.map((item) => {
               const active = location.pathname === item.path;
               return (
@@ -98,16 +96,27 @@ export default function Navbar() {
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-2xl font-semibold transition duration-200 ${
+                  className={`px-4 py-3 rounded-xl font-medium transition duration-200 flex items-center justify-between ${
                     active
-                      ? "text-white bg-slate-900/50"
-                      : "text-slate-300 hover:text-white hover:bg-slate-900/40"
+                      ? "text-white bg-sky-500/15 border border-sky-500/30"
+                      : "text-slate-300 hover:text-white hover:bg-slate-900/60"
                   }`}
                 >
                   <span className="text-base font-semibold">{item.name}</span>
+                  {active && <span className="w-2 h-2 rounded-full bg-sky-400"></span>}
                 </Link>
               );
             })}
+
+            <div className="mt-4 pt-4 border-t border-white/10 space-y-2.5 px-2">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Quick Contact Desk</p>
+              <a
+                href="tel:9054372690"
+                className="block py-2.5 px-3 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 rounded-xl text-xs text-sky-400 font-bold text-center transition"
+              >
+                📞 Call +91 9054372690
+              </a>
+            </div>
           </nav>
         </div>
       )}

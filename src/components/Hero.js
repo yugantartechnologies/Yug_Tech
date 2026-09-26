@@ -62,13 +62,11 @@ export default function HeroSection({ onQuickEnroll }) {
 
             <motion.h1 
               variants={fadeUp} 
-              className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.15] tracking-tight text-white"
+              className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.18] tracking-tight text-white"
             >
-              Build Your Career <br />
-              With <br />
-              <span className="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">
-                YugAntar <br />
-                Technologies
+              Build Your Career With{" "}
+              <span className="bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                YugAntar Technologies
               </span>
             </motion.h1>
 
@@ -98,15 +96,46 @@ export default function HeroSection({ onQuickEnroll }) {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Slider Only with Top Margin Offset */}
+          {/* Right Column - Workspace Showcase with Floating Stat Badges (Softs Solution Service style) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative lg:mt-10"
+            className="relative lg:mt-6"
           >
+            {/* Floating Glassmorphism Badges surrounding the hero right box */}
+            <div className="absolute -top-3 right-2 z-20 bg-slate-950/90 border border-sky-400/40 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2 animate-bounce-slow">
+              <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs sm:text-sm">
+                🎓
+              </span>
+              <div>
+                <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Practical Learning</p>
+                <p className="text-[11px] sm:text-xs font-bold text-sky-300">10+ Top Tech Courses</p>
+              </div>
+            </div>
+
+            <div className="absolute top-1/3 -left-4 z-20 bg-slate-950/90 border border-emerald-400/40 text-white px-4 py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2.5 hidden sm:flex">
+              <span className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+                💼
+              </span>
+              <div>
+                <p className="text-[11px] text-slate-400 font-medium">Career Support</p>
+                <p className="text-xs font-bold text-emerald-300">100% Job Assistance</p>
+              </div>
+            </div>
+
+            <div className="absolute -bottom-3 right-2 z-20 bg-slate-950/90 border border-amber-400/40 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2">
+              <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs sm:text-sm">
+                ⭐
+              </span>
+              <div>
+                <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Verified Trainers</p>
+                <p className="text-[11px] sm:text-xs font-bold text-amber-300">Expert Mentorship</p>
+              </div>
+            </div>
+
             {/* Automatic Image Slideshow Box */}
-            <div className="relative w-full h-[450px] md:h-[500px] rounded-[2rem] overflow-hidden border border-slate-850 shadow-2xl group">
+            <div className="relative w-full h-[320px] sm:h-[400px] md:h-[480px] rounded-3xl sm:rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl group bg-slate-950">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImgIndex}
@@ -119,10 +148,11 @@ export default function HeroSection({ onQuickEnroll }) {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
               
-              <div className="absolute top-6 left-6 bg-slate-950/70 border border-white/10 px-4 py-1.5 rounded-full text-xs font-semibold text-sky-300 backdrop-blur-md">
-                Live IT Workspace
+              <div className="absolute top-6 left-6 bg-slate-950/80 border border-white/10 px-4 py-1.5 rounded-full text-xs font-semibold text-sky-300 backdrop-blur-md flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Live IT Workspace & Mentorship Hub
               </div>
 
               {/* Navigation dots */}

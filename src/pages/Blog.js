@@ -14,7 +14,7 @@ export default function Blog() {
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Latest insights on web development, mobile apps, AI, and IT trends from YugAntar Technologies."
+        "Latest insights on web development, mobile apps, custom software engineering, and IT trends from YugAntar Technologies."
       );
     }
     window.scrollTo(0, 0);
@@ -38,11 +38,11 @@ export default function Blog() {
       color: "from-purple-500 to-pink-500"
     },
     {
-      title: "AI & Machine Learning for Startups",
-      description: "Discover how AI-powered tools and machine learning models help startups improve efficiency and gain competitive advantage.",
-      category: "AI & ML",
+      title: "Data Analytics & Enterprise Software Architecture",
+      description: "Discover how custom software solutions, data analytics, and business automation help companies improve operational efficiency and scale seamlessly.",
+      category: "Enterprise Software",
       readTime: "7 min read",
-      slug: "ai-ml-startups",
+      slug: "enterprise-software-architecture",
       color: "from-orange-500 to-yellow-500"
     },
     {

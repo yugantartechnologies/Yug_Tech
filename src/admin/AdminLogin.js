@@ -11,7 +11,6 @@ const AdminLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === 'Ram@email.com' && password === 'Ram123') {
-      localStorage.clear();
       localStorage.setItem('adminLoggedIn', 'true');
       navigate('/admin');
     } else {
@@ -44,7 +43,8 @@ const AdminLogin = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                className="w-full admin-input bg-slate-950 border border-slate-700 text-white font-semibold rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                placeholder="Ram@email.com"
                 required
               />
             </div>
@@ -57,7 +57,8 @@ const AdminLogin = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                className="w-full admin-input bg-slate-950 border border-slate-700 text-white font-semibold rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                placeholder="••••••••"
                 required
               />
             </div>

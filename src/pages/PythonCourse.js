@@ -81,8 +81,7 @@ export default function PythonCourse() {
       <PageHeader
         title={course.title}
         subtitle="Master Python Development"
-        
-  bgImage="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&auto=format&fit=crop"
+        bgImage="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600&auto=format&fit=crop"
       />
 
       <main className="flex-grow py-24 bg-slate-50">
