@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BASE_URL from "../BASEURL";
+import BASE_URL, { fetchFast } from "../BASEURL";
 
 export default function InternshipModal({ internship, isOpen, onClose }) {
     const [formData, setFormData] = useState({
@@ -62,13 +62,13 @@ export default function InternshipModal({ internship, isOpen, onClose }) {
 
         // 2. Post to backend API
         try {
-            await fetch(`${BASE_URL}/api/internship-inquiries`, {
+            await fetchFast(`${BASE_URL}/api/internship-inquiries`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(newApplication)
-            });
+            }, 3000);
         } catch (error) {
             console.warn('Backend endpoint offline, saved locally to queue.');
         }

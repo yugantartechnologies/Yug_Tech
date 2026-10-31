@@ -9,7 +9,11 @@ import SocialMediaMarketingAhmedabad from './pages/SocialMediaMarketingAhmedabad
 import WebsiteDevelopmentAhmedabad from './pages/WebsiteDevelopmentAhmedabad';
 import GoogleBusinessProfileManagementAhmedabad from './pages/GoogleBusinessProfileManagementAhmedabad';
 import PerformanceMarketingAhmedabad from './pages/PerformanceMarketingAhmedabad';
+import DigitalMarketingAhmedabad from './pages/DigitalMarketingAhmedabad';
 import Internship from './pages/Internship';
+import WebDevelopmentInternshipAhmedabad from './pages/WebDevelopmentInternshipAhmedabad';
+import PythonInternshipAhmedabad from './pages/PythonInternshipAhmedabad';
+import DigitalMarketingInternshipAhmedabad from './pages/DigitalMarketingInternshipAhmedabad';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
@@ -36,7 +40,6 @@ import AdminFaq from './admin/AdminFaq';
 import StudentRegistration from './components/StudentRegistration';
 import ScrollToTop from './components/ScrollTop';
 import ScrollProgress from './components/ScrollProgress';
-import CustomCursor from './components/CustomCursor';
 import WhatsAppButton from './components/WhatsAppButton';
 import MetaTags from './components/MetaTags';
 
@@ -47,7 +50,6 @@ function App() {
         <MetaTags />
         <ScrollProgress />
         <ScrollToTop />
-        <CustomCursor />
         <Routes>
          
           <Route path="/" element={<Home />} />
@@ -63,6 +65,7 @@ function App() {
           <Route path="/courses/digital-marketing" element={<DigitalMarketingCourse />} />
           <Route path="/digital-marketing-course-ahmedabad" element={<DigitalMarketingCourse />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/digital-marketing-ahmedabad" element={<DigitalMarketingAhmedabad />} />
           <Route path="/seo-services-ahmedabad" element={<SeoServicesAhmedabad />} />
           <Route path="/social-media-marketing-ahmedabad" element={<SocialMediaMarketingAhmedabad />} />
           <Route path="/website-development-ahmedabad" element={<WebsiteDevelopmentAhmedabad />} />
@@ -71,6 +74,10 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/backlink-guide" element={<BacklinkGuide />} />
           <Route path="/internship" element={<Internship />} />
+          <Route path="/it-internship-ahmedabad" element={<Internship />} />
+          <Route path="/web-development-internship-ahmedabad" element={<WebDevelopmentInternshipAhmedabad />} />
+          <Route path="/python-internship-ahmedabad" element={<PythonInternshipAhmedabad />} />
+          <Route path="/digital-marketing-internship-ahmedabad" element={<DigitalMarketingInternshipAhmedabad />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminLogin />} />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/StudentRegistration.css";
-import BASE_URL from "../BASEURL.js";
+import BASE_URL, { fetchFast } from "../BASEURL.js";
 import Navbar from "./Navbar.js";
 
 const InternshipRegistrationForm = () => {
@@ -99,13 +99,13 @@ const InternshipRegistrationForm = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${BASE_URL}/api/students`, {
+      const response = await fetchFast(`${BASE_URL}/api/students`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });
+      }, 3000);
 
       if (response.ok) {
         console.log("Form submitted:", formData);

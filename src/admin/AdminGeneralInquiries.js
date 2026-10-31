@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
-import BASE_URL from "../BASEURL";
+import BASE_URL, { fetchFast } from "../BASEURL";
 import { MessageSquare, Search, Trash2, Mail, Phone, Calendar, User, RefreshCw } from "lucide-react";
 
 const AdminGeneralInquiries = () => {
@@ -28,7 +28,7 @@ const AdminGeneralInquiries = () => {
 
     let remoteData = [];
     try {
-      const response = await fetch(`${BASE_URL}/api/inquiries`);
+      const response = await fetchFast(`${BASE_URL}/api/inquiries`, {}, 2500);
       if (response.ok) {
         remoteData = await response.json();
       }
@@ -45,7 +45,14 @@ const AdminGeneralInquiries = () => {
       }
     });
 
-    setInquiries(Array.from(combinedMap.values()));
+    const list = Array.from(combinedMap.values());
+    list.sort((a, b) => {
+      const dateA = new Date(a.createdAt || a.submittedAt || 0).getTime();
+      const dateB = new Date(b.createdAt || b.submittedAt || 0).getTime();
+      return dateB - dateA;
+    });
+
+    setInquiries(list);
     setIsSyncing(false);
   };
 
@@ -63,7 +70,7 @@ const AdminGeneralInquiries = () => {
     };
   }, []);
 
-  const handleDelete = (idToDelete) => {
+  const handleDelete = async (idToDelete) => {
     if (!window.confirm("Are you sure you want to delete this general inquiry record?")) return;
 
     // Remove from localStorage
@@ -75,6 +82,15 @@ const AdminGeneralInquiries = () => {
       localStorage.setItem("yug_general_inquiries", JSON.stringify(updated));
     } catch (e) {
       console.error("Error updating local storage", e);
+    }
+
+    // Remove from backend server
+    try {
+      await fetchFast(`${BASE_URL}/api/inquiries/${idToDelete}`, {
+        method: "DELETE"
+      }, 2500);
+    } catch (e) {
+      console.warn("Backend delete sync failed:", e);
     }
 
     // Update state

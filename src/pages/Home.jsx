@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
@@ -16,20 +16,7 @@ export default function Home() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const faqItems = useFaqByCategory(FAQ_CATEGORIES.HOME);
 
-  useEffect(() => {
-    document.title =
-      "Yugantar Technologies | IT Training Institute & IT Services Company in Ahmedabad";
-
-    const metaDescription = document.querySelector(
-      'meta[name="description"]'
-    );
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Yugantar Technologies is a leading IT Training Institute and IT Services Company in Ahmedabad. We provide Full Stack Development, MERN Stack, React JS, Python, Java, Flutter, Internship Programs, Website Development, Software Development, Mobile App Development, SEO, Digital Marketing, Graphic Design, UI/UX Design, Cloud Solutions, and Business Automation Services."
-      );
-    }
-  }, []);
+  // SEO meta tags are centrally and dynamically managed by <MetaTags /> in App.js
 
   const handleQuickEnroll = () => {
     setSelectedCourse({

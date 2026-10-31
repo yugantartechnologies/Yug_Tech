@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
 import ServiceBookingModal from "../components/ServiceBookingModal";
 import { 
-  Target, 
   BarChart3, 
   Zap, 
   DollarSign, 
@@ -18,79 +17,113 @@ import { FaGoogle, FaMeta } from "react-icons/fa6";
 function PerformanceHeroMockup() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const images = [
-    {
-      url: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop",
-      caption: "5.2x Average ROAS Across Google & Meta Ads"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
-      caption: "Real-Time PPC Analytics & Lead Funnel Dashboard"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop",
-      caption: "High-Conversion Landing Page & Pixel Tracking"
-    }
-  ];
-
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 4000);
+      setCurrentSlide((prev) => (prev + 1) % 2);
+    }, 4500);
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, []);
 
   return (
     <div className="w-full max-w-md relative group text-left font-sans select-none">
       <div className="absolute -inset-2 bg-gradient-to-tr from-orange-500 via-amber-500 to-yellow-500 rounded-3xl blur-2xl opacity-35 group-hover:opacity-55 transition duration-700 pointer-events-none" />
 
-      <div className="relative bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-4 shadow-2xl overflow-hidden hover:border-orange-400/60 transition-all duration-500">
-        <div className="flex items-center justify-between mb-3 bg-slate-900 p-2.5 rounded-2xl border border-slate-800">
+      <div className="relative bg-slate-950/95 border border-slate-800 rounded-3xl p-4 shadow-2xl overflow-hidden backdrop-blur-xl hover:border-orange-500/40 transition-all duration-500">
+        
+        {/* Sleek Browser Top Bar */}
+        <div className="flex items-center justify-between mb-3 px-1 py-1">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-rose-500" />
-            <span className="w-3 h-3 rounded-full bg-amber-500" />
-            <span className="w-3 h-3 rounded-full bg-emerald-500" />
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
           </div>
-          <div className="flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-xl border border-slate-700 text-[11px] text-slate-200 font-mono">
-            <Target className="w-3.5 h-3.5 text-orange-400" />
-            <span className="font-semibold text-slate-200">Live ROI Engine</span>
+          <div className="bg-slate-900 border border-slate-800 px-3 py-0.5 rounded-lg text-[11px] text-slate-300 font-mono">
+            analytics.google.com/ads
           </div>
-          <span className="text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Scaled
-          </span>
+          <div className="w-3" />
         </div>
 
-        <div className="relative h-48 rounded-2xl overflow-hidden border border-slate-200 mb-3 group/slide">
-          <img
-            src={images[currentSlide].url}
-            alt={images[currentSlide].caption}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
-          <div className="absolute bottom-3 left-3 right-3 text-white">
-            <span className="text-[9px] font-bold uppercase tracking-widest bg-orange-600 px-2 py-0.5 rounded-md">
-              Performance Metrics
-            </span>
-            <p className="text-xs font-bold text-white mt-1 drop-shadow-md">
-              {images[currentSlide].caption}
-            </p>
-          </div>
+        {/* Dashboard Display Screen */}
+        <div className="relative bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800/80 rounded-2xl p-4 text-white">
+          {currentSlide === 0 ? (
+            <div className="space-y-3 animate-fadeIn">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-slate-400 font-mono uppercase">Multi-Platform ROAS</div>
+                  <div className="text-xl font-extrabold text-orange-400 mt-0.5">5.2x Average Return</div>
+                </div>
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md font-bold border border-emerald-500/20">
+                  ▲ +44% ROI
+                </span>
+              </div>
+
+              <div className="h-16 flex items-end gap-1.5 pt-2">
+                {[40, 52, 60, 68, 75, 82, 90, 96].map((h, i) => (
+                  <div key={i} className="flex-1 flex flex-col justify-end h-full">
+                    <div
+                      className="w-full bg-gradient-to-t from-orange-600 to-amber-400 rounded-t-sm"
+                      style={{ height: `${h}%` }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs pt-1 border-t border-slate-800">
+                <div className="bg-slate-950/70 p-2 rounded-lg border border-slate-800">
+                  <span className="text-[10px] text-slate-400 block">Total Inbound Leads</span>
+                  <span className="text-sm font-extrabold text-white">14,500+</span>
+                </div>
+                <div className="bg-slate-950/70 p-2 rounded-lg border border-slate-800">
+                  <span className="text-[10px] text-slate-400 block">Average Conv. Rate</span>
+                  <span className="text-sm font-extrabold text-emerald-400">8.4%</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3 animate-fadeIn">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-slate-400 font-mono uppercase">Live Funnel Tracking</div>
+                  <div className="text-xl font-extrabold text-white mt-0.5">High Intent Clicks</div>
+                </div>
+                <span className="text-[10px] text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded-md font-bold border border-sky-500/20">
+                  Google & Meta
+                </span>
+              </div>
+
+              <div className="space-y-1.5 text-xs py-1">
+                <div className="flex justify-between items-center bg-slate-950/70 p-2 rounded-lg border border-slate-800">
+                  <span className="text-slate-300">PPC Search Campaigns</span>
+                  <span className="font-mono font-bold text-orange-400">₹32.40 CPL</span>
+                </div>
+                <div className="flex justify-between items-center bg-slate-950/70 p-2 rounded-lg border border-slate-800">
+                  <span className="text-slate-300">Social Retargeting Ads</span>
+                  <span className="font-mono font-bold text-emerald-400">6.4x ROAS</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-1 border-t border-slate-800 text-[10px] text-slate-400">
+                <span>Direct Lead CRM Integration</span>
+                <span className="text-emerald-400 font-semibold font-mono">100% Tracking</span>
+              </div>
+            </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-3 gap-2 text-center font-mono text-xs">
-          <div className="bg-orange-50 border border-orange-200 p-2 rounded-xl">
-            <div className="text-[10px] text-orange-800 font-bold">Total Leads</div>
-            <div className="text-sm font-black text-orange-600 mt-0.5">14,500+</div>
-          </div>
-          <div className="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
-            <div className="text-[10px] text-emerald-800 font-bold">Avg ROAS</div>
-            <div className="text-sm font-black text-emerald-600 mt-0.5">5.2x 🚀</div>
-          </div>
-          <div className="bg-sky-50 border border-sky-200 p-2 rounded-xl">
-            <div className="text-[10px] text-sky-800 font-bold">Conv. Rate</div>
-            <div className="text-sm font-black text-sky-600 mt-0.5">8.4%</div>
-          </div>
+        {/* Minimal Dots */}
+        <div className="flex justify-center gap-1.5 mt-3">
+          {[0, 1].map((idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                idx === currentSlide ? "bg-orange-400 w-5" : "bg-slate-700 w-1.5"
+              }`}
+              aria-label={`Slide ${idx + 1}`}
+            />
+          ))}
         </div>
+
       </div>
     </div>
   );

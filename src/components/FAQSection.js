@@ -63,12 +63,12 @@ export default function FAQSection({
     : (isLight ? "shadow-md shadow-sky-500/10" : "shadow-[0_0_20px_rgba(56,189,248,0.03)]");
 
   return (
-    <section className={`max-w-4xl mx-auto px-6 py-16 rounded-3xl ${
+    <section className={`max-w-4xl mx-3 sm:mx-auto px-4 sm:px-6 py-10 sm:py-16 rounded-2xl sm:rounded-3xl ${
       isLight 
         ? "bg-white border border-slate-200/90 shadow-xl shadow-slate-200/50" 
         : "bg-slate-900/40 border border-slate-850 backdrop-blur-md shadow-2xl"
     }`}>
-      <h2 className={`text-2xl sm:text-3xl md:text-4xl font-extrabold mb-8 text-center tracking-tight ${
+      <h2 className={`text-xl sm:text-3xl md:text-4xl font-extrabold mb-6 sm:mb-8 text-center tracking-tight ${
         isLight ? "text-slate-900" : "text-white"
       }`}>
         {title}

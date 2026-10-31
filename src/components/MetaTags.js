@@ -6,14 +6,14 @@ const DEFAULT_TITLE = "YugAntar Technologies | IT Training & Software Solutions"
 const DEFAULT_DESCRIPTION =
   "YugAntar Technologies Ahmedabad - Leading IT training institute offering web development, mobile app development, software solutions, and digital marketing services with placement support.";
 const DEFAULT_IMAGE = "https://www.yugantartechnologies.com/YugAntar_Technologies.png";
-const DEFAULT_KEYWORDS = "IT Training Institute Ahmedabad, Best IT Training Institute Ahmedabad, Software Training Institute Ahmedabad, Professional IT Training Institute Ahmedabad, Job Oriented IT Courses Ahmedabad, Skill Development Institute Ahmedabad, Practical IT Training Ahmedabad, IT Courses with Internship Ahmedabad, IT Training with Placement Assistance, UI UX Design Course Ahmedabad, UI UX Design Training Ahmedabad, UI UX Design Certification Course, UI UX Design Institute Ahmedabad, UI UX Design Course Navrangpura, UI UX Design with Internship Ahmedabad, Figma Course Ahmedabad, UX Research Training Ahmedabad, UI Designer Training Ahmedabad, MERN Stack Development Course Ahmedabad, MERN Stack Training Ahmedabad, Full Stack Development Course Ahmedabad, Full Stack Developer Training Ahmedabad, React JS Training Ahmedabad, Node JS Training Ahmedabad, MongoDB Training Ahmedabad, Web Development Course Ahmedabad, Full Stack Course with Internship Ahmedabad, Digital Marketing Course Ahmedabad, Digital Marketing Training Ahmedabad, SEO Training Ahmedabad, Social Media Marketing Course Ahmedabad, Google Ads Training Ahmedabad, Performance Marketing Course Ahmedabad, Digital Marketing Certification Course, Digital Marketing with Internship Ahmedabad, IT Internship in Ahmedabad, Software Development Internship Ahmedabad, UI UX Design Internship Ahmedabad, MERN Stack Internship Ahmedabad, Full Stack Internship Ahmedabad, Digital Marketing Internship Ahmedabad, SEO Internship Ahmedabad, Web Development Internship Ahmedabad, Internship with Certificate Ahmedabad, Internship with Live Projects Ahmedabad, Internship for Students Ahmedabad, Internship for Freshers Ahmedabad, Paid Internship Ahmedabad, Training and Internship Institute Ahmedabad, Professional Internship Program Ahmedabad, Industry Based Internship Ahmedabad, Career Oriented IT Training Ahmedabad, Practical Skill Development Course Ahmedabad, IT Training Institute Navrangpura, Internship Institute Navrangpura Ahmedabad, Software Course in Navrangpura Ahmedabad";
+const DEFAULT_KEYWORDS = "IT Training Institute Ahmedabad, Best IT Training Institute Ahmedabad, Software Training Institute Ahmedabad, Professional IT Training Institute Ahmedabad, Job Oriented IT Courses Ahmedabad, Skill Development Institute Ahmedabad, Practical IT Training Ahmedabad, IT Courses with Internship Ahmedabad, IT Training with Placement Assistance, UI UX Design Course Ahmedabad, UI UX Design Training Ahmedabad, UI UX Design Certification Course, UI UX Design Institute Ahmedabad, UI UX Design Course Memnagar Ahmedabad, UI UX Design with Internship Ahmedabad, Figma Course Ahmedabad, UX Research Training Ahmedabad, UI Designer Training Ahmedabad, MERN Stack Development Course Ahmedabad, MERN Stack Training Ahmedabad, Full Stack Development Course Ahmedabad, Full Stack Developer Training Ahmedabad, React JS Training Ahmedabad, Node JS Training Ahmedabad, MongoDB Training Ahmedabad, Web Development Course Ahmedabad, Full Stack Course with Internship Ahmedabad, Digital Marketing Course Ahmedabad, Digital Marketing Training Ahmedabad, SEO Training Ahmedabad, Social Media Marketing Course Ahmedabad, Google Ads Training Ahmedabad, Performance Marketing Course Ahmedabad, Digital Marketing Certification Course, Digital Marketing with Internship Ahmedabad, IT Internship in Ahmedabad, Software Development Internship Ahmedabad, UI UX Design Internship Ahmedabad, MERN Stack Internship Ahmedabad, Full Stack Internship Ahmedabad, Digital Marketing Internship Ahmedabad, SEO Internship Ahmedabad, Web Development Internship Ahmedabad, Internship with Certificate Ahmedabad, Internship with Live Projects Ahmedabad, Internship for Students Ahmedabad, Internship for Freshers Ahmedabad, Paid Internship Ahmedabad, Training and Internship Institute Ahmedabad, Professional Internship Program Ahmedabad, Industry Based Internship Ahmedabad, Career Oriented IT Training Ahmedabad, Practical Skill Development Course Ahmedabad, IT Training Institute Memnagar Gurukul Road, Internship Institute Memnagar Ahmedabad, Software Course in Gurukul Road Ahmedabad, IT Company Sanskrit Galleria Memnagar";
 
 const routeMeta = [
   {
     path: "/",
-    title: "Yugantar Technologies | IT Training Institute & IT Services Company in Ahmedabad",
+    title: "Yugantar Technologies | SEO, Web Development & Digital Marketing",
     description:
-      "Yugantar Technologies is a leading IT Training Institute and IT Services Company in Ahmedabad. We provide Full Stack Development, MERN Stack, React JS, Python, Java, Flutter, Internship Programs, Website Development, Software Development, Mobile App Development, SEO, Digital Marketing, Graphic Design, UI/UX Design, Cloud Solutions, and Business Automation Services.",
+      "Yugantar Technologies provides SEO services, website development, social media marketing, and practical IT internship opportunities in Ahmedabad, Gujarat.",
     image: DEFAULT_IMAGE,
   },
   {
@@ -80,24 +80,31 @@ const routeMeta = [
     image: DEFAULT_IMAGE,
   },
   {
-    path: "/seo-services-ahmedabad",
-    title: "SEO Services Ahmedabad - Local, On-Page, Off-Page, Technical SEO",
+    path: "/digital-marketing-ahmedabad",
+    title: "Digital Marketing Agency in Ahmedabad | Yugantar Technologies",
     description:
-      "Get professional SEO services in Ahmedabad including local SEO, on-page SEO, off-page SEO, and technical SEO from YugAntar Technologies.",
+      "Explore digital marketing solutions from Yugantar Technologies, including SEO, website development, and social media marketing in Ahmedabad.",
+    image: DEFAULT_IMAGE,
+  },
+  {
+    path: "/seo-services-ahmedabad",
+    title: "SEO Services in Ahmedabad | Yugantar Technologies",
+    description:
+      "Improve your website's search visibility with SEO services from Yugantar Technologies in Ahmedabad. Contact us to discuss your business goals.",
     image: DEFAULT_IMAGE,
   },
   {
     path: "/social-media-marketing-ahmedabad",
-    title: "Social Media Marketing Ahmedabad - SMM Services",
+    title: "Social Media Marketing in Ahmedabad | Yugantar Technologies",
     description:
-      "Social media marketing services in Ahmedabad to grow your brand, generate leads, and improve engagement across major platforms.",
+      "Build your brand's online presence with social media marketing services from Yugantar Technologies in Ahmedabad.",
     image: DEFAULT_IMAGE,
   },
   {
     path: "/website-development-ahmedabad",
-    title: "Website Development Ahmedabad - Landing, Static, Dynamic, E-commerce",
+    title: "Website Development Company in Ahmedabad | Yugantar",
     description:
-      "Website development services in Ahmedabad including landing pages, static websites, dynamic websites, and e-commerce solutions.",
+      "Looking for website development in Ahmedabad? Yugantar Technologies helps businesses build professional websites tailored to their needs.",
     image: DEFAULT_IMAGE,
   },
   {
@@ -130,9 +137,37 @@ const routeMeta = [
   },
   {
     path: "/internship",
-    title: "Skill-Based Training & Internship Program Ahmedabad - YugAntar Technologies",
+    title: "IT Internship in Ahmedabad | Yugantar Technologies",
     description:
-      "Skill-based practical training, live real-world project experience, and recognized IT internships in Ahmedabad with placement support.",
+      "Explore practical IT internship opportunities at Yugantar Technologies in Ahmedabad. Discover available domains, project-based learning, and program details.",
+    image: DEFAULT_IMAGE,
+  },
+  {
+    path: "/it-internship-ahmedabad",
+    title: "IT Internship in Ahmedabad | Yugantar Technologies",
+    description:
+      "Explore practical IT internship opportunities at Yugantar Technologies in Ahmedabad. Discover available domains, project-based learning, and program details.",
+    image: DEFAULT_IMAGE,
+  },
+  {
+    path: "/web-development-internship-ahmedabad",
+    title: "Web Development Internship in Ahmedabad | Yugantar Technologies",
+    description:
+      "Gain practical web development internship experience in Ahmedabad with Yugantar Technologies. Work on HTML, CSS, JavaScript, React, and Node.js projects.",
+    image: DEFAULT_IMAGE,
+  },
+  {
+    path: "/python-internship-ahmedabad",
+    title: "Python Internship in Ahmedabad | Yugantar Technologies",
+    description:
+      "Hands-on Python development internship in Ahmedabad at Yugantar Technologies. Build real-world backend applications, APIs, and database solutions.",
+    image: DEFAULT_IMAGE,
+  },
+  {
+    path: "/digital-marketing-internship-ahmedabad",
+    title: "Digital Marketing Internship in Ahmedabad | Yugantar Technologies",
+    description:
+      "Practical digital marketing internship in Ahmedabad with Yugantar Technologies. Gain project experience in SEO, social media marketing, and campaign analytics.",
     image: DEFAULT_IMAGE,
   },
   {
@@ -206,11 +241,18 @@ export default function MetaTags() {
       email: "info@yugantartechnologies.com",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "A-604, Sanskrit Galleria, Near Hanuman Temple, Rangoli Ice Cream, Gurukul Road, Memnagar",
         addressLocality: "Ahmedabad",
         addressRegion: "Gujarat",
-        postalCode: "380000",
+        postalCode: "380052",
         addressCountry: "IN",
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 23.0506,
+        longitude: 72.5298,
+      },
+      hasMap: "https://maps.google.com/?q=Sanskrit+Galleria+Gurukul+Road+Memnagar+Ahmedabad+380052",
       sameAs: [
         "https://www.facebook.com/YugAntartechnologies",
         "https://www.instagram.com/YugAntartechnologies",

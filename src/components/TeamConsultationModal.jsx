@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, PhoneCall, CheckCircle, Send, Loader2 } from "lucide-react";
-import BASE_URL from "../BASEURL";
+import BASE_URL, { fetchFast } from "../BASEURL";
 
 export default function TeamConsultationModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -49,11 +49,11 @@ export default function TeamConsultationModal({ isOpen, onClose }) {
 
     // 2. Attempt backend submission
     try {
-      const response = await fetch(`${BASE_URL}/api/team-consultations`, {
+      const response = await fetchFast(`${BASE_URL}/api/team-consultations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newConsultation),
-      });
+      }, 3000);
 
       if (!response.ok) {
         console.warn("Backend API response not 200, relying on local storage backup.");
@@ -79,30 +79,30 @@ export default function TeamConsultationModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div 
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden animate-scale-in"
+        className="relative w-full max-w-lg max-h-[92vh] flex flex-col my-auto bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 overflow-hidden animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white p-6 sm:p-7 relative">
+        <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white p-5 sm:p-7 relative shrink-0">
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
+            className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
 
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-400 border border-sky-500/30">
-              <PhoneCall className="w-6 h-6" />
+            <div className="p-2 sm:p-2.5 rounded-xl bg-sky-500/20 text-sky-400 border border-sky-500/30">
+              <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <span className="text-xs font-mono font-semibold uppercase tracking-wider text-sky-400">
+              <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-sky-400">
                 Direct Consultation
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+              <h2 className="text-lg sm:text-2xl font-bold text-white leading-tight">
                 Talk to Our Team
               </h2>
             </div>
@@ -113,7 +113,7 @@ export default function TeamConsultationModal({ isOpen, onClose }) {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8">
+        <div className="p-4 sm:p-8 max-h-[75vh] overflow-y-auto">
           {success ? (
             <div className="py-8 text-center space-y-4 animate-scale-in">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">

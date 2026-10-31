@@ -1,8 +1,8 @@
-import BASE_URL from '../BASEURL';
+import BASE_URL, { fetchFast } from '../BASEURL';
 
 const studentsAPI = {
   getAll: async () => {
-    const response = await fetch(`${BASE_URL}/api/students`);
+    const response = await fetchFast(`${BASE_URL}/api/students`, {}, 3000);
     if (!response.ok) {
       throw new Error('Failed to fetch students. Please check your network connection.');
     }
@@ -10,13 +10,13 @@ const studentsAPI = {
   },
 
   create: async (studentData) => {
-    const response = await fetch(`${BASE_URL}/api/students`, {
+    const response = await fetchFast(`${BASE_URL}/api/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(studentData),
-    });
+    }, 3000);
     if (!response.ok) {
       throw new Error('Failed to create student record.');
     }
@@ -24,13 +24,13 @@ const studentsAPI = {
   },
 
   update: async (id, studentData) => {
-    const response = await fetch(`${BASE_URL}/api/students/${id}`, {
+    const response = await fetchFast(`${BASE_URL}/api/students/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(studentData),
-    });
+    }, 3000);
     if (!response.ok) {
       throw new Error('Failed to update student record.');
     }
@@ -38,9 +38,9 @@ const studentsAPI = {
   },
 
   delete: async (id) => {
-    const response = await fetch(`${BASE_URL}/api/students/${id}`, {
+    const response = await fetchFast(`${BASE_URL}/api/students/${id}`, {
       method: 'DELETE',
-    });
+    }, 3000);
     if (!response.ok) {
       throw new Error('Failed to delete student record.');
     }

@@ -23,7 +23,7 @@ export default function Testimonials() {
     {
       name: "Aesha Patel",
       role: "UI/UX Designer Student",
-      body: "If you are searching for the best UI/UX course in Ahmedabad, YugAntar Technologies & Training Institute in Navrangpura is a great option. The training is completely practical and job-oriented. They provide industry-level design projects and proper mentorship.",
+      body: "If you are searching for the best UI/UX course in Ahmedabad, YugAntar Technologies & Training Institute at Sanskrit Galleria, Memnagar is a great option. The training is completely practical and job-oriented. They provide industry-level design projects and proper mentorship.",
       rating: 5,
       reviewsCount: "1 review",
       time: "4 months ago",
@@ -41,7 +41,7 @@ export default function Testimonials() {
     {
       name: "Khushal Choudary",
       role: "UI/UX Designer",
-      body: "I enrolled in the UI/UX + Digital Marketing combo course at YugAntar Technologies & Training Institute in Navrangpura, Ahmedabad. This combination is perfect for students who want both design and marketing skills. The institute provides practical Figma training along with SEO and social media marketing. One of the best combo courses in Ahmedabad.",
+      body: "I enrolled in the UI/UX + Digital Marketing combo course at YugAntar Technologies & Training Institute in Memnagar, Gurukul Road, Ahmedabad. This combination is perfect for students who want both design and marketing skills. The institute provides practical Figma training along with SEO and social media marketing. One of the best combo courses in Ahmedabad.",
       rating: 5,
       reviewsCount: "3 reviews",
       time: "4 months ago",
@@ -64,22 +64,22 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-28 bg-slate-50 text-slate-900 overflow-hidden border-b border-slate-200/50"
+      className="relative py-14 sm:py-28 bg-slate-50 text-slate-900 overflow-hidden border-b border-slate-200/50"
     >
       <div className="absolute inset-0 bg-slate-50 z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-20">
-          <p className="text-sky-600 font-semibold text-sm tracking-[0.4em] uppercase mb-3">
+        <div className="text-center mb-12 sm:mb-20">
+          <p className="text-sky-600 font-semibold text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.4em] uppercase mb-3">
             Testimonials
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-5">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4 sm:mb-5">
             Students who gained <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent">career-ready skills</span>
           </h2>
 
-          <p className="text-slate-600 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+          <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
             Real feedback from learners who completed practical training, internships, and placement support.
           </p>
         </div>
@@ -88,15 +88,15 @@ export default function Testimonials() {
       {/* Testimonials Auto-Scrolling Loop Wrapper */}
       <div className="relative w-full overflow-hidden py-4 z-10">
         {/* Fading Edge Overlays */}
-        <div className="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
 
         {/* Marquee Row */}
-        <div className="animate-marquee-scroll flex gap-8">
+        <div className="animate-marquee-scroll flex gap-5 sm:gap-8">
           {scrollingReviews.map((r, i) => (
             <div
               key={i}
-              className="w-[380px] sm:w-[420px] flex-shrink-0 bg-gradient-to-br from-white to-white border border-slate-200/70 rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(14,165,233,0.05)] hover:border-sky-400/40 transition-all duration-300 group cursor-default"
+              className="w-[280px] xs:w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 bg-white border border-slate-200/70 rounded-2xl sm:rounded-3xl p-5 sm:p-8 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(14,165,233,0.05)] hover:border-sky-400/40 transition-all duration-300 group cursor-default"
             >
               <div className="flex flex-col h-full">
                 

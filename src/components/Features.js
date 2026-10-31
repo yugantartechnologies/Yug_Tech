@@ -63,33 +63,33 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="relative py-28 bg-white text-slate-900 overflow-hidden"
+      className="relative py-14 sm:py-28 bg-white text-slate-900 overflow-hidden"
     >
       <div className="absolute inset-0 bg-white" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
-        <div className="mb-20">
-          <p className="text-sky-600 font-semibold text-sm tracking-[0.35em] uppercase mb-3">
+        <div className="mb-12 sm:mb-20">
+          <p className="text-sky-600 font-semibold text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.35em] uppercase mb-3">
             Excellence in Education
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-slate-900">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-slate-900">
             Why Choose <span className="text-sky-600">YugAntar Technologies</span>
           </h2>
 
-          <p className="mt-5 max-w-2xl text-slate-600 text-base md:text-lg leading-relaxed">
+          <p className="mt-4 sm:mt-5 max-w-2xl text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed">
             We focus on practical learning, industry-ready skills, and career growth.
           </p>
         </div>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
 
           {features.map((f, i) => (
             <div
               key={i}
-              className="group premium-card-hover-light p-8 bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/90 rounded-2xl"
+              className="group premium-card-hover-light p-5 sm:p-8 bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/90 rounded-2xl"
             >
               {/* Top Accent Line */}
               <div className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl w-0 group-hover:w-full transition-all duration-500 ${f.accentLine}`} />

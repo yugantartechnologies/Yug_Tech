@@ -27,35 +27,206 @@ import {
 } from "lucide-react";
 
 function ServicesHeroMockup() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % 3);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="w-full max-w-xl relative group text-left font-sans select-none">
-      {/* Dual Glow Aura Spotlight */}
-      <div className="absolute -inset-2 bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition duration-700 pointer-events-none" />
+      {/* Subtle Backlight */}
+      <div className="absolute -inset-2 bg-gradient-to-tr from-sky-500/20 via-blue-600/10 to-indigo-600/20 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
 
-      {/* Professional IT Showcase Image Frame */}
-      <div className="relative bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-sky-500/50">
+      {/* Main Glass Frame */}
+      <div className="relative bg-slate-950/95 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 backdrop-blur-xl">
         
         {/* Top Control Header Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-3.5 bg-slate-900/90 backdrop-blur-md">
+        <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3 bg-slate-900/90 backdrop-blur-md">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-red-500/90" />
-            <span className="w-3 h-3 rounded-full bg-amber-500/90" />
-            <span className="w-3 h-3 rounded-full bg-emerald-500/90" />
+            <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
           </div>
-          <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 px-3.5 py-1 rounded-xl text-xs font-mono text-slate-300">
-            <span className="text-sky-400">🌐</span> yugantartechnologies.com/services
+          <div className="flex items-center gap-2 bg-slate-950/80 border border-slate-800 px-3 py-1 rounded-lg text-xs font-mono text-slate-300">
+            <span className="text-sky-400 text-[10px]">🔒</span> yugantartechnologies.com
           </div>
-          <span className="w-3 h-3" />
+          <div className="flex items-center gap-1 opacity-60">
+            <span className="w-2 h-2 rounded-full bg-slate-600" />
+            <span className="w-2 h-2 rounded-full bg-slate-600" />
+          </div>
         </div>
 
-        {/* Pristine Clean Photorealistic IT Office Showcase Image */}
-        <div className="relative h-72 sm:h-96 overflow-hidden bg-slate-950">
-          <img
-            src="/it_services_clean_showcase.jpg"
-            alt="Yugantar Professional IT & Software Engineering Workspace"
-            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        {/* Real Interactive Tech Dashboard Preview */}
+        <div className="relative h-80 sm:h-96 p-4 sm:p-5 bg-gradient-to-b from-slate-900/95 to-slate-950 overflow-hidden font-sans">
+          
+          {/* TAB 0: Website Development */}
+          {activeTab === 0 && (
+            <div className="h-full flex flex-col justify-between animate-fadeIn">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-lg bg-sky-500 flex items-center justify-center font-bold text-white text-xs">
+                    🌐
+                  </div>
+                  <span className="font-bold text-sm text-white">Full-Stack Web Development</span>
+                </div>
+                <span className="text-[10px] text-sky-400 font-semibold bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">
+                  Next.js & React 19
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 my-auto">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Page Speed</div>
+                  <div className="text-base font-extrabold text-emerald-400 mt-0.5">99 / 100</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Ultra Fast TTFB</div>
+                </div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Security</div>
+                  <div className="text-base font-extrabold text-sky-400 mt-0.5">A+ SSL</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Enterprise Grade</div>
+                </div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Mobile UI</div>
+                  <div className="text-base font-extrabold text-indigo-400 mt-0.5">100%</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Fully Responsive</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                <div className="flex items-center justify-between text-xs mb-1">
+                  <span className="font-bold text-white">Production Architecture</span>
+                  <span className="text-[10px] text-emerald-400 font-mono">Status: Live</span>
+                </div>
+                <p className="text-[11px] text-slate-400">
+                  High-converting corporate portals, SaaS platforms, and modern e-commerce storefronts.
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px] text-slate-400">
+                <span>Frontend & Backend Engineering</span>
+                <span className="text-sky-400 font-mono text-[10px]">Clean Code Standards</span>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 1: SEO Optimization */}
+          {activeTab === 1 && (
+            <div className="h-full flex flex-col justify-between animate-fadeIn">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-lg bg-orange-500 flex items-center justify-center font-bold text-white text-xs">
+                    🔍
+                  </div>
+                  <span className="font-bold text-sm text-white">Google Rank #1 SEO Services</span>
+                </div>
+                <span className="text-[10px] text-orange-400 font-semibold bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">
+                  GSC Verified
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 my-auto">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Organic Clicks</div>
+                  <div className="text-base font-extrabold text-white mt-0.5">148.5K</div>
+                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">▲ +38.2%</div>
+                </div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Impressions</div>
+                  <div className="text-base font-extrabold text-white mt-0.5">2.4M</div>
+                  <div className="text-[10px] text-sky-400 font-bold mt-0.5">▲ +54%</div>
+                </div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Avg. Position</div>
+                  <div className="text-base font-extrabold text-emerald-400 mt-0.5">#1.8</div>
+                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">Top 3 SERP</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                <div className="flex items-center justify-between text-xs mb-1">
+                  <span className="font-bold text-white">Keyword Dominance</span>
+                  <span className="text-[10px] text-amber-400 font-mono">Ahmedabad & Global</span>
+                </div>
+                <p className="text-[11px] text-slate-400">
+                  White-hat on-page, technical site audits, local Google Maps pack, and high-DA backlink building.
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px] text-slate-400">
+                <span>Search Engine Optimization</span>
+                <span className="text-orange-400 font-mono text-[10px]">Zero Penalties Guaranteed</span>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: Digital & Performance Marketing */}
+          {activeTab === 2 && (
+            <div className="h-full flex flex-col justify-between animate-fadeIn">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-lg bg-pink-500 flex items-center justify-center font-bold text-white text-xs">
+                    📈
+                  </div>
+                  <span className="font-bold text-sm text-white">Performance Marketing & Paid Ads</span>
+                </div>
+                <span className="text-[10px] text-pink-400 font-semibold bg-pink-500/10 px-2 py-0.5 rounded border border-pink-500/20">
+                  4.85x ROAS
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2.5 my-auto">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Ad Return</div>
+                  <div className="text-base font-extrabold text-pink-400 mt-0.5">4.85x</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">High ROAS</div>
+                </div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Leads Generated</div>
+                  <div className="text-base font-extrabold text-white mt-0.5">2,140</div>
+                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">▲ +48%</div>
+                </div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
+                  <div className="text-[10px] text-slate-400">Avg. CPL</div>
+                  <div className="text-sm sm:text-base font-extrabold text-emerald-400 mt-0.5">₹39.30</div>
+                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">Low Cost</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                <div className="flex items-center justify-between text-xs mb-1">
+                  <span className="font-bold text-white">Full-Funnel Paid Campaigns</span>
+                  <span className="text-[10px] text-pink-400 font-mono">Meta & Google Ads</span>
+                </div>
+                <p className="text-[11px] text-slate-400">
+                  Targeted lead generation, retargeting funnels, viral social media creatives, and ROAS scaling.
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px] text-slate-400">
+                <span>Meta, Google & LinkedIn Ads</span>
+                <span className="text-pink-400 font-mono text-[10px]">Verified Conversion Tracking</span>
+              </div>
+            </div>
+          )}
+
+        </div>
+
+        {/* Minimal Bottom Pagination Bar (Clean Dots Only, No Text) */}
+        <div className="flex items-center justify-center gap-2 py-3 bg-slate-900/80 border-t border-slate-800/80">
+          {[0, 1, 2].map((idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveTab(idx)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                idx === activeTab ? "bg-sky-400 w-6" : "bg-slate-700 w-2 hover:bg-slate-600"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
 
       </div>
@@ -230,11 +401,11 @@ export default function Services() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-36 pb-20 px-6 overflow-hidden bg-gradient-to-b from-sky-50/70 via-slate-50 to-white border-b border-slate-200/60">
+      <section className="relative pt-28 sm:pt-36 pb-14 sm:pb-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-sky-50/70 via-slate-50 to-white border-b border-slate-200/60">
         <div className="absolute top-10 left-1/4 h-80 w-80 rounded-full bg-sky-300/20 blur-3xl pointer-events-none" />
         <div className="absolute bottom-5 right-1/4 h-80 w-80 rounded-full bg-blue-300/20 blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 sm:gap-12 items-center relative z-10">
           
           {/* Left Content */}
           <div className="lg:col-span-7 space-y-6 text-left">
@@ -243,18 +414,18 @@ export default function Services() {
               PROFESSIONAL IT SOLUTIONS
             </span>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              Transform Your Business with Our <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">IT & Digital Services</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+              Transform Your Business with Our <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 bg-clip-text text-transparent">IT & Digital Services</span>
             </h1>
 
-            <p className="text-slate-600 text-base sm:text-lg max-w-2xl leading-relaxed font-normal">
+            <p className="text-slate-600 text-sm sm:text-lg max-w-2xl leading-relaxed font-normal">
               From web development and local SEO to custom CRM automation and mobile applications, Yugantar Technologies engineers high-impact digital solutions for companies in Ahmedabad.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white px-7 py-3.5 rounded-xl font-bold transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-1"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 text-white px-7 py-3.5 rounded-xl font-bold transition duration-300 shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1"
               >
                 Book Free Consultation
                 <ArrowRight className="w-4 h-4" />
@@ -262,7 +433,7 @@ export default function Services() {
 
               <a
                 href="tel:+919054372690"
-                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs hover:-translate-y-0.5"
               >
                 <PhoneCall className="w-4 h-4 text-sky-600" />
                 Call: +91 9054372690

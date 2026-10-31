@@ -9,15 +9,15 @@ export default function AboutCTA({ cta, onOpenConsultation }) {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto w-full">
       <motion.div
-        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 rounded-3xl p-8 sm:p-14 text-center border border-slate-800 shadow-2xl"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#0B1B3D] to-slate-900 rounded-3xl p-8 sm:p-14 text-center border border-slate-800 shadow-2xl"
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
       >
         {/* Background ambient lighting */}
-        <div className="absolute top-0 right-0 h-60 w-60 rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 h-60 w-60 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 h-60 w-60 rounded-full bg-orange-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 h-60 w-60 rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
 
         <div className="max-w-2xl mx-auto space-y-6 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
@@ -33,7 +33,7 @@ export default function AboutCTA({ cta, onOpenConsultation }) {
               <button
                 type="button"
                 onClick={onOpenConsultation}
-                className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2 cursor-pointer"
+                className="bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 hover:from-blue-700 hover:to-orange-600 text-white font-bold px-8 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2 cursor-pointer"
               >
                 <PhoneCall className="w-4 h-4" />
                 {cta.primaryButton}

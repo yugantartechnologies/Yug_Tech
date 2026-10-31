@@ -7,12 +7,12 @@ export default function AboutHero({ hero, onOpenConsultation }) {
   if (!hero) return null;
 
   return (
-    <section className="relative pt-36 pb-20 px-6 overflow-hidden bg-gradient-to-b from-sky-50/70 via-slate-50 to-white border-b border-slate-200/60">
+    <section className="relative pt-28 sm:pt-36 pb-14 sm:pb-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-sky-50/70 via-slate-50 to-white border-b border-slate-200/60">
       {/* Background ambient lighting */}
       <div className="absolute top-10 left-1/4 h-80 w-80 rounded-full bg-sky-300/20 blur-3xl pointer-events-none" />
       <div className="absolute bottom-5 right-1/4 h-80 w-80 rounded-full bg-indigo-300/20 blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 sm:gap-12 items-center relative z-10">
         
         {/* Left Column: Typography & CTAs */}
         <motion.div 
@@ -28,11 +28,11 @@ export default function AboutHero({ hero, onOpenConsultation }) {
             </span>
           )}
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] text-slate-900 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] text-slate-900 tracking-tight">
             {hero.title ? (
               <>
                 Empowering People. <br />
-                <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 bg-clip-text text-transparent">
                   Building Businesses.
                 </span> <br />
                 Creating Digital Futures.
@@ -53,7 +53,7 @@ export default function AboutHero({ hero, onOpenConsultation }) {
               <button
                 type="button"
                 onClick={onOpenConsultation}
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white px-7 py-3.5 rounded-xl font-bold transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-1 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 text-white px-7 py-3.5 rounded-xl font-bold transition duration-300 shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1 cursor-pointer"
               >
                 {hero.primaryButton}
                 <ArrowRight className="w-4 h-4" />

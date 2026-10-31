@@ -27,7 +27,7 @@ export default function WhoWeAre({ company }) {
               />
               <div className="absolute top-6 left-6 bg-slate-900/85 backdrop-blur-md text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-md flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Navrangpura, Ahmedabad Hub
+                Memnagar, Gurukul Road Hub
               </div>
             </div>
           </div>

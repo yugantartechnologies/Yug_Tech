@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import BASE_URL from "../BASEURL";
+import BASE_URL, { fetchFast } from "../BASEURL";
 
 export default function ServiceBookingModal({ service, isOpen, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -62,13 +62,13 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
 
     // 2. Post to backend API
     try {
-      await fetch(`${BASE_URL}/api/service-bookings`, {
+      await fetchFast(`${BASE_URL}/api/service-bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newBooking)
-      });
+      }, 3000);
     } catch (error) {
       console.warn("Backend endpoint offline, saved locally to queue.");
     }
@@ -100,14 +100,14 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70  p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-3 sm:p-4 overflow-y-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleClose}
         >
           <motion.div
-            className="relative w-full max-w-2xl site-card rounded-3xl overflow-hidden bg-white text-slate-900 border border-slate-200 shadow-2xl"
+            className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto my-auto site-card rounded-2xl sm:rounded-3xl bg-white text-slate-900 border border-slate-200 shadow-2xl"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -117,9 +117,10 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
             {/* Close Button */}
             <motion.button
               onClick={handleClose}
-              className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 z-10 font-bold text-lg"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-slate-400 hover:text-slate-700 z-10 font-bold text-lg p-2 rounded-full hover:bg-slate-100 transition"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              aria-label="Close modal"
             >
               ✕
             </motion.button>
@@ -129,14 +130,14 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
               {showSuccess ? (
                 <motion.div
                   key="success"
-                  className="p-8 text-center"
+                  className="p-5 sm:p-8 text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    className="mx-auto mb-4 w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl shadow-inner"
+                    className="mx-auto mb-4 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl sm:text-3xl shadow-inner"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -180,11 +181,11 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
               ) : (
                 <motion.div key="form" variants={formVariants} initial="hidden" animate="visible">
                   {/* HEADER */}
-                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-8 text-white relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-5 sm:p-8 text-white relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/10"></div>
-                    <div className="relative flex items-center gap-6">
+                    <div className="relative flex items-center gap-4 sm:gap-6">
                       <motion.div
-                        className="text-6xl opacity-90"
+                        className="text-4xl sm:text-6xl opacity-90"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.3, type: "spring" }}
@@ -192,16 +193,16 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
                         {service?.icon || "🔧"}
                       </motion.div>
                       <div>
-                        <h2 className="text-2xl font-bold mb-2">Service Booking</h2>
-                        <p className="text-primary-100">Book our premium IT services</p>
+                        <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Service Booking</h2>
+                        <p className="text-xs sm:text-sm text-orange-100">Book our premium IT services</p>
                       </div>
                     </div>
                     <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-orange-500/10 rounded-lg blur-xl"></div>
                   </div>
 
                   {/* BODY */}
-                  <form onSubmit={handleSubmit} className="p-8 space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} className="p-4 sm:p-8 space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                       <Input
                         label="Full Name"
                         name="name"

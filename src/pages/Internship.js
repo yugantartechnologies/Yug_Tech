@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import InternshipModal from "../components/InternshipModal";
@@ -21,10 +21,6 @@ export default function Internship() {
   const [selectedInternship, setSelectedInternship] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedIcons, setClickedIcons] = useState({});
-
-  useEffect(() => {
-    document.title = "Skill-Based Training & Internship Programs - YugAntar Technologies";
-  }, []);
 
   const toggleIconColor = (id) => {
     setClickedIcons((prev) => ({
@@ -85,10 +81,10 @@ export default function Internship() {
   ];
 
   const benefits = [
-    { icon: <Briefcase className="w-8 h-8" />, title: "Live Projects", desc: "Work on real client & industry projects." },
-    { icon: <GraduationCap className="w-8 h-8" />, title: "Skill-Based Training", desc: "Practical hands-on developer training." },
-    { icon: <Award className="w-8 h-8" />, title: "Certification", desc: "Recognized internship certificate." },
-    { icon: <Rocket className="w-8 h-8" />, title: "Career Support", desc: "100% placement & interview guidance." },
+    { icon: <Briefcase className="w-8 h-8" />, title: "Live Projects", desc: "Work on real industry and live client tasks." },
+    { icon: <GraduationCap className="w-8 h-8" />, title: "Skill-Based Training", desc: "Practical hands-on technical mentorship." },
+    { icon: <Award className="w-8 h-8" />, title: "Certification", desc: "Recognized project completion certificate." },
+    { icon: <Rocket className="w-8 h-8" />, title: "Career Mentorship", desc: "Resume building and technical interview prep." },
   ];
 
   const openModal = (program) => {
@@ -103,38 +99,46 @@ export default function Internship() {
 
       {/* Hero Section */}
 
-      <section className="py-24 text-center max-w-7xl mx-auto px-6">
+      <section className="pt-28 pb-12 sm:py-24 text-center max-w-7xl mx-auto px-4 sm:px-6">
 
-        <h1 className="text-3xl lg:text-5xl font-bold leading-snug mb-4 text-slate-900">
-          Skill-Based Training & <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">Live Project Internships</span>
+        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-snug mb-4 text-slate-900">
+          IT Internship Programs in Ahmedabad
         </h1>
 
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
-          Launch your career with practical skill-based training and real-world project internships in Ahmedabad. Work on live production code, learn from industry experts, and get certified.
+        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 sm:mb-10">
+          Explore practical IT internship opportunities at Yugantar Technologies in Ahmedabad. Discover available domains, project-based learning, 1-on-1 developer mentorship, and program details.
         </p>
 
-        <a
-          href="#programs"
-          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl shadow-blue-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300"
-        >
-          Explore Programs
-        </a>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#programs"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl shadow-blue-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Explore Internship Domains
+          </a>
+          <a
+            href="#eligibility"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-slate-700 border border-slate-300 hover:border-sky-500 hover:text-sky-600 px-7 py-3.5 rounded-xl font-semibold transition-all duration-300"
+          >
+            Eligibility & Structure
+          </a>
+        </div>
 
       </section>
 
       {/* Benefits Section */}
 
-      <section className="py-16 bg-white border-t border-b border-slate-200">
+      <section className="py-12 sm:py-16 bg-white border-t border-b border-slate-200">
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Heading */}
-        <h2 className="text-4xl font-bold text-center mb-12 text-slate-900">
+        <h2 className="text-2xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-slate-900">
           Why Choose Our Internship?
         </h2>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-12 sm:mb-16">
           {benefits.map((b, i) => {
             const isOrange = clickedIcons[`benefit-${i}`];
             return (
@@ -160,109 +164,117 @@ export default function Internship() {
           })}
         </div>
 
-        {/* ================== INTERNSHIP CONTENT ================== */}
-        <div className="space-y-6 mb-16 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900">
-            Internship Opportunities for Students
-          </h2>
+        {/* ================== DEDICATED DOMAINS & DIRECT LINKS ================== */}
+        <div className="space-y-6 mb-16 max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+              Specialized Internship Tracks in Ahmedabad
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base">
+              Explore our focused practical internship domains. Each track features hands-on projects, modern toolchains, and industry-aligned mentorship.
+            </p>
+          </div>
 
-          <p className="text-slate-600 leading-8">
-            We believe that practical experience is essential for building a successful career.
-            That is why YugAntar Technologies offers an{" "}
-            <a href="/internship-program-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              IT Internship Program in Ahmedabad
-            </a>{" "}
-            for students enrolled in our courses. Our internship programs are designed to bridge
-            the gap between theoretical knowledge and real-world industry experience.
-          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-sky-300 hover:shadow-md transition-all">
+              <span className="text-xs uppercase tracking-wider font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-md">Frontend & Full Stack</span>
+              <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">Web Development Internship</h3>
+              <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+                Work on React, Node.js, REST APIs, Git workflows, and build production-ready responsive applications.
+              </p>
+              <a href="/web-development-internship-ahmedabad" className="text-sm font-bold text-sky-600 hover:text-sky-700 inline-flex items-center gap-1.5">
+                View Curriculum & Projects &rarr;
+              </a>
+            </div>
 
-          <p className="text-slate-600 leading-8">
-            Students from our{" "}
-            <a href="/mern-stack-course-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              MERN Stack Development Course
-            </a>
-            ,{" "}
-            <a href="/ui-ux-design-course-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              UI UX Design Course
-            </a>
-            , and{" "}
-            <a href="/digital-marketing-course-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              Digital Marketing Course
-            </a>{" "}
-            can participate in real-world projects during their internship. This hands-on
-            experience helps students understand development workflows, teamwork, and
-            client requirements. By working on live projects, students build confidence,
-            improve problem-solving skills, and become job-ready for opportunities in
-            IT and digital marketing industries.
-          </p>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-sky-300 hover:shadow-md transition-all">
+              <span className="text-xs uppercase tracking-wider font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-md">Backend & Automation</span>
+              <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">Python Internship</h3>
+              <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+                Build backend web applications, database schemas with Django/Flask, and write clean scalable Python code.
+              </p>
+              <a href="/python-internship-ahmedabad" className="text-sm font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1.5">
+                View Curriculum & Projects &rarr;
+              </a>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-sky-300 hover:shadow-md transition-all">
+              <span className="text-xs uppercase tracking-wider font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md">Growth & Analytics</span>
+              <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">Digital Marketing Internship</h3>
+              <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+                Execute live Search Engine Optimization audits, Google Search Console tracking, and social media campaigns.
+              </p>
+              <a href="/digital-marketing-internship-ahmedabad" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 inline-flex items-center gap-1.5">
+                View Curriculum & Projects &rarr;
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* ================== SERVICES SECTION ================== */}
-        <div className="space-y-6 mb-16 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900">
-            Digital Marketing and Website Development Services in Ahmedabad
-          </h2>
+        {/* ================== ELIGIBILITY & PROGRAM DETAILS ================== */}
+        <div id="eligibility" className="space-y-8 mb-16 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 sm:p-10 rounded-3xl shadow-xl">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white">
+              Internship Program Details & Eligibility
+            </h2>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              Our internship program is designed to bridge the gap between classroom theory and real-world software engineering workflows. You will collaborate with active developers and gain genuine practical experience.
+            </p>
 
-          <p className="text-slate-600 leading-8">
-            Along with training programs, YugAntar Technologies also provides professional
-            digital solutions for businesses in Ahmedabad. Our services help companies
-            build a strong online presence, reach their target audience, and generate
-            more leads through effective digital strategies.
-          </p>
+            <div className="grid sm:grid-cols-2 gap-6 text-sm">
+              <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                <h4 className="font-bold text-sky-400 text-base mb-2">Who Can Apply?</h4>
+                <ul className="space-y-1.5 text-slate-300 text-xs sm:text-sm">
+                  <li>• Students of BCA, MCA, B.Tech, BE, B.Sc (IT), or Diploma in IT/CS</li>
+                  <li>• Fresh graduates and tech enthusiasts seeking hands-on skills</li>
+                  <li>• Candidates with basic programming interest or marketing curiosity</li>
+                </ul>
+              </div>
 
-          <p className="text-slate-600 leading-8">
-            We offer{" "}
-            <a href="/website-development-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              Website Development Services in Ahmedabad
-            </a>{" "}
-            including landing pages, static websites, dynamic applications, and
-            e-commerce solutions tailored to business needs.
-          </p>
+              <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                <h4 className="font-bold text-sky-400 text-base mb-2">Program Structure</h4>
+                <ul className="space-y-1.5 text-slate-300 text-xs sm:text-sm">
+                  <li>• <strong>Duration:</strong> 3 Months of practical project-based learning</li>
+                  <li>• <strong>Mentorship:</strong> 1-on-1 code reviews and weekly milestones</li>
+                  <li>• <strong>Certification:</strong> Verified certificate upon project completion</li>
+                  <li>• <strong>Mode:</strong> In-person practical training at our Ahmedabad center</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-          <p className="text-slate-600 leading-8">
-            Our{" "}
-            <a href="/seo-services-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              SEO Services in Ahmedabad
-            </a>{" "}
-            focus on improving search engine rankings using on-page SEO, technical SEO,
-            and local SEO strategies to increase visibility and organic traffic.
-          </p>
+          {/* ================== APPLICATION PROCESS ================== */}
+          <div className="bg-white p-8 rounded-3xl border border-slate-200">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">
+              How the Internship Application Process Works
+            </h3>
 
-          <p className="text-slate-600 leading-8">
-            Businesses can also grow their brand with our{" "}
-            <a href="/social-media-marketing-ahmedabad" className="text-sky-600 font-semibold hover:underline">
-              Social Media Marketing Services in Ahmedabad
-            </a>{" "}
-            where we manage platforms like Instagram, Facebook, and LinkedIn to
-            engage audiences and drive conversions.
-          </p>
-        </div>
+            <div className="grid sm:grid-cols-4 gap-4 text-center">
+              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
+                <div className="w-10 h-10 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center mx-auto mb-3">1</div>
+                <h5 className="font-bold text-slate-900 text-sm mb-1">Apply Online</h5>
+                <p className="text-xs text-slate-600">Select your preferred domain and submit the inquiry form.</p>
+              </div>
 
-        {/* ================== WHY CHOOSE US ================== */}
-        <div className="space-y-6 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900">
-            Why Choose YugAntar Technologies
-          </h2>
+              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
+                <div className="w-10 h-10 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center mx-auto mb-3">2</div>
+                <h5 className="font-bold text-slate-900 text-sm mb-1">Counselling</h5>
+                <p className="text-xs text-slate-600">Discuss syllabus, expectations, and batch schedules with our mentor.</p>
+              </div>
 
-          <p className="text-slate-600 leading-8">
-            YugAntar Technologies is trusted by students and businesses across Ahmedabad
-            because of our practical and industry-focused approach. Our courses are designed
-            by experts and include hands-on training with real-world projects that help
-            students build strong technical skills.
-          </p>
+              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
+                <div className="w-10 h-10 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center mx-auto mb-3">3</div>
+                <h5 className="font-bold text-slate-900 text-sm mb-1">Project Work</h5>
+                <p className="text-xs text-slate-600">Build 3+ milestone projects with source control and daily support.</p>
+              </div>
 
-          <p className="text-slate-600 leading-8">
-            We focus on small batch sizes, personalized mentorship, and internship
-            opportunities so that every student receives individual attention and
-            guidance throughout their learning journey.
-          </p>
-
-          <p className="text-slate-600 leading-8">
-            Businesses trust our digital marketing and development services because we
-            deliver result-driven solutions. Whether you want to build a career in IT
-            or grow your business online, YugAntar Technologies provides the right
-            platform to achieve your goals.
-          </p>
+              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
+                <div className="w-10 h-10 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center mx-auto mb-3">4</div>
+                <h5 className="font-bold text-slate-900 text-sm mb-1">Certification</h5>
+                <p className="text-xs text-slate-600">Receive project verification, certificate, and interview guidance.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -271,11 +283,11 @@ export default function Internship() {
  
       {/* Programs */}
 
-      <section id="programs" className="py-24 bg-slate-50">
+      <section id="programs" className="py-14 sm:py-24 bg-slate-50">
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-          <h2 className="text-4xl font-bold text-center mb-14 text-slate-900">
+          <h2 className="text-2xl sm:text-4xl font-bold text-center mb-8 sm:mb-14 text-slate-900">
             Explore Internship Programs
           </h2>
 
@@ -350,19 +362,19 @@ export default function Internship() {
 
       {/* CTA */}
 
-      <section className="py-20 bg-white border-t border-slate-200 text-center">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-t border-slate-200 text-center">
 
-        <h2 className="text-4xl font-bold mb-4 text-slate-900">
+        <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 text-slate-900">
           Ready to Start Your Career?
         </h2>
 
-        <p className="text-slate-600 mb-8 max-w-md mx-auto leading-relaxed">
+        <p className="text-slate-600 mb-6 sm:mb-8 max-w-md mx-auto text-sm sm:text-base leading-relaxed">
           Apply now and gain real-world experience with YugAntar Technologies.
         </p>
 
         <a
           href="#programs"
-          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300"
         >
           Apply for Internship
         </a>

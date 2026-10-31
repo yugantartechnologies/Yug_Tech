@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import BASE_URL from "../BASEURL";
-import { Phone, Mail } from "lucide-react";
+import BASE_URL, { fetchFast } from "../BASEURL";
+import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -55,11 +55,11 @@ export default function Contact() {
 
     // 2. Post to backend
     try {
-      await fetch(`${BASE_URL}/api/inquiries`, {
+      await fetchFast(`${BASE_URL}/api/inquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newInquiry)
-      });
+      }, 3000);
     } catch (error) {
       console.warn("Backend API offline, general inquiry cached locally.");
     } finally {
@@ -82,28 +82,28 @@ export default function Contact() {
         />
       </div>
 
-      <main className="max-w-7xl mx-auto px-6 pb-32">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 sm:pb-32">
         
         {/* Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-24">
           {[
             { t: "Call Directly", c: "+91 9054372690", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
             { t: "Inquiry Support", c: "Available Mon - Sat (9 AM - 7 PM)", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
             { t: "Work with Us", c: "info@yugantartechnologies.com", i: <Mail className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" }
           ].map((item, i) => (
-            <div key={i} className={`p-8 rounded-[2rem] site-card ${item.b} transition-all duration-300 group`}>
+            <div key={i} className={`p-5 sm:p-8 rounded-2xl sm:rounded-[2rem] site-card ${item.b} transition-all duration-300 group`}>
               <div className="mb-4 transition-transform duration-300 group-hover:scale-110">{item.i}</div>
-              <h3 className="text-xl font-bold mb-2 text-slate-900">{item.t}</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-slate-900">{item.t}</h3>
               <p className="text-slate-600 text-sm leading-relaxed">{item.c}</p>
             </div>
           ))}
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="flex flex-col lg:flex-row gap-8 sm:gap-12">
           
           {/* Futuristic Form */}
-          <div className="site-card w-full lg:w-3/5 rounded-[3rem] p-8 md:p-12 relative">
-            <h2 className="text-3xl font-bold mb-10 tracking-tight">Send us a <span className="text-orange-500 font-black">Digital Brief</span></h2>
+          <div className="site-card w-full lg:w-3/5 rounded-2xl sm:rounded-[3rem] p-5 sm:p-8 md:p-12 relative">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-10 tracking-tight">Send us a <span className="text-orange-500 font-black">Digital Brief</span></h2>
             
             {submitted && (
               <div className="p-4 mb-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 font-semibold text-sm">
@@ -111,8 +111,8 @@ export default function Contact() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div className="relative group">
                   <input
                     type="text" name="name" value={formData.name} onChange={handleChange} required
@@ -144,7 +144,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-slate-900 transition-all duration-200 bg-orange-500 hover:bg-orange-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-200 disabled:opacity-50"
+                className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 rounded-xl shadow-lg shadow-orange-500/25 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-300 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? "TRANSMITTING..." : "SEND MESSAGE"}
                 <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
@@ -152,26 +152,44 @@ export default function Contact() {
             </form>
           </div>
 
-          {/* Relocation Notice & Support */}
+          {/* Official Location & Support */}
           <div className="w-full lg:w-2/5 space-y-8">
-            {/* Shifting Notice Card */}
-            <div className="rounded-[3rem] p-8 bg-slate-900 text-white border border-slate-800 shadow-2xl flex flex-col justify-between">
+            {/* Official Office Address Card */}
+            <div className="rounded-2xl sm:rounded-[3rem] p-5 sm:p-8 bg-slate-900 text-white border border-slate-800 shadow-2xl flex flex-col justify-between">
               <div>
-                <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-orange-500/20 text-orange-400 border border-orange-500/30 uppercase tracking-wider font-mono">
-                  Office Relocation Update
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-orange-500/20 text-orange-400 border border-orange-500/30 uppercase tracking-wider font-mono inline-flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5" />
+                  Official Office Address
                 </span>
-                <h3 className="text-2xl font-bold mt-4 mb-3 text-white">We're Moving to a New Space!</h3>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Our office is currently shifting to a new location in Ahmedabad. For all course enrollments, IT project discussions, and general inquiries, please connect with us directly via phone call or WhatsApp.
+                <h3 className="text-2xl font-bold mt-4 mb-3 text-white">Visit Our Headquarters</h3>
+                <p className="text-slate-200 text-base font-semibold leading-relaxed">
+                  A-604, Sanskrit Galleria, Near Hanuman Temple, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad - 380052
+                </p>
+                <p className="text-slate-400 text-xs mt-3 leading-relaxed">
+                  Connect with our team for in-person project meetings, software consultations, and course enrollments.
                 </p>
               </div>
-              <a
-                href="tel:9054372690"
-                className="mt-6 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition"
-              >
-                <Phone className="w-4 h-4" />
-                Call +91 9054372690
-              </a>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://maps.google.com/?q=Sanskrit+Galleria+Gurukul+Road+Memnagar+Ahmedabad+380052"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 text-white font-bold py-3.5 px-5 rounded-2xl shadow-lg shadow-blue-500/20 transition text-sm"
+                >
+                  <MapPin className="w-4 h-4" />
+                  Get Directions
+                  <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
+                </a>
+
+                <a
+                  href="tel:9054372690"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition text-sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  Call Now
+                </a>
+              </div>
             </div>
 
             {/* Availability */}

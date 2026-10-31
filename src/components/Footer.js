@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, Instagram, Facebook, Linkedin, Clock } from "lucide-react";
+import { Phone, Mail, Instagram, Facebook, Linkedin, Clock, MapPin } from "lucide-react";
 
 const logo = "/Yuganter_Technologies.png";
 
@@ -8,31 +8,35 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden py-20 bg-slate-950 text-white border-t border-slate-900">
+    <footer className="relative overflow-hidden py-12 sm:py-20 bg-slate-950 text-white border-t border-slate-900">
       {/* Background visual glows */}
       <div className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-slate-950/90 to-transparent blur-3xl" />
       <div className="absolute left-[-8%] top-16 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl" />
       <div className="absolute right-[-10%] bottom-8 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="glass-card border border-white/10 p-8 md:p-12 rounded-[2rem] overflow-hidden bg-slate-950/40 backdrop-blur-md">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6">
+        <div className="glass-card border border-white/10 p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] overflow-hidden bg-slate-950/40 backdrop-blur-md">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
             
             {/* Column 1: Company Profile */}
             <div className="space-y-6">
-              <Link to="/" className="flex items-center gap-3">
-                <img
-                  src={logo}
-                  alt="Yugantar Technologies"
-                  className="w-12 h-12 object-contain"
-                />
+              <Link to="/" className="flex items-center gap-3.5 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white p-1.5 shadow-md shadow-black/30 border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <img
+                    src={logo}
+                    alt="Yugantar Technologies Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 <div>
-                  <h2 className="text-xl font-bold text-white leading-tight">
-                    Yugantar <span className="text-sky-400">Technologies</span>
+                  <h2 className="text-xl font-extrabold text-white leading-tight">
+                    Yugantar <span className="bg-gradient-to-r from-sky-400 via-sky-300 to-orange-400 bg-clip-text text-transparent">Technologies</span>
                   </h2>
-                  <p className="text-[9px] tracking-[0.18em] uppercase text-sky-300 mt-1 font-semibold">
-                    TRAINING AND IT SOLUTION
+                  <p className="text-[9px] tracking-[0.16em] uppercase text-slate-300 mt-1 font-semibold flex items-center gap-1.5">
+                    <span className="text-sky-300">INNOVATION TODAY</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block shadow-sm shadow-orange-500/50"></span>
+                    <span className="text-orange-400">A BETTER TOMORROW</span>
                   </p>
                 </div>
               </Link>
@@ -65,20 +69,20 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Column 2: Popular Courses */}
+            {/* Column 2: Popular Courses & Internships */}
             <div>
               <h3 className="text-base font-bold text-white uppercase tracking-wider mb-6 pb-2 border-b border-white/10 inline-block">
-                Training Programs
+                Training & Internships
               </h3>
               <ul className="space-y-3.5 text-sm">
                 {[
+                  { label: "IT Internship Programs", path: "/it-internship-ahmedabad" },
                   { label: "MERN Stack Development", path: "/courses/full-stack-mern" },
                   { label: "Python Development", path: "/courses/python-development" },
                   { label: "Java Full Stack", path: "/courses/java-full-stack" },
                   { label: "UI/UX Design", path: "/courses/ui-ux-design" },
                   { label: "Data Science & AI/ML", path: "/courses/data-science-ai-ml" },
-                  { label: "Mobile App Development", path: "/courses/mobile-app-development" },
-                  { label: "Digital Marketing", path: "/courses/digital-marketing" },
+                  { label: "Digital Marketing Training", path: "/courses/digital-marketing" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link to={item.path} className="text-slate-400 hover:text-sky-300 transition-colors duration-250 flex items-center gap-1 group">
@@ -97,11 +101,12 @@ export default function Footer() {
               </h3>
               <ul className="space-y-3.5 text-sm">
                 {[
-                  { label: "Website Development", path: "/website-development-ahmedabad" },
                   { label: "SEO Services", path: "/seo-services-ahmedabad" },
-                  { label: "Social Media Management", path: "/social-media-marketing-ahmedabad" },
+                  { label: "Website Development", path: "/website-development-ahmedabad" },
+                  { label: "Social Media Marketing", path: "/social-media-marketing-ahmedabad" },
+                  { label: "Digital Marketing Agency", path: "/digital-marketing-ahmedabad" },
                   { label: "Google Business Profile", path: "/google-business-profile-management-ahmedabad" },
-                  { label: "Digital Marketing Solutions", path: "/services" },
+                  { label: "Performance Marketing", path: "/performance-marketing-ahmedabad" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link to={item.path} className="text-slate-400 hover:text-sky-300 transition-colors duration-250 flex items-center gap-1 group">
@@ -119,6 +124,16 @@ export default function Footer() {
                 Get In Touch
               </h3>
               <div className="space-y-4 text-sm text-slate-400">
+                <div className="flex items-start gap-3 text-slate-400">
+                  <MapPin className="text-orange-400 flex-shrink-0 mt-0.5" size={18} />
+                  <div>
+                    <p className="font-semibold text-white">Office Address</p>
+                    <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                      A-604, Sanskrit Galleria, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad, Gujarat, India - 380052
+                    </p>
+                  </div>
+                </div>
+
                 <a href="tel:9054372690" className="flex items-center gap-3 hover:text-white transition group" aria-label="Phone number">
                   <Phone className="text-sky-400 flex-shrink-0 transition-transform duration-300 group-hover:rotate-12" size={18} />
                   <div>
@@ -148,7 +163,7 @@ export default function Footer() {
           <div className="mt-12 border-t border-white/10 pt-6 text-slate-500 text-sm flex flex-col md:flex-row gap-3 justify-between items-center text-center md:text-left">
             <p>© {currentYear} Yugantar Technologies. All Rights Reserved.</p>
             <p className="text-slate-500">
-              Designed & Supported by Yugantar — <span className="text-sky-400/80 font-medium">TRAINING AND IT SOLUTION</span>.
+              Designed & Supported by Yugantar — <span className="text-orange-400/90 font-medium">INNOVATION TODAY • A BETTER TOMORROW</span>.
             </p>
           </div>
 

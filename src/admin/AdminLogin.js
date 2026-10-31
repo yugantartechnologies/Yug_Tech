@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../public/Yuganter_Technologies.png';
 
@@ -8,9 +8,32 @@ const AdminLogin = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem('adminLoggedIn') === 'true') {
+      navigate('/admin');
+    }
+  }, [navigate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === 'Ram@email.com' && password === 'Ram123') {
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPass = password.trim();
+
+    const isAuthorizedUser = (
+      cleanEmail === 'ram@email.com' ||
+      cleanEmail === 'ram' ||
+      cleanEmail === 'admin@yugantartechnologies.com' ||
+      cleanEmail === 'admin@email.com' ||
+      cleanEmail === 'admin'
+    );
+
+    const isAuthorizedPass = (
+      cleanPass === 'RAM@YT123' ||
+      cleanPass === 'ram@yt123' ||
+      cleanPass === 'Ram123'
+    );
+
+    if (isAuthorizedUser && isAuthorizedPass) {
       localStorage.setItem('adminLoggedIn', 'true');
       navigate('/admin');
     } else {
@@ -21,11 +44,14 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen flex bg-[#0f172a]">
       {/* Left side with logo */}
-      <div className="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-600 text-white p-8">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-[#0B1B3D] via-blue-900 to-orange-600 text-white p-8">
         <div className="text-center">
-          <img src={logo} alt="Yuganter Technologies" className="mx-auto mb-6 w-32 h-32 object-contain" />
-          <h1 className="text-3xl font-extrabold">Yuganter Technologies</h1>
-          <p className="mt-2 text-lg">Admin Portal</p>
+          <div className="mx-auto mb-6 w-32 h-32 rounded-3xl bg-white p-3 shadow-2xl flex items-center justify-center">
+            <img src={logo} alt="Yugantar Technologies" className="w-full h-full object-contain" />
+          </div>
+          <h1 className="text-3xl font-extrabold">Yugantar Technologies</h1>
+          <p className="mt-2 text-sm uppercase tracking-widest text-orange-300 font-semibold">Innovation Today • A Better Tomorrow</p>
+          <p className="mt-1 text-base text-slate-300">Admin Portal</p>
         </div>
       </div>
 
@@ -44,7 +70,7 @@ const AdminLogin = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full admin-input bg-slate-950 border border-slate-700 text-white font-semibold rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
-                placeholder="Ram@email.com"
+                placeholder="Enter admin email"
                 required
               />
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
-import BASE_URL from "../BASEURL";
+import BASE_URL, { fetchFast } from "../BASEURL";
 import { BookOpen, Search, Trash2, Mail, Phone, Calendar, User, RefreshCw } from "lucide-react";
 
 const AdminCourseInquiries = () => {
@@ -28,7 +28,7 @@ const AdminCourseInquiries = () => {
 
     let remoteData = [];
     try {
-      const response = await fetch(`${BASE_URL}/api/course-inquiries`);
+      const response = await fetchFast(`${BASE_URL}/api/course-inquiries`, {}, 2500);
       if (response.ok) {
         remoteData = await response.json();
       }
@@ -45,7 +45,14 @@ const AdminCourseInquiries = () => {
       }
     });
 
-    setInquiries(Array.from(combinedMap.values()));
+    const list = Array.from(combinedMap.values());
+    list.sort((a, b) => {
+      const dateA = new Date(a.createdAt || a.submittedAt || 0).getTime();
+      const dateB = new Date(b.createdAt || b.submittedAt || 0).getTime();
+      return dateB - dateA;
+    });
+
+    setInquiries(list);
     setIsSyncing(false);
   };
 
@@ -63,7 +70,38 @@ const AdminCourseInquiries = () => {
     };
   }, []);
 
-  const handleDelete = (idToDelete) => {
+  const handleStatusChange = async (idToUpdate, newStatus) => {
+    try {
+      const existing = JSON.parse(localStorage.getItem("yug_course_inquiries") || "[]");
+      const updated = existing.map((item) => {
+        if ((item._id || item.id) === idToUpdate) {
+          return { ...item, status: newStatus };
+        }
+        return item;
+      });
+      localStorage.setItem("yug_course_inquiries", JSON.stringify(updated));
+    } catch (e) {
+      console.error("Error updating local storage", e);
+    }
+
+    try {
+      await fetchFast(`${BASE_URL}/api/course-inquiries/${idToUpdate}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus })
+      }, 2500);
+    } catch (e) {
+      console.warn("Backend status update failed:", e);
+    }
+
+    setInquiries((prev) =>
+      prev.map((item) =>
+        (item._id || item.id) === idToUpdate ? { ...item, status: newStatus } : item
+      )
+    );
+  };
+
+  const handleDelete = async (idToDelete) => {
     if (!window.confirm("Are you sure you want to delete this course inquiry record?")) return;
 
     // Remove from localStorage
@@ -75,6 +113,15 @@ const AdminCourseInquiries = () => {
       localStorage.setItem("yug_course_inquiries", JSON.stringify(updated));
     } catch (e) {
       console.error("Error updating local storage", e);
+    }
+
+    // Remove from backend server
+    try {
+      await fetchFast(`${BASE_URL}/api/course-inquiries/${idToDelete}`, {
+        method: "DELETE"
+      }, 2500);
+    } catch (e) {
+      console.warn("Backend delete sync failed:", e);
     }
 
     // Update state
@@ -185,6 +232,9 @@ const AdminCourseInquiries = () => {
                       Selected Course
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                       Submitted Date
                     </th>
                     <th className="px-6 py-4 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">
@@ -206,13 +256,26 @@ const AdminCourseInquiries = () => {
                         </td>
                         <td className="px-6 py-4 text-sm text-slate-300">
                           <div className="space-y-1">
-                            <a
-                              href={`tel:${inq.phone}`}
-                              className="flex items-center gap-1.5 text-emerald-400 hover:underline"
-                            >
-                              <Phone className="w-3.5 h-3.5" />
-                              <span>{inq.phone}</span>
-                            </a>
+                            <div className="flex items-center gap-3">
+                              <a
+                                href={`tel:${inq.phone}`}
+                                className="flex items-center gap-1.5 text-emerald-400 hover:underline font-semibold"
+                              >
+                                <Phone className="w-3.5 h-3.5" />
+                                <span>{inq.phone}</span>
+                              </a>
+                              {inq.phone && (
+                                <a
+                                  href={`https://wa.me/91${inq.phone.replace(/[^0-9]/g, "")}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition flex items-center gap-1"
+                                  title="WhatsApp Chat"
+                                >
+                                  <span>💬 WA</span>
+                                </a>
+                              )}
+                            </div>
                             <a
                               href={`mailto:${inq.email}`}
                               className="flex items-center gap-1.5 text-slate-400 hover:text-slate-200"
@@ -226,6 +289,19 @@ const AdminCourseInquiries = () => {
                           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                             {inq.course || "Digital Marketing"}
                           </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <select
+                            value={inq.status || "New"}
+                            onChange={(e) => handleStatusChange(recordId, e.target.value)}
+                            className="bg-slate-900 border border-slate-700 text-xs font-semibold rounded-lg px-2.5 py-1 text-slate-200 outline-none focus:border-emerald-500 cursor-pointer"
+                          >
+                            <option value="New">🟢 New</option>
+                            <option value="Contacted">🟡 Contacted</option>
+                            <option value="Demo Scheduled">🔵 Demo Scheduled</option>
+                            <option value="Enrolled">✅ Enrolled</option>
+                            <option value="Cancelled">❌ Cancelled</option>
+                          </select>
                         </td>
                         <td className="px-6 py-4 text-xs text-slate-400">
                           <div className="flex items-center gap-1.5">

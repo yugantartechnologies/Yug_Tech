@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
@@ -17,122 +18,81 @@ import {
   Smartphone,
   Activity
 } from "lucide-react";
-import { FaGoogle, FaStar } from "react-icons/fa";
-
 function SeoHeroMockup() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const images = [
-    {
-      url: "https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=1200&auto=format&fit=crop",
-      caption: "Google Rank #1 SERP Analytics"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop",
-      caption: "+345.8% Organic Traffic Surge"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1200&auto=format&fit=crop",
-      caption: "Local GBP Google Maps #1 Pack"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop",
-      caption: "High-Intent Keyword Dominance"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
-      caption: "DA 72+ Authority Backlinks Audit"
-    }
+  const slides = [
+    { url: "/images/services/seo_1.jpg", alt: "Data Analytics & Search Growth Dashboard" },
+    { url: "/images/services/seo_2.jpg", alt: "Search Performance Metrics & Keyword Visibility" },
+    { url: "/images/services/seo_3.jpg", alt: "Organic Keyword Growth Tracking" },
+    { url: "/images/services/seo_4.jpg", alt: "Google Local Search Strategy & Audits" },
+    { url: "/images/services/seo_5.jpg", alt: "Technical Search Performance Optimization" }
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3200);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, [slides.length]);
 
   return (
     <div className="w-full max-w-xl relative group text-left font-sans select-none my-auto">
-      {/* Ambient Glow */}
-      <div className="absolute -inset-3 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-600 rounded-[2.5rem] blur-2xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
+      {/* Subtle Ambient Glow */}
+      <div className="absolute -inset-2 bg-gradient-to-r from-amber-600/30 via-orange-600/20 to-yellow-600/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-70 transition duration-700 pointer-events-none" />
 
-      {/* Floating Top Badge */}
-      <div className="absolute -top-4 -right-2 z-30 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl flex items-center gap-2">
-        <FaStar className="w-3.5 h-3.5 text-amber-200 fill-amber-200" />
-        <span>Google Position #1 Guaranteed</span>
-      </div>
-
-      {/* Floating Bottom Badge */}
-      <div className="absolute -bottom-4 -left-2 z-30 bg-slate-900/90 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl border border-slate-700 backdrop-blur-md flex items-center gap-2">
-        <span className="text-emerald-400 font-extrabold">+345.8%</span>
-        <span className="text-slate-300">Organic Traffic Surge</span>
-      </div>
-
-      {/* Main Glass Frame */}
-      <div className="relative bg-slate-950 border border-slate-800 rounded-[2.25rem] p-5 shadow-2xl overflow-hidden backdrop-blur-xl">
-        {/* Browser Top Bar */}
-        <div className="flex items-center justify-between mb-3 bg-slate-900 p-2.5 rounded-2xl border border-slate-800">
+      {/* Main Clean Browser Frame (Zero text clutter) */}
+      <div className="relative bg-slate-950/95 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl">
+        
+        {/* Sleek Minimalist Window Top Bar (Only 3 Dots) */}
+        <div className="flex items-center px-4 py-3.5 bg-slate-900/95 border-b border-slate-800/80">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-rose-500" />
-            <span className="w-3 h-3 rounded-full bg-amber-500" />
-            <span className="w-3 h-3 rounded-full bg-emerald-500" />
+            <span className="w-3 h-3 rounded-full bg-rose-500/90" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/90" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/90" />
           </div>
-          <div className="bg-slate-800/90 px-4 py-1 rounded-xl text-xs text-slate-200 font-mono flex items-center gap-1.5">
-            <FaGoogle className="text-orange-400 w-3 h-3" />
-            <span className="font-bold">Google Rank Intelligence</span>
-          </div>
-          <span className="text-[11px] font-bold text-orange-400 bg-orange-950 px-2.5 py-0.5 rounded-full border border-orange-800">
-            {currentSlide + 1} / {images.length}
-          </span>
         </div>
 
-        {/* Clean Image Carousel Box (No text clutter!) */}
-        <div className="relative h-72 md:h-80 rounded-2xl overflow-hidden border border-slate-800 group/slide">
+        {/* 5-Slide Professional Image Showcase */}
+        <div className="relative h-72 sm:h-96 overflow-hidden bg-slate-950 group/slide">
           <img
             key={currentSlide}
-            src={images[currentSlide].url}
-            alt={images[currentSlide].caption}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 transform scale-105"
+            src={slides[currentSlide].url}
+            alt={slides[currentSlide].alt}
+            className="w-full h-full object-cover transition-all duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-          {/* Minimal Caption Chip */}
-          <div className="absolute bottom-4 left-4 z-10 bg-slate-950/90 border border-orange-400/30 text-white px-3.5 py-1.5 rounded-xl backdrop-blur-md text-xs font-bold flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-            <span>{images[currentSlide].caption}</span>
-          </div>
-
-          {/* Navigation Arrows */}
+          {/* Slide Navigation Arrows */}
           <button
-            onClick={() => setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-sm font-bold opacity-0 group-hover/slide:opacity-100 transition"
+            onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-lg font-bold opacity-0 group-hover/slide:opacity-100 hover:bg-orange-600 transition shadow-lg cursor-pointer z-10"
+            aria-label="Previous Slide"
           >
             ‹
           </button>
           <button
-            onClick={() => setCurrentSlide((prev) => (prev + 1) % images.length)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-sm font-bold opacity-0 group-hover/slide:opacity-100 transition"
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-lg font-bold opacity-0 group-hover/slide:opacity-100 hover:bg-orange-600 transition shadow-lg cursor-pointer z-10"
+            aria-label="Next Slide"
           >
             ›
           </button>
         </div>
 
-        {/* Bottom Slide Dots Only */}
-        <div className="flex items-center justify-between mt-3 px-1">
-          <span className="text-[11px] text-slate-400 font-mono">Live SEO Showcase</span>
-          <div className="flex gap-1.5">
-            {images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? "bg-orange-400 w-5" : "bg-slate-800 w-2"
-                }`}
-              />
-            ))}
-          </div>
+        {/* Clean 5-Dot Pagination Bar */}
+        <div className="flex items-center justify-center gap-2.5 py-3.5 bg-slate-900/90 border-t border-slate-800/80">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                idx === currentSlide ? "bg-orange-400 w-7" : "bg-slate-700 w-2 hover:bg-slate-500"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
+
       </div>
     </div>
   );
@@ -253,31 +213,30 @@ export default function SeoServicesAhmedabad() {
           <div className="lg:col-span-7 space-y-6 text-left">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-orange-100 text-orange-800 border border-orange-200 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-              SEO Services Ahmedabad
+              Search Engine Optimization Ahmedabad
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 tracking-tight">
-              Grow Organic Traffic <br />
-              With Professional <br />
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 tracking-tight">
+              SEO Services in Ahmedabad <br />
               <span className="bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent">
-                SEO Services
+                for Business Growth
               </span>
             </h1>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Rank higher on Google, capture qualified search leads, and scale your brand visibility. We manage technical optimizations, sitemaps, on-page keywords, guest blog posts, and localized Google Maps GBP listings.
+              Improve your website's search visibility with SEO services from Yugantar Technologies in Ahmedabad. We implement comprehensive technical SEO, on-page optimization, high-intent keyword targeting, Google Business Profile local SEO, and Search Console monitoring to generate qualified business enquiries.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 onClick={() => setBookingModal({ isOpen: true, service: { title: "SEO Services", icon: "🔍" } })}
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 hover:-translate-y-1 cursor-pointer"
               >
-                Request Free SEO Audit
+                Get a Free SEO Consultation
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
               <a
                 href="tel:9054372690"
                 className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-orange-400 bg-white hover:bg-orange-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
               >
-                Call: 9054372690
+                Call: +91 9054372690
               </a>
             </div>
           </div>
@@ -470,6 +429,59 @@ export default function SeoServicesAhmedabad() {
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">{benefit.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Digital Services Internal Linking */}
+      <section className="py-16 px-4 sm:px-6 bg-slate-100/70 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto text-center">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+            Integrated Digital Services for Total Growth
+          </h3>
+          <p className="text-slate-600 text-sm max-w-2xl mx-auto mb-8">
+            SEO performs best when supported by a fast, responsive website and engaging social media presence. Explore our complementary services:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <Link
+              to="/website-development-ahmedabad"
+              className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-orange-400 hover:shadow-lg transition text-left group"
+            >
+              <h4 className="font-bold text-slate-900 text-base group-hover:text-orange-600 flex items-center justify-between">
+                <span>Website Development</span>
+                <span className="text-sm">→</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Build fast, mobile-responsive web platforms designed to convert search traffic into customer inquiries.
+              </p>
+            </Link>
+
+            <Link
+              to="/social-media-marketing-ahmedabad"
+              className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-orange-400 hover:shadow-lg transition text-left group"
+            >
+              <h4 className="font-bold text-slate-900 text-base group-hover:text-orange-600 flex items-center justify-between">
+                <span>Social Media Marketing</span>
+                <span className="text-sm">→</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Build multi-channel brand credibility, audience trust, and referral traffic across Instagram, LinkedIn, and Meta.
+              </p>
+            </Link>
+
+            <Link
+              to="/digital-marketing-ahmedabad"
+              className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-orange-400 hover:shadow-lg transition text-left group"
+            >
+              <h4 className="font-bold text-slate-900 text-base group-hover:text-orange-600 flex items-center justify-between">
+                <span>Digital Marketing Agency</span>
+                <span className="text-sm">→</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Unified digital growth strategies that combine SEO, website architecture, and paid performance campaigns.
+              </p>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
-import BASE_URL from "../BASEURL";
+import BASE_URL, { fetchFast } from "../BASEURL";
 import { 
   Calendar, 
   Search, 
@@ -41,7 +41,7 @@ export default function AdminFreeConsultations() {
 
     let remoteData = [];
     try {
-      const response = await fetch(`${BASE_URL}/api/free-consultations`);
+      const response = await fetchFast(`${BASE_URL}/api/free-consultations`, {}, 2500);
       if (response.ok) {
         remoteData = await response.json();
       }
@@ -61,7 +61,14 @@ export default function AdminFreeConsultations() {
       }
     });
 
-    setConsultations(Array.from(combinedMap.values()));
+    const list = Array.from(combinedMap.values());
+    list.sort((a, b) => {
+      const dateA = new Date(a.createdAt || 0).getTime();
+      const dateB = new Date(b.createdAt || 0).getTime();
+      return dateB - dateA;
+    });
+
+    setConsultations(list);
     setIsSyncing(false);
   };
 
@@ -79,7 +86,7 @@ export default function AdminFreeConsultations() {
     };
   }, []);
 
-  const handleStatusChange = (idToUpdate, newStatus) => {
+  const handleStatusChange = async (idToUpdate, newStatus) => {
     try {
       const existing = JSON.parse(localStorage.getItem("yug_free_consultations") || "[]");
       const updated = existing.map((item) => {
@@ -93,6 +100,16 @@ export default function AdminFreeConsultations() {
       console.error("Error updating local storage", e);
     }
 
+    try {
+      await fetchFast(`${BASE_URL}/api/free-consultations/${idToUpdate}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus })
+      }, 2500);
+    } catch (e) {
+      console.warn("Backend status update failed:", e);
+    }
+
     setConsultations((prev) =>
       prev.map((item) =>
         (item._id || item.id) === idToUpdate ? { ...item, status: newStatus } : item
@@ -100,7 +117,7 @@ export default function AdminFreeConsultations() {
     );
   };
 
-  const handleDelete = (idToDelete) => {
+  const handleDelete = async (idToDelete) => {
     if (!window.confirm("Are you sure you want to delete this consultation request?")) return;
 
     try {
@@ -111,6 +128,14 @@ export default function AdminFreeConsultations() {
       localStorage.setItem("yug_free_consultations", JSON.stringify(updated));
     } catch (e) {
       console.error("Error updating local storage", e);
+    }
+
+    try {
+      await fetchFast(`${BASE_URL}/api/free-consultations/${idToDelete}`, {
+        method: "DELETE"
+      }, 2500);
+    } catch (e) {
+      console.warn("Backend delete failed:", e);
     }
 
     setConsultations((prev) =>

@@ -12,27 +12,27 @@ export default function CTASection({ onQuickEnroll }) {
   ];
 
   return (
-    <section className="relative py-28 bg-slate-50 overflow-hidden text-slate-900 border-t border-b border-slate-200/50">
+    <section className="relative py-14 sm:py-28 bg-slate-50 overflow-hidden text-slate-900 border-t border-b border-slate-200/50">
       {/* Background visual detail */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.04),transparent_40%)]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
 
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 sm:mb-6">
           Practical IT training built for Ahmedabad professionals.
         </h2>
  
         {/* Dynamic Subheading */}
-        <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+        <p className="text-slate-600 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10">
           Learn proven web development, Python, and design skills with live projects, focused mentorship, and career-ready support.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full max-w-md sm:max-w-none mx-auto">
           <button 
             onClick={onQuickEnroll} 
-            className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 px-7 py-3.5 rounded-xl font-bold text-white shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 px-7 py-3.5 rounded-xl font-bold text-white shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
           >
             Enroll Now
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,7 +43,7 @@ export default function CTASection({ onQuickEnroll }) {
           <button 
             type="button"
             onClick={() => setIsConsultationOpen(true)}
-            className="px-7 py-3.5 border border-slate-200 text-slate-700 hover:text-slate-900 font-semibold rounded-xl bg-white hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3.5 border border-slate-200 text-slate-700 hover:text-slate-900 font-semibold rounded-xl bg-white hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
           >
             Book Free Consultation
           </button>

@@ -6,8 +6,8 @@ export default function LocationSection({ contact }) {
   if (!contact) return null;
 
   return (
-    <section className="py-24 px-6 bg-white border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <section className="py-12 sm:py-24 px-4 sm:px-6 bg-white border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
         
         {/* Left Column: Office Details */}
         <motion.div
@@ -21,7 +21,7 @@ export default function LocationSection({ contact }) {
             LOCATION & CONTACT
           </span>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
             {contact.title || "Visit Yugantar Technologies"}
           </h2>
 
@@ -108,7 +108,7 @@ export default function LocationSection({ contact }) {
             <div className="relative bg-slate-50 border border-slate-200/90 rounded-3xl p-3 shadow-xl overflow-hidden">
               <img
                 src={contact.image}
-                alt={contact.imageAlt || "Yugantar Technologies Office Navrangpura"}
+                alt={contact.imageAlt || "Yugantar Technologies Office Memnagar Gurukul Road Ahmedabad"}
                 className="w-full h-[360px] sm:h-[400px] object-cover rounded-2xl transition-transform duration-700 group-hover:scale-[1.02]"
               />
             </div>

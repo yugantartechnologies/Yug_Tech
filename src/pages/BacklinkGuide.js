@@ -86,8 +86,8 @@ export default function BacklinkGuide() {
         "software development Ahmedabad",
         "web development company Ahmedabad",
         "mobile app development Ahmedabad",
-        "best IT services Navrangpura",
-        "tech company Vijay Cross Road",
+        "best IT services Memnagar Ahmedabad",
+        "tech company Gurukul Road Memnagar",
         "IT consultancy Ahmedabad",
         "digital marketing Ahmedabad"
     ];

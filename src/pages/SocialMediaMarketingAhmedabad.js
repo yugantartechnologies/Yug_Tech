@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FAQSection from "../components/FAQSection";
@@ -16,125 +17,81 @@ import {
   MessageSquare
 } from "lucide-react";
 
-import { 
-  FaInstagram, 
-  FaPlay 
-} from "react-icons/fa";
-
 function SmmHeroMockup() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const images = [
-    {
-      url: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
-      caption: "1.4M+ Viral Reel Views & Instagram Ads"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1200&auto=format&fit=crop",
-      caption: "Social Media Content Calendar & Grids"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop",
-      caption: "Meta Paid Ads & 4.8x ROAS Dashboard"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop",
-      caption: "Target Inbound Lead Acquisition"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1200&auto=format&fit=crop",
-      caption: "Influencer & Brand Perception Scaling"
-    }
+  const slides = [
+    { url: "/images/services/smm_1.jpg", alt: "Mobile Social Media Strategy & Interface" },
+    { url: "/images/services/smm_2.jpg", alt: "Digital Marketing Campaign Planning" },
+    { url: "/images/services/smm_3.jpg", alt: "Paid Advertising & Multi-Channel Marketing" },
+    { url: "/images/services/smm_4.jpg", alt: "Content Creation & Campaign Optimization" },
+    { url: "/images/services/smm_5.jpg", alt: "Creative Agency Brand Strategy" }
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3200);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, [slides.length]);
 
   return (
     <div className="w-full max-w-xl relative group text-left font-sans select-none my-auto">
-      {/* Ambient Glow */}
-      <div className="absolute -inset-3 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 rounded-[2.5rem] blur-2xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
+      {/* Subtle Ambient Glow */}
+      <div className="absolute -inset-2 bg-gradient-to-r from-pink-600/30 via-purple-600/20 to-indigo-600/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-70 transition duration-700 pointer-events-none" />
 
-      {/* Floating Top Badge */}
-      <div className="absolute -top-4 -right-2 z-30 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl flex items-center gap-2">
-        <FaPlay className="w-3 h-3 text-white fill-white" />
-        <span>1.4M+ Viral Reel Views</span>
-      </div>
-
-      {/* Floating Bottom Badge */}
-      <div className="absolute -bottom-4 -left-2 z-30 bg-slate-900/90 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl border border-slate-700 backdrop-blur-md flex items-center gap-2">
-        <span className="text-emerald-400 font-extrabold">4.8x ROAS</span>
-        <span className="text-slate-300">Meta Paid Campaigns</span>
-      </div>
-
-      {/* Main Glass Frame */}
-      <div className="relative bg-slate-950 border border-slate-800 rounded-[2.25rem] p-5 shadow-2xl overflow-hidden backdrop-blur-xl">
-        {/* Browser Top Bar */}
-        <div className="flex items-center justify-between mb-3 bg-slate-900 p-2.5 rounded-2xl border border-slate-800">
+      {/* Main Clean Browser Frame (Zero text clutter) */}
+      <div className="relative bg-slate-950/95 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl">
+        
+        {/* Sleek Minimalist Window Top Bar (Only 3 Dots) */}
+        <div className="flex items-center px-4 py-3.5 bg-slate-900/95 border-b border-slate-800/80">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-rose-500" />
-            <span className="w-3 h-3 rounded-full bg-amber-500" />
-            <span className="w-3 h-3 rounded-full bg-emerald-500" />
+            <span className="w-3 h-3 rounded-full bg-rose-500/90" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/90" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/90" />
           </div>
-          <div className="bg-slate-800/90 px-4 py-1 rounded-xl text-xs text-slate-200 font-mono flex items-center gap-1.5">
-            <FaInstagram className="text-pink-400 w-3 h-3" />
-            <span className="font-bold">SMM Viral Engine</span>
-          </div>
-          <span className="text-[11px] font-bold text-pink-400 bg-pink-950 px-2.5 py-0.5 rounded-full border border-pink-800">
-            {currentSlide + 1} / {images.length}
-          </span>
         </div>
 
-        {/* Clean Image Carousel Box (No text clutter!) */}
-        <div className="relative h-72 md:h-80 rounded-2xl overflow-hidden border border-slate-800 group/slide">
+        {/* 5-Slide Professional Image Showcase */}
+        <div className="relative h-72 sm:h-96 overflow-hidden bg-slate-950 group/slide">
           <img
             key={currentSlide}
-            src={images[currentSlide].url}
-            alt={images[currentSlide].caption}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 transform scale-105"
+            src={slides[currentSlide].url}
+            alt={slides[currentSlide].alt}
+            className="w-full h-full object-cover transition-all duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-          {/* Minimal Caption Chip */}
-          <div className="absolute bottom-4 left-4 z-10 bg-slate-950/90 border border-pink-400/30 text-white px-3.5 py-1.5 rounded-xl backdrop-blur-md text-xs font-bold flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
-            <span>{images[currentSlide].caption}</span>
-          </div>
-
-          {/* Navigation Arrows */}
+          {/* Slide Navigation Arrows */}
           <button
-            onClick={() => setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-sm font-bold opacity-0 group-hover/slide:opacity-100 transition"
+            onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-lg font-bold opacity-0 group-hover/slide:opacity-100 hover:bg-pink-600 transition shadow-lg cursor-pointer z-10"
+            aria-label="Previous Slide"
           >
             ‹
           </button>
           <button
-            onClick={() => setCurrentSlide((prev) => (prev + 1) % images.length)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-sm font-bold opacity-0 group-hover/slide:opacity-100 transition"
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center text-lg font-bold opacity-0 group-hover/slide:opacity-100 hover:bg-pink-600 transition shadow-lg cursor-pointer z-10"
+            aria-label="Next Slide"
           >
             ›
           </button>
         </div>
 
-        {/* Bottom Slide Dots Only */}
-        <div className="flex items-center justify-between mt-3 px-1">
-          <span className="text-[11px] text-slate-400 font-mono">Live SMM Portfolio</span>
-          <div className="flex gap-1.5">
-            {images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? "bg-pink-400 w-5" : "bg-slate-800 w-2"
-                }`}
-              />
-            ))}
-          </div>
+        {/* Clean 5-Dot Pagination Bar */}
+        <div className="flex items-center justify-center gap-2.5 py-3.5 bg-slate-900/90 border-t border-slate-800/80">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                idx === currentSlide ? "bg-pink-400 w-7" : "bg-slate-700 w-2 hover:bg-slate-500"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
+
       </div>
     </div>
   );
@@ -255,31 +212,30 @@ export default function SocialMediaMarketingAhmedabad() {
           <div className="lg:col-span-7 space-y-6 text-left">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              SMM Services Ahmedabad
+              SMM Agency Ahmedabad
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 tracking-tight">
-              Build Brand Buzz <br />
-              With Strategic <br />
-              <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600 bg-clip-text text-transparent">
-                Social Marketing
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 tracking-tight">
+              Social Media Marketing Services <br />
+              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 bg-clip-text text-transparent">
+                in Ahmedabad
               </span>
             </h1>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Grow followers, build brand authority, and acquire target sales leads. We handle content creation calendars, graphic banner design, video reels editing, and Meta/LinkedIn paid campaign management.
+              Build your brand's online presence with social media marketing services from Yugantar Technologies in Ahmedabad. We design custom graphic post grids, develop audience-focused content calendars, manage social accounts across Meta and LinkedIn, and analyze campaign performance to drive genuine business awareness.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 onClick={() => setBookingModal({ isOpen: true, service: { title: "Social Media Marketing", icon: "📱" } })}
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-sky-600 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-1 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 text-white font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1 cursor-pointer"
               >
-                Get Social Audit Proposal
+                Discuss Social Media Strategy
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
               <a
                 href="tel:9054372690"
                 className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-blue-400 bg-white hover:bg-blue-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
               >
-                Call: 9054372690
+                Call: +91 9054372690
               </a>
             </div>
           </div>
@@ -472,6 +428,59 @@ export default function SocialMediaMarketingAhmedabad() {
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">{benefit.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Digital Services Internal Linking */}
+      <section className="py-16 px-4 sm:px-6 bg-slate-100/70 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto text-center">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+            Integrated Digital Growth Channels
+          </h3>
+          <p className="text-slate-600 text-sm max-w-2xl mx-auto mb-8">
+            Social media engagement converts even higher when paired with high-intent search visibility and a modern corporate website:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <Link
+              to="/seo-services-ahmedabad"
+              className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition text-left group"
+            >
+              <h4 className="font-bold text-slate-900 text-base group-hover:text-blue-600 flex items-center justify-between">
+                <span>SEO Services Ahmedabad</span>
+                <span className="text-sm">→</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Capture high-intent searchers actively looking for your products or services on Google search.
+              </p>
+            </Link>
+
+            <Link
+              to="/website-development-ahmedabad"
+              className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition text-left group"
+            >
+              <h4 className="font-bold text-slate-900 text-base group-hover:text-blue-600 flex items-center justify-between">
+                <span>Website Development</span>
+                <span className="text-sm">→</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Direct your social followers to a lightning-fast, high-converting digital storefront built on modern tech.
+              </p>
+            </Link>
+
+            <Link
+              to="/digital-marketing-ahmedabad"
+              className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition text-left group"
+            >
+              <h4 className="font-bold text-slate-900 text-base group-hover:text-blue-600 flex items-center justify-between">
+                <span>Digital Marketing Agency</span>
+                <span className="text-sm">→</span>
+              </h4>
+              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Coordinate full-funnel digital campaigns with unified analytics, creative messaging, and clear reporting.
+              </p>
+            </Link>
           </div>
         </div>
       </section>

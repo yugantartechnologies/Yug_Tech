@@ -7,6 +7,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import FAQSection from "../components/FAQSection";
 import useFaqByCategory from "../hooks/useFaqByCategory";
 import { FAQ_CATEGORIES } from "../constants/faqDefaults";
+import itEducationHeroImg from "../public/it_services_hero.jpg";
 
 export default function Courses() {
 
@@ -138,30 +139,30 @@ export default function Courses() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-slate-50 mt-16">
-        <div className="max-w-7xl mx-auto px-6 py-16 lg:py-20 flex flex-col lg:flex-row items-center gap-10">
+      <section className="bg-slate-50 pt-20 sm:pt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20 flex flex-col lg:flex-row items-center gap-8 sm:gap-10">
 
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 w-full text-center lg:text-left">
             <h1 className="text-3xl lg:text-5xl font-bold mb-4 text-slate-900">
               Our IT Courses
             </h1>
 
-            <p className="text-lg text-slate-600 mb-6">
+            <p className="text-base sm:text-lg text-slate-600 mb-6 max-w-xl mx-auto lg:mx-0">
               Learn industry-ready technologies and start your career in IT with expert training and live projects.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
 
               <button
                 onClick={() => handleEnrollClick(null)}
-                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 rounded-xl font-bold text-white shadow-xl hover:shadow-orange-500/35 hover:-translate-y-0.5 transition cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3.5 rounded-xl font-bold text-white shadow-xl hover:shadow-orange-500/35 hover:-translate-y-0.5 transition cursor-pointer text-sm"
               >
                 Book Free Demo Class
               </button>
 
               <a
                 href="tel:+919054372690"
-                className="px-6 py-3 border-2 border-orange-500 text-orange-600 rounded-xl font-semibold hover:bg-orange-50 hover:text-orange-700 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 border-2 border-orange-500 text-orange-600 rounded-xl font-semibold hover:bg-orange-50 hover:text-orange-700 transition text-sm"
               >
                 Call: +91 9054372690
               </a>
@@ -172,60 +173,33 @@ export default function Courses() {
           <div className="lg:w-1/2 flex justify-center w-full">
             <div className="relative w-full max-w-xl group">
               {/* Glow Spotlight Effect */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 via-sky-500 to-emerald-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition duration-700 pointer-events-none" />
-
-              {/* Floating Stat Badges */}
-              <div className="absolute -top-3 -right-2 z-20 bg-slate-950/90 border border-sky-400/40 text-white px-4 py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs font-bold text-sky-300">100% Placement Support</span>
-              </div>
-
-              <div className="absolute -bottom-3 -left-2 z-20 bg-slate-950/90 border border-amber-400/40 text-white px-4 py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2">
-                <span className="text-xs">⚡</span>
-                <span className="text-xs font-bold text-amber-300">Live Client Project Training</span>
-              </div>
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-orange-500/20 via-sky-500/20 to-indigo-500/20 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition duration-700 pointer-events-none" />
 
               {/* Professional IT Showcase Image Frame */}
-              <div className="relative bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
-                {/* Header Bar */}
-                <div className="flex items-center justify-between border-b border-slate-800 px-5 py-3.5 bg-slate-900/90 backdrop-blur-md">
+              <div className="relative bg-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
+                {/* Clean Header Bar */}
+                <div className="flex items-center justify-between border-b border-slate-800/80 px-4 sm:px-5 py-3 bg-slate-900/90 backdrop-blur-md">
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-red-500" />
                     <span className="w-3 h-3 rounded-full bg-amber-500" />
                     <span className="w-3 h-3 rounded-full bg-emerald-500" />
                   </div>
-                  <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg text-[11px] font-mono text-slate-300">
+                  <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg text-[11px] font-mono text-slate-300">
                     <span className="text-orange-400">🌐</span> yugantartechnologies.com
                   </div>
-                  <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                    Admissions Open
-                  </span>
+                  <div className="w-12" />
                 </div>
 
                 {/* Clean High Quality Hero Image */}
-                <div className="relative h-80 sm:h-96 overflow-hidden">
+                <div className="relative h-72 sm:h-96 md:h-[400px] w-full overflow-hidden bg-slate-900">
                   <img
-                    src="/it_services_hero.jpg"
-                    alt="Yugantar IT Services & Software Engineering"
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    src={itEducationHeroImg}
+                    alt="Yugantar Technologies IT Education & Software Training"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop";
+                    }}
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 block"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                </div>
-
-                {/* Bottom Clean Features Footer */}
-                <div className="grid grid-cols-3 gap-2 text-center text-xs p-4 bg-slate-950 border-t border-slate-800/80">
-                  <div className="bg-slate-900 border border-slate-800 p-2.5 rounded-xl">
-                    <p className="text-[10px] text-slate-400">Batches</p>
-                    <p className="font-bold text-white">Flexible / Weekend</p>
-                  </div>
-                  <div className="bg-slate-900 border border-slate-800 p-2.5 rounded-xl">
-                    <p className="text-[10px] text-slate-400">Method</p>
-                    <p className="font-bold text-sky-400">100% Practical</p>
-                  </div>
-                  <div className="bg-slate-900 border border-slate-800 p-2.5 rounded-xl">
-                    <p className="text-[10px] text-slate-400">Certificate</p>
-                    <p className="font-bold text-emerald-400">Verified</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -235,15 +209,15 @@ export default function Courses() {
       </section>
 
       {/* Courses Section */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
 
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
 
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
             Explore Our Courses 
           </h2>
 
-          <p className="text-slate-600 max-w-2xl mx-auto">
+          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto">
             Choose from our industry-focused IT courses designed to help you build real-world skills and start a successful tech career.
           </p>
 
@@ -251,7 +225,7 @@ export default function Courses() {
 
         <div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10"
         >
 
           {courses.map((course, index) => (

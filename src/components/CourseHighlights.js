@@ -44,35 +44,35 @@ export default function CourseHighlights() {
 
   return (
     <section
-      className="relative py-28 bg-white text-slate-900 overflow-hidden"
+      className="relative py-14 sm:py-28 bg-white text-slate-900 overflow-hidden"
     >
       <div className="absolute inset-0 bg-white" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
-        <div className="mb-20 text-center">
-          <p className="text-sky-600 font-semibold text-sm tracking-[0.35em] uppercase mb-3">
+        <div className="mb-12 sm:mb-20 text-center">
+          <p className="text-sky-600 font-semibold text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.35em] uppercase mb-3">
             Popular Programs
           </p> 
 
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
             Start Your <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent">Professional Journey</span>
           </h2>  
 
-          <p className="mt-5 max-w-2xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed">
+          <p className="mt-4 sm:mt-5 max-w-2xl mx-auto text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed">
             Choose from our career-focused programs designed to make you industry-ready
             with practical knowledge and real-world skills.
           </p>
         </div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 mb-12 sm:mb-16">
 
           {popularCourses.map((course, index) => (
             <div
               key={index}
-              className="group premium-card-hover-light p-8 bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/90 rounded-2xl"
+              className="group premium-card-hover-light p-5 sm:p-8 bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/90 rounded-2xl"
             >
               {/* Top Accent Line */}
               <div className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl w-0 group-hover:w-full transition-all duration-500 ${course.accentLine}`} />

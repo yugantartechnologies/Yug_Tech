@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Search, Megaphone } from "lucide-react";
+import { Globe, Search, Megaphone, GraduationCap } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -44,8 +44,8 @@ export default function HeroSection({ onQuickEnroll }) {
       <div className="absolute left-[-10%] top-10 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl opacity-70 z-0" />
       <div className="absolute right-[-10%] top-20 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl opacity-60 z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-12 sm:pt-28 sm:pb-20 w-full">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 items-center">
           
           {/* Left Column */}
           <motion.div
@@ -55,43 +55,43 @@ export default function HeroSection({ onQuickEnroll }) {
           >
             <motion.p 
               variants={fadeUp} 
-              className="text-sky-400 font-bold text-sm tracking-[0.2em] uppercase mb-4"
+              className="text-sky-400 font-bold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3 sm:mb-4"
             >
               IT Training & Digital Solutions
             </motion.p>
 
             <motion.h1 
               variants={fadeUp} 
-              className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.18] tracking-tight text-white"
+              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.18] tracking-tight text-white"
             >
-              Build Your Career With{" "}
-              <span className="bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                YugAntar Technologies
+              Professional IT Services &{" "}
+              <span className="bg-gradient-to-r from-sky-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
+                Digital Solutions in Ahmedabad
               </span>
             </motion.h1>
 
             <motion.p 
               variants={fadeUp} 
-              className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-slate-300"
+              className="mt-4 sm:mt-6 max-w-xl text-sm sm:text-lg leading-relaxed text-slate-300"
             >
-              Learn industry-focused courses, work on live projects, and grow your career with professional training, internship, placement support, and IT services.
+              Yugantar Technologies delivers high-impact IT services, custom website development, and data-driven SEO solutions for businesses — alongside career-focused IT education, practical software training, and certifications in Ahmedabad.
             </motion.p>
 
             <motion.div 
               variants={fadeUp} 
-              className="mt-8 flex flex-wrap gap-4"
+              className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"
             >
               <Link 
-                to="/courses" 
-                className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all shadow-lg shadow-blue-500/20"
+                to="/contact" 
+                className="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 hover:from-blue-700 hover:to-orange-600 text-white font-bold transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 hover:-translate-y-0.5"
               >
-                Explore Courses
+                Discuss Your Website Project
               </Link>
               <Link 
-                to="/contact" 
-                className="px-6 py-3 rounded-lg border border-slate-700 text-white hover:bg-slate-800/40 font-semibold transition-all"
+                to="/courses" 
+                className="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl border border-slate-700 text-white hover:bg-slate-800/40 font-semibold transition-all"
               >
-                Contact Us
+                Explore IT Education & Courses
               </Link>
             </motion.div>
           </motion.div>
@@ -114,7 +114,7 @@ export default function HeroSection({ onQuickEnroll }) {
               </div>
             </div>
 
-            <div className="absolute top-1/3 -left-4 z-20 bg-slate-950/90 border border-emerald-400/40 text-white px-4 py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2.5 hidden sm:flex">
+            <div className="absolute top-1/3 left-2 z-20 bg-slate-950/90 border border-emerald-400/40 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2 hidden sm:flex">
               <span className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
                 💼
               </span>
@@ -135,7 +135,7 @@ export default function HeroSection({ onQuickEnroll }) {
             </div>
 
             {/* Automatic Image Slideshow Box */}
-            <div className="relative w-full h-[320px] sm:h-[400px] md:h-[480px] rounded-3xl sm:rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl group bg-slate-950">
+            <div className="relative w-full h-[260px] sm:h-[380px] md:h-[480px] rounded-2xl sm:rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl group bg-slate-950">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImgIndex}
@@ -172,47 +172,47 @@ export default function HeroSection({ onQuickEnroll }) {
 
         </div>
 
-        {/* Bottom Cards Grid */}
+        {/* Bottom Dual-Audience Navigation Cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {/* Card 1 - Website Development */}
+          {/* Card 1 - SEO Services */}
           <Link
-            to="/website-development-ahmedabad"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-6 cursor-pointer"
+            to="/seo-services-ahmedabad"
+            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
           >
-            <div className="flex items-start gap-4">
-              <div className="bg-blue-950/40 border border-blue-900/30 p-3 rounded-xl text-blue-400 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all duration-300 flex-shrink-0">
-                <Globe size={22} />
+            <div className="flex items-start gap-3.5">
+              <div className="bg-orange-950/40 border border-orange-900/30 p-2.5 rounded-xl text-orange-400 group-hover:bg-orange-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all duration-300 flex-shrink-0">
+                <Search size={20} />
               </div>
               <div>
-                <h4 className="text-white text-lg font-bold group-hover:text-blue-300 transition-colors flex items-center gap-1.5">
-                  Website Development
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-sm">→</span>
+                <h4 className="text-white text-base font-bold group-hover:text-orange-300 transition-colors flex items-center gap-1">
+                  SEO Services
+                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
                 </h4>
-                <p className="text-slate-400 text-sm mt-1.5 font-medium leading-relaxed">Professional websites for business growth.</p>
+                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Search visibility & organic traffic growth.</p>
               </div>
             </div>
           </Link>
 
-          {/* Card 2 - SEO Services */}
+          {/* Card 2 - Website Development */}
           <Link
-            to="/seo-services-ahmedabad"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-6 cursor-pointer"
+            to="/website-development-ahmedabad"
+            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
           >
-            <div className="flex items-start gap-4">
-              <div className="bg-orange-950/40 border border-orange-900/30 p-3 rounded-xl text-orange-400 group-hover:bg-orange-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all duration-300 flex-shrink-0">
-                <Search size={22} />
+            <div className="flex items-start gap-3.5">
+              <div className="bg-blue-950/40 border border-blue-900/30 p-2.5 rounded-xl text-blue-400 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all duration-300 flex-shrink-0">
+                <Globe size={20} />
               </div>
               <div>
-                <h4 className="text-white text-lg font-bold group-hover:text-orange-300 transition-colors flex items-center gap-1.5">
-                  SEO Services
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-sm">→</span>
+                <h4 className="text-white text-base font-bold group-hover:text-blue-300 transition-colors flex items-center gap-1">
+                  Website Development
+                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
                 </h4>
-                <p className="text-slate-400 text-sm mt-1.5 font-medium leading-relaxed">Rank higher and generate quality inquiries.</p>
+                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Fast, responsive & custom business websites.</p>
               </div>
             </div>
           </Link>
@@ -220,18 +220,37 @@ export default function HeroSection({ onQuickEnroll }) {
           {/* Card 3 - Social Media Marketing */}
           <Link
             to="/social-media-marketing-ahmedabad"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-6 cursor-pointer"
+            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
           >
-            <div className="flex items-start gap-4">
-              <div className="bg-sky-950/40 border border-sky-900/30 p-3 rounded-xl text-sky-400 group-hover:bg-sky-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-300 flex-shrink-0">
-                <Megaphone size={22} />
+            <div className="flex items-start gap-3.5">
+              <div className="bg-sky-950/40 border border-sky-900/30 p-2.5 rounded-xl text-sky-400 group-hover:bg-sky-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-300 flex-shrink-0">
+                <Megaphone size={20} />
               </div>
               <div>
-                <h4 className="text-white text-lg font-bold group-hover:text-sky-300 transition-colors flex items-center gap-1.5">
+                <h4 className="text-white text-base font-bold group-hover:text-sky-300 transition-colors flex items-center gap-1">
                   Social Media Marketing
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-sm">→</span>
+                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
                 </h4>
-                <p className="text-slate-450 text-sm mt-1.5 font-medium leading-relaxed">Grow your brand with professional campaigns.</p>
+                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Audience engagement & brand growth.</p>
+              </div>
+            </div>
+          </Link>
+
+          {/* Card 4 - IT Education */}
+          <Link
+            to="/courses"
+            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
+          >
+            <div className="flex items-start gap-3.5">
+              <div className="bg-emerald-950/40 border border-emerald-900/30 p-2.5 rounded-xl text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-300 flex-shrink-0">
+                <GraduationCap size={20} />
+              </div>
+              <div>
+                <h4 className="text-white text-base font-bold group-hover:text-emerald-300 transition-colors flex items-center gap-1">
+                  IT Education
+                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
+                </h4>
+                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Job-oriented tech courses, practical coding & certifications.</p>
               </div>
             </div>
           </Link>

@@ -26,7 +26,7 @@ const aboutContent = {
     eyebrow: "WHO WE ARE",
     title: "Technology That Helps People and Businesses Move Forward.",
     paragraphs: [
-      "Yugantar Technologies & Training Institute was established in Navrangpura, Ahmedabad, with a mission to bridge the gap between academic tech learning and real-world industrial software execution.",
+      "Yugantar Technologies & Training Institute operates from Sanskrit Galleria, Near Hanuman Temple, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad, with a mission to bridge the gap between academic tech learning and real-world industrial software execution.",
       "We combine full-suite IT development services—including web development, custom software, SEO, and digital marketing—with practical, hands-on training and internship programs designed to build technical confidence."
     ],
     image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -93,7 +93,7 @@ const aboutContent = {
     {
       number: "4.9★",
       label: "Google Rating",
-      sublabel: "Navrangpura Ahmedabad"
+      sublabel: "Memnagar, Ahmedabad"
     }
   ],
 
@@ -102,7 +102,7 @@ const aboutContent = {
     {
       year: "Foundation",
       title: "The Beginning",
-      description: "Yugantar Technologies was founded in Navrangpura, Ahmedabad, to bridge academic learning with real-world IT industry execution."
+      description: "Yugantar Technologies was founded in Ahmedabad, now headquartered at Sanskrit Galleria, Gurukul Road, Memnagar, bridging academic learning with real-world IT industry execution."
     },
     {
       year: "Transformation",
@@ -289,14 +289,14 @@ const aboutContent = {
 
   // 14. Office / Location
   contact: {
-    title: "Get In Touch With Yugantar Technologies",
-    subtitle: "Our team is currently shifting to a new office location in Ahmedabad. For all client consultations, course enrollments, and inquiries, please connect with us directly via phone or email.",
-    address: "Ahmedabad, Gujarat (New Office Opening Soon)",
+    title: "Visit Yugantar Technologies",
+    subtitle: "Visit our office for enterprise software consultations, client meetings, practical IT training classes, and career guidance in Memnagar, Ahmedabad.",
+    address: "A-604, Sanskrit Galleria, Near Hanuman Temple, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad - 380052",
     phone: "+91 9054372690",
     email: "info@yugantartechnologies.com",
-    mapsUrl: "",
+    mapsUrl: "https://maps.google.com/?q=Sanskrit+Galleria+Gurukul+Road+Memnagar+Ahmedabad+380052",
     image: "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Yugantar Technologies Consultation"
+    imageAlt: "Yugantar Technologies Consultation Office"
   },
 
   // 15. Final CTA

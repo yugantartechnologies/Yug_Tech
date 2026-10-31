@@ -1,5 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /attendance
+Disallow: /registration
 
 Sitemap: https://www.yugantartechnologies.com/sitemap.xml
