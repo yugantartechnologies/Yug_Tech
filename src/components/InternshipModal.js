@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BASE_URL, { fetchFast } from "../BASEURL";
+import { inquiryService, INQUIRY_CATEGORIES } from "../services/inquiryService";
 
 export default function InternshipModal({ internship, isOpen, onClose }) {
     const [formData, setFormData] = useState({
@@ -39,41 +39,22 @@ export default function InternshipModal({ internship, isOpen, onClose }) {
         setIsSubmitting(true);
 
         const newApplication = {
-            id: Date.now().toString(),
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
             internship: formData.internship || internship?.title || "IT Internship",
             experience: formData.experience,
             message: formData.message,
-            createdAt: new Date().toISOString()
+            status: "New"
         };
 
-        // 1. Save to LocalStorage for zero data loss
-        try {
-            const existing = JSON.parse(localStorage.getItem("yug_internship_inquiries") || "[]");
-            existing.unshift(newApplication);
-            localStorage.setItem("yug_internship_inquiries", JSON.stringify(existing));
-            window.dispatchEvent(new Event("storage"));
-            window.dispatchEvent(new Event("yug_inquiry_submitted"));
-        } catch (err) {
-            console.error("LocalStorage save error:", err);
-        }
+        const saved = await inquiryService.submitInquiry(
+            INQUIRY_CATEGORIES.INTERNSHIP.storageKey,
+            INQUIRY_CATEGORIES.INTERNSHIP.endpoint,
+            newApplication
+        );
 
-        // 2. Post to backend API
-        try {
-            await fetchFast(`${BASE_URL}/api/internship-inquiries`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newApplication)
-            }, 3000);
-        } catch (error) {
-            console.warn('Backend endpoint offline, saved locally to queue.');
-        }
-
-        setSubmittedData(newApplication);
+        setSubmittedData(saved);
         setShowSuccess(true);
         setIsSubmitting(false);
     };

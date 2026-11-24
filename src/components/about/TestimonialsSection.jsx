@@ -10,10 +10,10 @@ export default function TestimonialsSection({ testimonials }) {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 space-y-3">
           <span className="text-sky-600 font-mono text-xs font-semibold tracking-wider uppercase bg-sky-100/80 px-3.5 py-1.5 rounded-md border border-sky-200 inline-block">
-            TESTIMONIALS & REVIEWS
+            STUDENT TESTIMONIALS & REVIEWS
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            What Clients & Learners Say
+            What Our Students & Learners Say
           </h2>
         </div>
 

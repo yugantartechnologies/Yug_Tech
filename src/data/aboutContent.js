@@ -292,7 +292,7 @@ const aboutContent = {
     title: "Visit Yugantar Technologies",
     subtitle: "Visit our office for enterprise software consultations, client meetings, practical IT training classes, and career guidance in Memnagar, Ahmedabad.",
     address: "A-604, Sanskrit Galleria, Near Hanuman Temple, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad - 380052",
-    phone: "+91 9054372690",
+    phone: "+91 9054372690 / +91 7859982605",
     email: "info@yugantartechnologies.com",
     mapsUrl: "https://maps.google.com/?q=Sanskrit+Galleria+Gurukul+Road+Memnagar+Ahmedabad+380052",
     image: "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1200",

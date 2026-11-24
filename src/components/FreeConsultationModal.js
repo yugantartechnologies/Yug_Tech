@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, Calendar, CheckCircle, Send, Loader2, ShieldCheck } from "lucide-react";
-import BASE_URL, { fetchFast } from "../BASEURL";
+import { inquiryService, INQUIRY_CATEGORIES } from "../services/inquiryService";
 
 export default function FreeConsultationModal({ isOpen, onClose, defaultService = "General Consultation" }) {
   const [formData, setFormData] = useState({
@@ -33,7 +33,6 @@ export default function FreeConsultationModal({ isOpen, onClose, defaultService 
     setError("");
 
     const newConsultation = {
-      id: "fc_" + Date.now(),
       name: formData.name.trim(),
       phone: formData.phone.trim(),
       email: formData.email.trim(),
@@ -41,31 +40,14 @@ export default function FreeConsultationModal({ isOpen, onClose, defaultService 
       service: formData.service || "General Consultation",
       preferredDate: formData.preferredDate || new Date().toISOString().split("T")[0],
       message: formData.message.trim() || "Free consultation request",
-      status: "New",
-      createdAt: new Date().toISOString()
+      status: "New"
     };
 
-    // 1. Save to LocalStorage backup for 0 data loss
-    try {
-      const existing = JSON.parse(localStorage.getItem("yug_free_consultations") || "[]");
-      existing.unshift(newConsultation);
-      localStorage.setItem("yug_free_consultations", JSON.stringify(existing));
-      window.dispatchEvent(new Event("storage"));
-      window.dispatchEvent(new Event("yug_inquiry_submitted"));
-    } catch (err) {
-      console.error("LocalStorage save error:", err);
-    }
-
-    // 2. Submit to backend API endpoint if available
-    try {
-      await fetchFast(`${BASE_URL}/api/free-consultations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newConsultation)
-      }, 3000);
-    } catch (err) {
-      console.warn("Backend offline or endpoint unmapped, saved locally to admin queue.");
-    }
+    await inquiryService.submitInquiry(
+      INQUIRY_CATEGORIES.FREE_CONSULT.storageKey,
+      INQUIRY_CATEGORIES.FREE_CONSULT.endpoint,
+      newConsultation
+    );
 
     setLoading(false);
     setSuccess(true);

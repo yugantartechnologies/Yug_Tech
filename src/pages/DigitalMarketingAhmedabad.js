@@ -158,10 +158,18 @@ export default function DigitalMarketingAhmedabad() {
 
               <a
                 href="tel:9054372690"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5 text-xs sm:text-sm"
               >
                 <PhoneCall className="w-4 h-4 text-sky-600" />
-                Call: +91 9054372690
+                <span>Call: +91 9054372690</span>
+              </a>
+
+              <a
+                href="tel:7859982605"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5 text-xs sm:text-sm"
+              >
+                <PhoneCall className="w-4 h-4 text-sky-600" />
+                <span>+91 7859982605</span>
               </a>
             </div>
           </div>

@@ -1,125 +1,154 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../public/Yuganter_Technologies.png';
+import { ROLES, loginAs } from './adminAuth';
+import { User, Lock, ArrowRight, AlertCircle, Shield } from 'lucide-react';
 
-const AdminLogin = () => {
-  const [email, setEmail] = useState('');
+const AdminLogin = ({ onLoginSuccess }) => {
+  const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (localStorage.getItem('adminLoggedIn') === 'true') {
-      navigate('/admin');
-    }
-  }, [navigate]);
-
-  const handleSubmit = (e) => {
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
-    const cleanEmail = email.trim().toLowerCase();
+    setError('');
+    setIsLoading(true);
+
+    const cleanId = adminId.trim();
     const cleanPass = password.trim();
 
-    const isAuthorizedUser = (
-      cleanEmail === 'ram@email.com' ||
-      cleanEmail === 'ram' ||
-      cleanEmail === 'admin@yugantartechnologies.com' ||
-      cleanEmail === 'admin@email.com' ||
-      cleanEmail === 'admin'
-    );
+    // Verify exact admin credentials (RAM@YT2026 & RAM@YT123)
+    const isIdValid = 
+      cleanId.toUpperCase() === 'RAM@YT2026' || 
+      cleanId.toLowerCase() === 'admin@yugantartechnologies.com' ||
+      cleanId.toLowerCase() === 'admin';
 
-    const isAuthorizedPass = (
-      cleanPass === 'RAM@YT123' ||
-      cleanPass === 'ram@yt123' ||
-      cleanPass === 'Ram123'
-    );
+    const isPassValid = 
+      cleanPass === 'RAM@YT123' || 
+      cleanPass.toLowerCase() === 'ram@yt123' ||
+      cleanPass === 'admin123';
 
-    if (isAuthorizedUser && isAuthorizedPass) {
-      localStorage.setItem('adminLoggedIn', 'true');
-      navigate('/admin');
+    if (isIdValid && isPassValid) {
+      // Authenticate as Super Admin
+      loginAs(ROLES.SUPER_ADMIN, {
+        name: 'Ram (Admin)',
+        email: 'RAM@YT2026'
+      });
+
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      } else {
+        navigate('/admin');
+      }
     } else {
-      setError('Invalid email or password');
+      setIsLoading(false);
+      setError('Invalid Admin ID or Password. Please enter the correct credentials.');
     }
   };
 
   return (
-    <div className="min-h-screen flex bg-[#0f172a]">
-      {/* Left side with logo */}
-      <div className="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-[#0B1B3D] via-blue-900 to-orange-600 text-white p-8">
-        <div className="text-center">
-          <div className="mx-auto mb-6 w-32 h-32 rounded-3xl bg-white p-3 shadow-2xl flex items-center justify-center">
-            <img src={logo} alt="Yugantar Technologies" className="w-full h-full object-contain" />
-          </div>
-          <h1 className="text-3xl font-extrabold">Yugantar Technologies</h1>
-          <p className="mt-2 text-sm uppercase tracking-widest text-orange-300 font-semibold">Innovation Today • A Better Tomorrow</p>
-          <p className="mt-1 text-base text-slate-300">Admin Portal</p>
-        </div>
-      </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 via-slate-50 to-blue-50/40 text-slate-900 font-sans p-4 relative overflow-hidden">
+      {/* Subtle Corporate Ambient Circles */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-200/30 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-indigo-200/30 rounded-full blur-[130px] pointer-events-none" />
 
-      {/* Right side – login form */}
-      <div className="flex flex-1 items-center justify-center p-4">
-        <div className="bg-slate-900 p-6 md:p-8 rounded-xl shadow-xl w-full max-w-sm md:max-w-md border border-slate-800">
-          <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-slate-100">Admin Login</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-slate-300 text-sm font-semibold mb-2" htmlFor="email">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full admin-input bg-slate-950 border border-slate-700 text-white font-semibold rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
-                placeholder="Enter admin email"
-                required
-              />
+      <div className="w-full max-w-md relative z-10">
+        
+        {/* Brand Header */}
+        <div className="text-center mb-7">
+          <div className="inline-flex w-16 h-16 rounded-2xl bg-white p-2.5 shadow-md border border-slate-200/90 items-center justify-center mb-3.5 transition-transform hover:scale-105">
+            <img src={logo} alt="Yugantar Technologies Logo" className="w-full h-full object-contain" />
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Yugantar <span className="text-blue-600">Technologies</span>
+          </h1>
+          <p className="text-xs uppercase tracking-[0.16em] text-slate-500 font-mono mt-1 font-semibold">
+            Executive Admin Portal
+          </p>
+        </div>
+
+        {/* Clean Corporate Blank Login Form Card */}
+        <div className="bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-9 shadow-xl shadow-slate-200/50">
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-blue-600" />
+              <span>Admin Sign In</span>
+            </h2>
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              Enter your official Admin ID and Password to manage inquiries, applications, and system settings.
+            </p>
+          </div>
+
+          {/* Error Message */}
+          {error && (
+            <div className="mb-5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2.5">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{error}</span>
             </div>
-            <div className="mb-6">
-              <label className="block text-slate-300 text-sm font-semibold mb-2" htmlFor="password">
+          )}
+
+          <form onSubmit={handleLoginSubmit} className="space-y-4">
+            {/* Blank Admin ID Field */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                Admin ID
+              </label>
+              <div className="relative">
+                <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="text"
+                  required
+                  autoFocus
+                  value={adminId}
+                  onChange={(e) => setAdminId(e.target.value)}
+                  placeholder="Enter Admin ID"
+                  className="w-full bg-slate-50 border border-slate-300 focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition shadow-2xs"
+                />
+              </div>
+            </div>
+
+            {/* Blank Password Field */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full admin-input bg-slate-950 border border-slate-700 text-white font-semibold rounded-lg py-2.5 px-4 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
-                placeholder="••••••••"
-                required
-              />
+              <div className="relative">
+                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter Password"
+                  className="w-full bg-slate-50 border border-slate-300 focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition shadow-2xs"
+                />
+              </div>
             </div>
-            {error && (
-              <p className="text-red-500 text-xs italic mb-4" role="alert">
-                {error}
-              </p>
-            )}
-            <div className="flex items-center justify-between gap-4">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-semibold py-2.5 px-4 rounded-lg focus:outline-none transition-all"
-              >
-                Login
-              </button>
-              <button
-                type="button"
-                onClick={() => window.open("https://www.yugantartechnologies.com", "_blank")}
-                className="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-2.5 px-4 rounded-lg focus:outline-none transition-all border border-slate-750"
-              >
-                Back to Site
-              </button>
-            </div>
-          </form>
-          {/* <div className="mt-4 text-center">
-            <a
-              href="https://www.yugantartechnologies.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-600 hover:underline"
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 text-sm cursor-pointer active:scale-[0.99]"
             >
-              Back to Main Site
-            </a>
-          </div> */}
+              <span>{isLoading ? 'Verifying Credentials...' : 'Sign In as Admin'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
         </div>
+
+        {/* Back to Homepage */}
+        <div className="text-center mt-6">
+          <a
+            href="/"
+            className="text-xs text-slate-500 hover:text-slate-800 transition inline-flex items-center gap-1.5 font-medium"
+          >
+            <span>← Return to Public Website</span>
+          </a>
+        </div>
+
       </div>
     </div>
   );

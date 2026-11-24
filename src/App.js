@@ -33,6 +33,7 @@ import AdminGeneralInquiries from './admin/AdminGeneralInquiries';
 import AdminServiceInquiries from './admin/AdminServiceInquiries';
 import AdminFreeConsultations from './admin/AdminFreeConsultations';
 import AdminTeamConsultations from './admin/AdminTeamConsultations';
+import AdminAccessControl from './admin/AdminAccessControl';
 import Attendance from './pages/Attendance';
 import AdminAttendance from './admin/AdminAttendance';
 import AdminFaq from './admin/AdminFaq';
@@ -46,7 +47,7 @@ import MetaTags from './components/MetaTags';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+      <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-orange-500/20 selection:text-slate-900">
         <MetaTags />
         <ScrollProgress />
         <ScrollToTop />
@@ -80,8 +81,10 @@ function App() {
           <Route path="/digital-marketing-internship-ahmedabad" element={<DigitalMarketingInternshipAhmedabad />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<AdminLogin />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/roles" element={<AdminAccessControl />} />
           <Route path="/admin/course-inquiries" element={<AdminCourseInquiries />} />
           <Route path="/admin/internships" element={<AdminInternshipList />} />
           <Route path="/admin/general-inquiries" element={<AdminGeneralInquiries />} />

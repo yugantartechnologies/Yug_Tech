@@ -237,7 +237,7 @@ export default function MetaTags() {
       name: "YugAntar Technologies & Training Institute",
       url: SITE_URL,
       image: `${SITE_URL}/YugAntar_Technologies.png`,
-      telephone: "+91-9054372690",
+      telephone: ["+91-9054372690", "+91-7859982605"],
       email: "info@yugantartechnologies.com",
       address: {
         "@type": "PostalAddress",
@@ -260,7 +260,7 @@ export default function MetaTags() {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+91-9054372690",
+        telephone: ["+91-9054372690", "+91-7859982605"],
         contactType: "customer service",
         areaServed: "IN"
       }

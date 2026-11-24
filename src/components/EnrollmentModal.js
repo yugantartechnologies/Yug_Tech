@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import BASE_URL, { fetchFast } from "../BASEURL";
+import { inquiryService, INQUIRY_CATEGORIES } from "../services/inquiryService";
 
 export default function EnrollmentModal({ course, isOpen, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -41,40 +41,20 @@ export default function EnrollmentModal({ course, isOpen, onClose, onSuccess }) 
     setIsSubmitting(true);
 
     const newInquiry = {
-      id: Date.now().toString(),
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
       course: formData.course || course?.title || "Digital Marketing",
-      createdAt: new Date().toISOString(),
-      submittedAt: new Date().toISOString(),
+      status: "New"
     };
 
-    // 1. Always save inquiry to LocalStorage for zero data loss
-    try {
-      const existing = JSON.parse(localStorage.getItem("yug_course_inquiries") || "[]");
-      existing.unshift(newInquiry);
-      localStorage.setItem("yug_course_inquiries", JSON.stringify(existing));
-      window.dispatchEvent(new Event("storage"));
-      window.dispatchEvent(new Event("yug_inquiry_submitted"));
-    } catch (err) {
-      console.error("LocalStorage save error:", err);
-    }
+    const saved = await inquiryService.submitInquiry(
+      INQUIRY_CATEGORIES.COURSE.storageKey,
+      INQUIRY_CATEGORIES.COURSE.endpoint,
+      newInquiry
+    );
 
-    // 2. Attempt backend API post
-    try {
-      await fetchFast(`${BASE_URL}/api/course-inquiries`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newInquiry)
-      }, 3000);
-    } catch (error) {
-      console.warn("Backend API offline or sleeping, lead stored in local queue.");
-    }
-
-    setSubmittedData(newInquiry);
+    setSubmittedData(saved);
     setShowSuccess(true);
     setIsSubmitting(false);
   };

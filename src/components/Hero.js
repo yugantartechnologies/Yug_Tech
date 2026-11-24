@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Search, Megaphone, GraduationCap } from "lucide-react";
+import { GraduationCap, ShieldCheck, ArrowRight, Star } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const companyImages = [
@@ -23,239 +23,110 @@ export default function HeroSection({ onQuickEnroll }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImgIndex((prev) => (prev + 1) % companyImages.length);
-    }, 4000);
+    }, 4500);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-slate-950 text-white min-h-[85vh] flex items-center">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
-          alt="IT Company Office Background"
-          className="w-full h-full object-cover opacity-[0.08]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950" />
-      </div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 text-slate-900 pt-24 pb-14 sm:pt-28 sm:pb-20 border-b border-slate-200/80">
+      {/* Subtle Corporate Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.15),transparent_35%),radial-gradient(circle_at_85%_15%,rgba(249,115,22,0.12),transparent_30%)] z-0" />
-      <div className="absolute left-[-10%] top-10 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl opacity-70 z-0" />
-      <div className="absolute right-[-10%] top-20 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl opacity-60 z-0" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-12 sm:pt-28 sm:pb-20 w-full">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 sm:gap-14 items-center">
           
-          {/* Left Column */}
+          {/* Left Column: Heading & Value Proposition */}
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
           >
-            <motion.p 
-              variants={fadeUp} 
-              className="text-sky-400 font-bold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3 sm:mb-4"
-            >
-              IT Training & Digital Solutions
-            </motion.p>
+            {/* Trust Eyebrow Badge */}
+            <motion.div variants={fadeUp} className="mb-4">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-sky-600 animate-pulse" />
+                <span>Premier IT Company & Training Institute • Ahmedabad</span>
+              </span>
+            </motion.div>
 
             <motion.h1 
               variants={fadeUp} 
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.18] tracking-tight text-white"
+              className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.15] tracking-tight text-slate-900"
             >
-              Professional IT Services &{" "}
-              <span className="bg-gradient-to-r from-sky-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
-                Digital Solutions in Ahmedabad
-              </span>
+              Enterprise IT Services &{" "}
+              <span className="text-sky-600">Practical Tech Training</span> in Ahmedabad
             </motion.h1>
 
             <motion.p 
               variants={fadeUp} 
-              className="mt-4 sm:mt-6 max-w-xl text-sm sm:text-lg leading-relaxed text-slate-300"
+              className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-slate-600 font-normal"
             >
-              Yugantar Technologies delivers high-impact IT services, custom website development, and data-driven SEO solutions for businesses — alongside career-focused IT education, practical software training, and certifications in Ahmedabad.
+              Yugantar Technologies delivers high-impact custom website development, mobile apps, and search engine optimization (SEO) for businesses — alongside career-focused IT training, live project software engineering, and industry certifications.
             </motion.p>
 
+            {/* CTAs */}
             <motion.div 
               variants={fadeUp} 
-              className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"
+              className="mt-7 sm:mt-9 flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto"
             >
-              <Link 
-                to="/contact" 
-                className="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-sky-500 to-orange-500 hover:from-blue-700 hover:to-orange-600 text-white font-bold transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 hover:-translate-y-0.5"
+              <a 
+                href="#consultation-form" 
+                className="w-full sm:w-auto text-center px-7 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold transition-all shadow-lg shadow-sky-600/20 hover:shadow-sky-600/30 hover:-translate-y-0.5 text-sm flex items-center justify-center gap-2"
               >
-                Discuss Your Website Project
-              </Link>
+                <span>Discuss Your Project</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
               <Link 
                 to="/courses" 
-                className="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl border border-slate-700 text-white hover:bg-slate-800/40 font-semibold transition-all"
+                className="w-full sm:w-auto text-center px-7 py-3.5 rounded-xl border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-800 font-semibold transition-all shadow-xs text-sm"
               >
-                Explore IT Education & Courses
+                Explore Courses & Internships
               </Link>
+            </motion.div>
+
+            {/* Micro Trust Indicators */}
+            <motion.div variants={fadeUp} className="mt-8 pt-6 border-t border-slate-200/90 flex flex-wrap items-center gap-5 sm:gap-7 text-xs text-slate-600 font-medium">
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span>150+ Enterprise Projects</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                <span>4.9★ Google Reviews</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <GraduationCap className="w-4 h-4 text-sky-600" />
+                <span>5,000+ Alumni Placed</span>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Workspace Showcase with Floating Stat Badges (Softs Solution Service style) */}
+          {/* Right Column: Clean Office Workspace Showcase */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative lg:mt-6"
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="relative lg:mt-2"
           >
-            {/* Floating Glassmorphism Badges surrounding the hero right box */}
-            <div className="absolute -top-3 right-2 z-20 bg-slate-950/90 border border-sky-400/40 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2 animate-bounce-slow">
-              <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs sm:text-sm">
-                🎓
-              </span>
-              <div>
-                <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Practical Learning</p>
-                <p className="text-[11px] sm:text-xs font-bold text-sky-300">10+ Top Tech Courses</p>
-              </div>
-            </div>
-
-            <div className="absolute top-1/3 left-2 z-20 bg-slate-950/90 border border-emerald-400/40 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2 hidden sm:flex">
-              <span className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
-                💼
-              </span>
-              <div>
-                <p className="text-[11px] text-slate-400 font-medium">Career Support</p>
-                <p className="text-xs font-bold text-emerald-300">100% Job Assistance</p>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-3 right-2 z-20 bg-slate-950/90 border border-amber-400/40 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2">
-              <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs sm:text-sm">
-                ⭐
-              </span>
-              <div>
-                <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Verified Trainers</p>
-                <p className="text-[11px] sm:text-xs font-bold text-amber-300">Expert Mentorship</p>
-              </div>
-            </div>
-
-            {/* Automatic Image Slideshow Box */}
-            <div className="relative w-full h-[260px] sm:h-[380px] md:h-[480px] rounded-2xl sm:rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl group bg-slate-950">
+            {/* Image Box */}
+            <div className="relative w-full h-[300px] sm:h-[420px] md:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-100">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImgIndex}
                   src={companyImages[currentImgIndex]}
-                  alt="IT Company Workspace"
-                  initial={{ opacity: 0, scale: 1.05 }}
+                  alt="Yugantar Technologies Office Workspace"
+                  initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-              
-              <div className="absolute top-6 left-6 bg-slate-950/80 border border-white/10 px-4 py-1.5 rounded-full text-xs font-semibold text-sky-300 backdrop-blur-md flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Live IT Workspace & Mentorship Hub
-              </div>
-
-              {/* Navigation dots */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
-                {companyImages.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImgIndex(idx)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all ${
-                      idx === currentImgIndex ? "bg-sky-400 w-5" : "bg-white/40"
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </motion.div>
 
         </div>
-
-        {/* Bottom Dual-Audience Navigation Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {/* Card 1 - SEO Services */}
-          <Link
-            to="/seo-services-ahmedabad"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
-          >
-            <div className="flex items-start gap-3.5">
-              <div className="bg-orange-950/40 border border-orange-900/30 p-2.5 rounded-xl text-orange-400 group-hover:bg-orange-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all duration-300 flex-shrink-0">
-                <Search size={20} />
-              </div>
-              <div>
-                <h4 className="text-white text-base font-bold group-hover:text-orange-300 transition-colors flex items-center gap-1">
-                  SEO Services
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
-                </h4>
-                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Search visibility & organic traffic growth.</p>
-              </div>
-            </div>
-          </Link>
-
-          {/* Card 2 - Website Development */}
-          <Link
-            to="/website-development-ahmedabad"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
-          >
-            <div className="flex items-start gap-3.5">
-              <div className="bg-blue-950/40 border border-blue-900/30 p-2.5 rounded-xl text-blue-400 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all duration-300 flex-shrink-0">
-                <Globe size={20} />
-              </div>
-              <div>
-                <h4 className="text-white text-base font-bold group-hover:text-blue-300 transition-colors flex items-center gap-1">
-                  Website Development
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
-                </h4>
-                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Fast, responsive & custom business websites.</p>
-              </div>
-            </div>
-          </Link>
-
-          {/* Card 3 - Social Media Marketing */}
-          <Link
-            to="/social-media-marketing-ahmedabad"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
-          >
-            <div className="flex items-start gap-3.5">
-              <div className="bg-sky-950/40 border border-sky-900/30 p-2.5 rounded-xl text-sky-400 group-hover:bg-sky-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-300 flex-shrink-0">
-                <Megaphone size={20} />
-              </div>
-              <div>
-                <h4 className="text-white text-base font-bold group-hover:text-sky-300 transition-colors flex items-center gap-1">
-                  Social Media Marketing
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
-                </h4>
-                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Audience engagement & brand growth.</p>
-              </div>
-            </div>
-          </Link>
-
-          {/* Card 4 - IT Education */}
-          <Link
-            to="/courses"
-            className="group block premium-card-hover bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 cursor-pointer"
-          >
-            <div className="flex items-start gap-3.5">
-              <div className="bg-emerald-950/40 border border-emerald-900/30 p-2.5 rounded-xl text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-300 flex-shrink-0">
-                <GraduationCap size={20} />
-              </div>
-              <div>
-                <h4 className="text-white text-base font-bold group-hover:text-emerald-300 transition-colors flex items-center gap-1">
-                  IT Education
-                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-xs">→</span>
-                </h4>
-                <p className="text-slate-400 text-xs mt-1 font-medium leading-relaxed">Job-oriented tech courses, practical coding & certifications.</p>
-              </div>
-            </div>
-          </Link>
-        </motion.div>
-
       </div>
     </section>
   );

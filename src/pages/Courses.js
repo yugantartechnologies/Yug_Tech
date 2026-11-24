@@ -162,9 +162,16 @@ export default function Courses() {
 
               <a
                 href="tel:+919054372690"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 border-2 border-orange-500 text-orange-600 rounded-xl font-semibold hover:bg-orange-50 hover:text-orange-700 transition text-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 border-2 border-orange-500 text-orange-600 rounded-xl font-semibold hover:bg-orange-50 hover:text-orange-700 transition text-sm"
               >
                 Call: +91 9054372690
+              </a>
+
+              <a
+                href="tel:+917859982605"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 border-2 border-sky-500 text-sky-600 rounded-xl font-semibold hover:bg-sky-50 hover:text-sky-700 transition text-sm"
+              >
+                Call: +91 7859982605
               </a>
 
             </div>
@@ -269,9 +276,16 @@ export default function Courses() {
 
           <a
             href="tel:+919054372690"
-            className="px-6 py-3 border-2 border-orange-500 text-orange-500 rounded-xl font-semibold hover:bg-orange-600 hover:text-slate-900 transition"
+            className="px-6 py-3 border-2 border-orange-500 text-orange-600 rounded-xl font-semibold hover:bg-orange-50 transition"
           >
             Call: +91 9054372690
+          </a>
+
+          <a
+            href="tel:+917859982605"
+            className="px-6 py-3 border-2 border-sky-500 text-sky-600 rounded-xl font-semibold hover:bg-sky-50 transition"
+          >
+            Call: +91 7859982605
           </a>
 
         </div>

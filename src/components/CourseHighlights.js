@@ -1,148 +1,137 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Code2, Palette, LineChart } from "lucide-react";
+import { Code2, Palette, LineChart, Terminal, ArrowRight, Award } from "lucide-react";
 
 export default function CourseHighlights() {
   const popularCourses = [
     {
       title: "Full Stack Development (MERN)",
-      description: "Master MongoDB, Express, React, and Node.js with hands-on projects.",
-      icon: <Code2 className="w-7 h-7" />,
-      iconBg: "bg-indigo-50 border-indigo-100 text-indigo-600",
-      badgeStyle: "bg-indigo-500/10 text-indigo-500 border border-indigo-500/20",
-      hoverStyle: "hover:border-indigo-400 hover:from-indigo-50/20 hover:to-white hover:shadow-[0_20px_40px_rgba(99,102,241,0.06)]",
-      accentLine: "bg-indigo-500",
-      duration: "3 Months",
-      popular: true,
+      description: "Master MongoDB, Express.js, React 19, and Node.js with production REST APIs, microservices, and live cloud deployment.",
+      icon: <Code2 className="w-6 h-6 text-sky-600" />,
+      bg: "bg-sky-50 border-sky-100",
+      duration: "6 Months",
+      projects: "5+ Live Projects",
       link: "/courses/full-stack-mern",
+      tags: ["React 19", "Node.js", "MongoDB", "Express", "REST APIs"]
     },
     {
-      title: "UI/UX Design",
-      description: "Learn to design user-friendly and visually appealing websites and apps using modern UI/UX principles and tools.",
-      icon: <Palette className="w-7 h-7" />,
-      iconBg: "bg-emerald-50 border-emerald-100 text-emerald-600",
-      badgeStyle: "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20",
-      hoverStyle: "hover:border-emerald-400 hover:from-emerald-50/20 hover:to-white hover:shadow-[0_20px_40px_rgba(16,185,129,0.06)]",
-      accentLine: "bg-emerald-500",
+      title: "Python Full Stack & AI/ML",
+      description: "Learn Python from foundational logic to FastAPI, Django backend systems, database modeling, and machine learning integration.",
+      icon: <Terminal className="w-6 h-6 text-emerald-600" />,
+      bg: "bg-emerald-50 border-emerald-100",
+      duration: "6 Months",
+      projects: "4+ Live Projects",
+      link: "/courses/python-development",
+      tags: ["Python 3.12", "Django", "FastAPI", "PostgreSQL", "Pandas"]
+    },
+    {
+      title: "UI/UX Product Design & Figma",
+      description: "Create human-centered user experiences, design systems, design thinking heuristics, wireframes, and interactive clickable prototypes in Figma.",
+      icon: <Palette className="w-6 h-6 text-purple-600" />,
+      bg: "bg-purple-50 border-purple-100",
       duration: "3 Months",
-      popular: true,
+      projects: "6+ Portfolio Case Studies",
       link: "/courses/ui-ux-design",
+      tags: ["Figma", "Design Systems", "Wireframing", "User Research"]
     },
     {
-      title: "Digital Marketing",
-      description: "Learn SEO, social media marketing, and online advertising to grow businesses digitally.",
-      icon: <LineChart className="w-7 h-7" />,
-      iconBg: "bg-amber-50 border-amber-100 text-amber-600",
-      badgeStyle: "bg-amber-500/10 text-amber-500 border border-amber-500/20",
-      hoverStyle: "hover:border-amber-400 hover:from-amber-50/20 hover:to-white hover:shadow-[0_20px_40px_rgba(245,158,11,0.06)]",
-      accentLine: "bg-amber-500",
+      title: "Digital Marketing & Performance SEO",
+      description: "Master Google SEO algorithms, Google Business Profile Maps ranking, Meta & Google Ads, and conversion rate optimization.",
+      icon: <LineChart className="w-6 h-6 text-amber-600" />,
+      bg: "bg-amber-50 border-amber-100",
       duration: "3 Months",
-      popular: true,
+      projects: "Live Ad Budget Campaigns",
       link: "/courses/digital-marketing",
+      tags: ["Technical SEO", "Google Ads", "Meta Ads", "Analytics"]
     },
   ];
 
   return (
     <section
-      className="relative py-14 sm:py-28 bg-white text-slate-900 overflow-hidden"
+      className="py-18 sm:py-24 bg-slate-50 text-slate-900 border-b border-slate-200/80"
     >
-      <div className="absolute inset-0 bg-white" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
-        <div className="mb-12 sm:mb-20 text-center">
-          <p className="text-sky-600 font-semibold text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.35em] uppercase mb-3">
-            Popular Programs
-          </p> 
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-800 text-xs font-bold uppercase tracking-wider mb-3">
+            <Award className="w-3.5 h-3.5 text-orange-600" />
+            <span>Career Acceleration Programs</span>
+          </div> 
 
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
-            Start Your <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent">Professional Journey</span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Industry-Oriented <span className="text-sky-600">Tech Training & Internships</span>
           </h2>  
 
-          <p className="mt-4 sm:mt-5 max-w-2xl mx-auto text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed">
-            Choose from our career-focused programs designed to make you industry-ready
-            with practical knowledge and real-world skills.
+          <p className="mt-4 text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed">
+            Gain the hands-on engineering skills required by modern IT companies. Real projects, verified certification, and direct hiring assistance in Ahmedabad.
           </p>
         </div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 mb-12 sm:mb-16">
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 sm:mb-16">
           {popularCourses.map((course, index) => (
             <div
               key={index}
-              className="group premium-card-hover-light p-5 sm:p-8 bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/90 rounded-2xl"
+              className="bg-white hover:bg-white border border-slate-200/90 hover:border-sky-300 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col justify-between group"
             >
-              {/* Top Accent Line */}
-              <div className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl w-0 group-hover:w-full transition-all duration-500 ${course.accentLine}`} />
-
-              {/* Content */}
-              <div className="relative z-10 flex flex-col h-full pt-2">
-
-                {/* Top Row */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className={`flex items-center justify-center w-14 h-14 rounded-xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${course.iconBg}`}>
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center group-hover:scale-105 transition-transform ${course.bg}`}>
                     {course.icon}
                   </div>
-
-                  {course.popular && (
-                    <span className={`text-xs font-semibold px-3 py-1 rounded-lg ${course.badgeStyle}`}>
-                      Popular
-                    </span>
-                  )}
+                  <span className="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">
+                    {course.duration}
+                  </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 tracking-tight text-slate-900 group-hover:text-slate-950 transition-colors">
+                <h3 className="text-base sm:text-lg font-bold mb-2 text-slate-900 group-hover:text-sky-600 transition-colors">
                   {course.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
                   {course.description}
                 </p>
 
-                {/* Divider */}
-                <div className="h-[1px] w-full bg-slate-200 mb-5"></div>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="text-sm font-semibold text-slate-400">
-                    {course.duration}
-                  </span>
-
-                  <Link
-                    to={course.link}
-                    className="inline-flex items-center gap-2 text-sky-600 font-bold group-hover:text-sky-700 transition-colors"
-                  >
-                    View Details
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </Link>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {course.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-50 border border-slate-200 text-slate-600"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  {course.projects}
+                </span>
+
+                <Link
+                  to={course.link}
+                  className="text-xs font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 transition"
+                >
+                  <span>Syllabus</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </div>
           ))}
-
         </div>
 
-        {/* CTA */}
+        {/* View All Programs CTA */}
         <div className="text-center">
           <Link
             to="/courses"
-            className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 px-7 py-3.5 rounded-xl font-bold text-white shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm border border-slate-300 hover:border-slate-400 transition shadow-xs"
           >
-            View All Courses
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+            <span>Explore All 10+ Tech Courses & Internships</span>
+            <ArrowRight className="w-4 h-4 text-orange-600" />
           </Link>
         </div>
 

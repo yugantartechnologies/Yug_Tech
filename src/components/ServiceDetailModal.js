@@ -340,13 +340,22 @@ export default function ServiceDetailModal({ service, isOpen, onClose, onBookNow
               <ExternalLink className="w-4 h-4" />
             </a>
           ) : (
-            <a
-              href="tel:+919054372690"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 px-5 py-3 rounded-xl transition shadow-2xs"
-            >
-              <PhoneCall className="w-4 h-4 text-sky-600" />
-              Call: +91 9054372690
-            </a>
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+              <a
+                href="tel:+919054372690"
+                className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 px-4 py-2.5 rounded-xl transition shadow-2xs"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-sky-600" />
+                <span>+91 9054372690</span>
+              </a>
+              <a
+                href="tel:+917859982605"
+                className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 px-4 py-2.5 rounded-xl transition shadow-2xs"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-sky-600" />
+                <span>+91 7859982605</span>
+              </a>
+            </div>
           )}
 
           <button

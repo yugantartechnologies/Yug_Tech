@@ -9,6 +9,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import FAQSection from "../components/FAQSection";
 import useFaqByCategory from "../hooks/useFaqByCategory";
 import { FAQ_CATEGORIES } from "../constants/faqDefaults";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe,
   Search,
@@ -23,36 +24,98 @@ import {
   Check,
   ArrowRight,
   ShieldCheck,
-  PhoneCall
+  PhoneCall,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
+
+const serviceShowcases = [
+  {
+    title: "Full-Stack Web & E-Commerce Development",
+    shortLabel: "Web Dev",
+    category: "Custom Web Solutions",
+    badgeColor: "bg-sky-500/20 text-sky-300 border-sky-400/30",
+    description: "High-converting corporate portals, SaaS platforms, and lightning-fast storefronts.",
+    image: "/it_services_clean_showcase.jpg",
+    backupImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    tech: "Next.js 15 • React 19 • Tailwind",
+    highlightPill: "⚡ 99/100 PageSpeed"
+  },
+  {
+    title: "iOS & Android Mobile Applications",
+    shortLabel: "Mobile Apps",
+    category: "Mobile App Engineering",
+    badgeColor: "bg-purple-500/20 text-purple-300 border-purple-400/30",
+    description: "Fluid cross-platform mobile apps built with React Native & Flutter with offline sync.",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1200&auto=format&fit=crop",
+    backupImage: "/it_services_hero.jpg",
+    tech: "Flutter • React Native • Firebase",
+    highlightPill: "📱 60 FPS Native UI"
+  },
+  {
+    title: "Google Rank #1 SEO & Search Dominance",
+    shortLabel: "SEO Growth",
+    category: "Search Engine Optimization",
+    badgeColor: "bg-orange-500/20 text-orange-300 border-orange-400/30",
+    description: "Data-driven organic search audits, local Google Maps pack, and high-DA backlink strategies.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    backupImage: "/it_services_illustration.jpg",
+    tech: "Technical SEO • GSC • Analytics",
+    highlightPill: "📈 +340% Inquiries"
+  },
+  {
+    title: "Enterprise Custom CRM & ERP Systems",
+    shortLabel: "Enterprise ERP",
+    category: "Business Software & Cloud",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-400/30",
+    description: "Tailored business management software, automated pipelines, and scalable cloud APIs.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    backupImage: "/workspace.png",
+    tech: "Node.js • Python • PostgreSQL",
+    highlightPill: "🔒 Enterprise Security"
+  }
+];
 
 function ServicesHeroMockup() {
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveTab((prev) => (prev + 1) % 3);
+      setActiveTab((prev) => (prev + 1) % serviceShowcases.length);
     }, 4500);
     return () => clearInterval(timer);
   }, []);
 
+  const current = serviceShowcases[activeTab];
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setActiveTab((prev) => (prev === 0 ? serviceShowcases.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setActiveTab((prev) => (prev + 1) % serviceShowcases.length);
+  };
+
   return (
     <div className="w-full max-w-xl relative group text-left font-sans select-none">
-      {/* Subtle Backlight */}
-      <div className="absolute -inset-2 bg-gradient-to-tr from-sky-500/20 via-blue-600/10 to-indigo-600/20 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
+      {/* Subtle Glow Backlight */}
+      <div className="absolute -inset-2 bg-gradient-to-tr from-sky-500/20 via-blue-600/15 to-orange-500/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition duration-700 pointer-events-none" />
 
-      {/* Main Glass Frame */}
-      <div className="relative bg-slate-950/95 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 backdrop-blur-xl">
+      {/* Main Browser Glass Frame */}
+      <div className="relative bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500">
         
         {/* Top Control Header Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3 bg-slate-900/90 backdrop-blur-md">
+        <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3 bg-slate-900/95 backdrop-blur-md">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-            <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-            <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <span className="w-3 h-3 rounded-full bg-rose-500/90" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/90" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/90" />
           </div>
-          <div className="flex items-center gap-2 bg-slate-950/80 border border-slate-800 px-3 py-1 rounded-lg text-xs font-mono text-slate-300">
-            <span className="text-sky-400 text-[10px]">🔒</span> yugantartechnologies.com
+          <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg text-xs font-mono text-slate-300">
+            <span className="text-sky-400 text-[10px]">🔒</span>
+            <span>yugantartechnologies.com/services</span>
           </div>
           <div className="flex items-center gap-1 opacity-60">
             <span className="w-2 h-2 rounded-full bg-slate-600" />
@@ -60,172 +123,64 @@ function ServicesHeroMockup() {
           </div>
         </div>
 
-        {/* Real Interactive Tech Dashboard Preview */}
-        <div className="relative h-80 sm:h-96 p-4 sm:p-5 bg-gradient-to-b from-slate-900/95 to-slate-950 overflow-hidden font-sans">
-          
-          {/* TAB 0: Website Development */}
-          {activeTab === 0 && (
-            <div className="h-full flex flex-col justify-between animate-fadeIn">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-sky-500 flex items-center justify-center font-bold text-white text-xs">
-                    🌐
-                  </div>
-                  <span className="font-bold text-sm text-white">Full-Stack Web Development</span>
-                </div>
-                <span className="text-[10px] text-sky-400 font-semibold bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">
-                  Next.js & React 19
-                </span>
-              </div>
+        {/* Real Visual Showcase Image Viewport - Clean Image, Zero Text Overlays */}
+        <div className="relative h-72 sm:h-80 md:h-[350px] w-full overflow-hidden bg-slate-900">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.45, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <img
+                src={current.image}
+                onError={(e) => {
+                  if (current.backupImage && e.target.src !== current.backupImage) {
+                    e.target.src = current.backupImage;
+                  }
+                }}
+                alt="IT Service Showcase"
+                className="w-full h-full object-cover object-center"
+              />
+            </motion.div>
+          </AnimatePresence>
 
-              <div className="grid grid-cols-3 gap-2.5 my-auto">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Page Speed</div>
-                  <div className="text-base font-extrabold text-emerald-400 mt-0.5">99 / 100</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">Ultra Fast TTFB</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Security</div>
-                  <div className="text-base font-extrabold text-sky-400 mt-0.5">A+ SSL</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">Enterprise Grade</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Mobile UI</div>
-                  <div className="text-base font-extrabold text-indigo-400 mt-0.5">100%</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">Fully Responsive</div>
-                </div>
-              </div>
-
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-bold text-white">Production Architecture</span>
-                  <span className="text-[10px] text-emerald-400 font-mono">Status: Live</span>
-                </div>
-                <p className="text-[11px] text-slate-400">
-                  High-converting corporate portals, SaaS platforms, and modern e-commerce storefronts.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px] text-slate-400">
-                <span>Frontend & Backend Engineering</span>
-                <span className="text-sky-400 font-mono text-[10px]">Clean Code Standards</span>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 1: SEO Optimization */}
-          {activeTab === 1 && (
-            <div className="h-full flex flex-col justify-between animate-fadeIn">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-orange-500 flex items-center justify-center font-bold text-white text-xs">
-                    🔍
-                  </div>
-                  <span className="font-bold text-sm text-white">Google Rank #1 SEO Services</span>
-                </div>
-                <span className="text-[10px] text-orange-400 font-semibold bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">
-                  GSC Verified
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 gap-2.5 my-auto">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Organic Clicks</div>
-                  <div className="text-base font-extrabold text-white mt-0.5">148.5K</div>
-                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">▲ +38.2%</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Impressions</div>
-                  <div className="text-base font-extrabold text-white mt-0.5">2.4M</div>
-                  <div className="text-[10px] text-sky-400 font-bold mt-0.5">▲ +54%</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Avg. Position</div>
-                  <div className="text-base font-extrabold text-emerald-400 mt-0.5">#1.8</div>
-                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">Top 3 SERP</div>
-                </div>
-              </div>
-
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-bold text-white">Keyword Dominance</span>
-                  <span className="text-[10px] text-amber-400 font-mono">Ahmedabad & Global</span>
-                </div>
-                <p className="text-[11px] text-slate-400">
-                  White-hat on-page, technical site audits, local Google Maps pack, and high-DA backlink building.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px] text-slate-400">
-                <span>Search Engine Optimization</span>
-                <span className="text-orange-400 font-mono text-[10px]">Zero Penalties Guaranteed</span>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 2: Digital & Performance Marketing */}
-          {activeTab === 2 && (
-            <div className="h-full flex flex-col justify-between animate-fadeIn">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-pink-500 flex items-center justify-center font-bold text-white text-xs">
-                    📈
-                  </div>
-                  <span className="font-bold text-sm text-white">Performance Marketing & Paid Ads</span>
-                </div>
-                <span className="text-[10px] text-pink-400 font-semibold bg-pink-500/10 px-2 py-0.5 rounded border border-pink-500/20">
-                  4.85x ROAS
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 gap-2.5 my-auto">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Ad Return</div>
-                  <div className="text-base font-extrabold text-pink-400 mt-0.5">4.85x</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">High ROAS</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Leads Generated</div>
-                  <div className="text-base font-extrabold text-white mt-0.5">2,140</div>
-                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">▲ +48%</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-center">
-                  <div className="text-[10px] text-slate-400">Avg. CPL</div>
-                  <div className="text-sm sm:text-base font-extrabold text-emerald-400 mt-0.5">₹39.30</div>
-                  <div className="text-[10px] text-emerald-400 font-bold mt-0.5">Low Cost</div>
-                </div>
-              </div>
-
-              <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-bold text-white">Full-Funnel Paid Campaigns</span>
-                  <span className="text-[10px] text-pink-400 font-mono">Meta & Google Ads</span>
-                </div>
-                <p className="text-[11px] text-slate-400">
-                  Targeted lead generation, retargeting funnels, viral social media creatives, and ROAS scaling.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px] text-slate-400">
-                <span>Meta, Google & LinkedIn Ads</span>
-                <span className="text-pink-400 font-mono text-[10px]">Verified Conversion Tracking</span>
-              </div>
-            </div>
-          )}
-
+          {/* Left / Right Nav Arrows */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous Service Image"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 hover:bg-slate-900 border border-white/10 text-white flex items-center justify-center transition-all opacity-70 group-hover:opacity-100 hover:scale-110 shadow-lg backdrop-blur-sm z-20"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next Service Image"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 hover:bg-slate-900 border border-white/10 text-white flex items-center justify-center transition-all opacity-70 group-hover:opacity-100 hover:scale-110 shadow-lg backdrop-blur-sm z-20"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
 
-        {/* Minimal Bottom Pagination Bar (Clean Dots Only, No Text) */}
-        <div className="flex items-center justify-center gap-2 py-3 bg-slate-900/80 border-t border-slate-800/80">
-          {[0, 1, 2].map((idx) => (
+        {/* Bottom Interactive Service Tab Switcher */}
+        <div className="grid grid-cols-4 gap-1 p-2 bg-slate-900/90 border-t border-slate-800">
+          {serviceShowcases.map((s, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => setActiveTab(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                idx === activeTab ? "bg-sky-400 w-6" : "bg-slate-700 w-2 hover:bg-slate-600"
+              className={`py-1.5 px-1 sm:px-2 rounded-lg text-[10.5px] sm:text-xs font-semibold transition-all duration-200 text-center truncate ${
+                idx === activeTab
+                  ? "bg-sky-600 text-white shadow-xs font-bold"
+                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
               }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
+            >
+              {s.shortLabel}
+            </button>
           ))}
         </div>
 
@@ -433,10 +388,18 @@ export default function Services() {
 
               <a
                 href="tel:+919054372690"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs hover:-translate-y-0.5"
               >
                 <PhoneCall className="w-4 h-4 text-sky-600" />
-                Call: +91 9054372690
+                <span>Call: +91 9054372690</span>
+              </a>
+
+              <a
+                href="tel:+917859982605"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs hover:-translate-y-0.5"
+              >
+                <PhoneCall className="w-4 h-4 text-sky-600" />
+                <span>+91 7859982605</span>
               </a>
             </div>
           </div>
@@ -567,10 +530,17 @@ export default function Services() {
               </button>
               <a
                 href="tel:+919054372690"
-                className="border border-slate-700 hover:border-sky-400 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold px-8 py-3.5 rounded-xl transition duration-300 inline-flex items-center justify-center gap-2"
+                className="border border-slate-700 hover:border-sky-400 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold px-6 py-3.5 rounded-xl transition duration-300 inline-flex items-center justify-center gap-2 text-sm"
               >
                 <PhoneCall className="w-4 h-4 text-sky-400" />
-                Call: +91 9054372690
+                <span>Call: +91 9054372690</span>
+              </a>
+              <a
+                href="tel:+917859982605"
+                className="border border-slate-700 hover:border-sky-400 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold px-6 py-3.5 rounded-xl transition duration-300 inline-flex items-center justify-center gap-2 text-sm"
+              >
+                <PhoneCall className="w-4 h-4 text-sky-400" />
+                <span>+91 7859982605</span>
               </a>
             </div>
           </div>

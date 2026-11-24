@@ -58,9 +58,15 @@ export default function ServicePageTemplate({
             </button>
             <a
               href="tel:+919054372690"
-              className="px-7 py-3 border-2 border-slate-700 text-slate-200 hover:text-white rounded-xl font-bold hover:bg-slate-850 hover:border-slate-600 transition-all duration-300 hover:-translate-y-0.5"
+              className="px-6 py-3 border-2 border-slate-700 text-slate-200 hover:text-white rounded-xl font-bold hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm"
             >
               Call +91 9054372690
+            </a>
+            <a
+              href="tel:+917859982605"
+              className="px-6 py-3 border-2 border-slate-700 text-slate-200 hover:text-white rounded-xl font-bold hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 hover:-translate-y-0.5 text-xs sm:text-sm"
+            >
+              +91 7859982605
             </a>
           </div>
         </div>

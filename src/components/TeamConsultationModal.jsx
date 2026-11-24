@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, PhoneCall, CheckCircle, Send, Loader2 } from "lucide-react";
-import BASE_URL, { fetchFast } from "../BASEURL";
+import { inquiryService, INQUIRY_CATEGORIES } from "../services/inquiryService";
 
 export default function TeamConsultationModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -27,40 +27,19 @@ export default function TeamConsultationModal({ isOpen, onClose }) {
     setError("");
 
     const newConsultation = {
-      id: Date.now().toString(),
       name: formData.name,
       phone: formData.phone,
       email: formData.email,
       inquiryType: formData.inquiryType,
       message: formData.message,
-      createdAt: new Date().toISOString(),
+      status: "New"
     };
 
-    // 1. Always save to localStorage backup for immediate availability
-    try {
-      const existing = JSON.parse(localStorage.getItem("yug_team_consultations") || "[]");
-      existing.unshift(newConsultation);
-      localStorage.setItem("yug_team_consultations", JSON.stringify(existing));
-      window.dispatchEvent(new Event("storage"));
-      window.dispatchEvent(new Event("yug_inquiry_submitted"));
-    } catch (err) {
-      console.error("LocalStorage save error:", err);
-    }
-
-    // 2. Attempt backend submission
-    try {
-      const response = await fetchFast(`${BASE_URL}/api/team-consultations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newConsultation),
-      }, 3000);
-
-      if (!response.ok) {
-        console.warn("Backend API response not 200, relying on local storage backup.");
-      }
-    } catch (err) {
-      console.warn("Backend endpoint offline, saved locally to admin queue.");
-    }
+    await inquiryService.submitInquiry(
+      INQUIRY_CATEGORIES.TEAM_CONSULT.storageKey,
+      INQUIRY_CATEGORIES.TEAM_CONSULT.endpoint,
+      newConsultation
+    );
 
     setLoading(false);
     setSuccess(true);

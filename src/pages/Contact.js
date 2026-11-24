@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import BASE_URL, { fetchFast } from "../BASEURL";
+import { inquiryService, INQUIRY_CATEGORIES } from "../services/inquiryService";
 import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 
 export default function Contact() {
@@ -34,38 +34,21 @@ export default function Contact() {
     setIsSubmitting(true);
 
     const newInquiry = {
-      id: Date.now().toString(),
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
       message: formData.message,
-      createdAt: new Date().toISOString()
+      status: "New"
     };
 
-    // 1. LocalStorage backup for zero data loss
-    try {
-      const existing = JSON.parse(localStorage.getItem("yug_general_inquiries") || "[]");
-      existing.unshift(newInquiry);
-      localStorage.setItem("yug_general_inquiries", JSON.stringify(existing));
-      window.dispatchEvent(new Event("storage"));
-      window.dispatchEvent(new Event("yug_inquiry_submitted"));
-    } catch (err) {
-      console.error("LocalStorage save error:", err);
-    }
+    await inquiryService.submitInquiry(
+      INQUIRY_CATEGORIES.CONTACT.storageKey,
+      INQUIRY_CATEGORIES.CONTACT.endpoint,
+      newInquiry
+    );
 
-    // 2. Post to backend
-    try {
-      await fetchFast(`${BASE_URL}/api/inquiries`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newInquiry)
-      }, 3000);
-    } catch (error) {
-      console.warn("Backend API offline, general inquiry cached locally.");
-    } finally {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }
+    setIsSubmitting(false);
+    setSubmitted(true);
   };
 
   return (
@@ -87,7 +70,17 @@ export default function Contact() {
         {/* Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-24">
           {[
-            { t: "Call Directly", c: "+91 9054372690", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
+            { 
+              t: "Call Directly", 
+              c: (
+                <div className="flex flex-col gap-1">
+                  <a href="tel:9054372690" className="hover:text-orange-500 transition font-bold">+91 9054372690</a>
+                  <a href="tel:7859982605" className="hover:text-orange-500 transition font-bold">+91 7859982605</a>
+                </div>
+              ), 
+              i: <Phone className="w-8 h-8 text-orange-500" />, 
+              b: "hover:border-orange-500/30" 
+            },
             { t: "Inquiry Support", c: "Available Mon - Sat (9 AM - 7 PM)", i: <Phone className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" },
             { t: "Work with Us", c: "info@yugantartechnologies.com", i: <Mail className="w-8 h-8 text-orange-500" />, b: "hover:border-orange-500/30" }
           ].map((item, i) => (
@@ -184,10 +177,17 @@ export default function Contact() {
 
                 <a
                   href="tel:9054372690"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition text-sm"
+                  className="inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition text-xs whitespace-nowrap"
                 >
-                  <Phone className="w-4 h-4" />
-                  Call Now
+                  <Phone className="w-3.5 h-3.5" />
+                  +91 9054372690
+                </a>
+                <a
+                  href="tel:7859982605"
+                  className="inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 transition text-xs whitespace-nowrap"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  +91 7859982605
                 </a>
               </div>
             </div>
@@ -207,9 +207,14 @@ export default function Contact() {
                   </div>
                 ))}
               </div>
-              <a href="tel:+919054372690" className="mt-8 block text-center py-4 rounded-2xl bg-slate-100/80 border border-slate-700 hover:bg-slate-700 transition-all font-bold tracking-widest text-xs uppercase text-orange-500">
-                Direct Emergency Call
-              </a>
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <a href="tel:+919054372690" className="text-center py-3 rounded-xl bg-slate-100 border border-slate-300 hover:bg-slate-200 transition-all font-bold tracking-wider text-xs uppercase text-orange-600">
+                  Call: 9054372690
+                </a>
+                <a href="tel:+917859982605" className="text-center py-3 rounded-xl bg-slate-100 border border-slate-300 hover:bg-slate-200 transition-all font-bold tracking-wider text-xs uppercase text-sky-600">
+                  Call: 7859982605
+                </a>
+              </div>
             </div>
           </div>
 

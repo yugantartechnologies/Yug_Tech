@@ -8,166 +8,182 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden py-12 sm:py-20 bg-slate-950 text-white border-t border-slate-900">
-      {/* Background visual glows */}
-      <div className="absolute inset-x-0 top-0 h-60 bg-gradient-to-b from-slate-950/90 to-transparent blur-3xl" />
-      <div className="absolute left-[-8%] top-16 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl" />
-      <div className="absolute right-[-10%] bottom-8 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6">
-        <div className="glass-card border border-white/10 p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] overflow-hidden bg-slate-950/40 backdrop-blur-md">
+    <footer className="w-full bg-slate-950 text-slate-300 border-t border-slate-800/80 pt-16 pb-12 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main 12-Column Responsive Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-slate-800/80">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+          {/* Column 1: Brand, Tagline & Overview (4 cols - ample space to prevent overlap) */}
+          <div className="lg:col-span-4 space-y-5 lg:pr-6">
+            <Link to="/" className="inline-flex items-center gap-3.5 group" title="Yugantar Technologies">
+              <div className="w-12 h-12 rounded-xl bg-white p-1.5 shadow-md border border-slate-700 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <img
+                  src={logo}
+                  alt="Yugantar Technologies Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col justify-center">
+                <span className="text-xl font-extrabold text-white leading-tight tracking-tight">
+                  Yugantar <span className="text-sky-400">Technologies</span>
+                </span>
+                <span className="text-[8.5px] tracking-[0.14em] uppercase text-slate-400 mt-1 font-bold flex items-center gap-1.5">
+                  <span className="text-sky-400">INNOVATION TODAY</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block"></span>
+                  <span className="text-orange-400">A BETTER TOMORROW</span>
+                </span>
+              </div>
+            </Link>
             
-            {/* Column 1: Company Profile */}
-            <div className="space-y-6">
-              <Link to="/" className="flex items-center gap-3.5 group">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white p-1.5 shadow-md shadow-black/30 border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <img
-                    src={logo}
-                    alt="Yugantar Technologies Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div>
-                  <h2 className="text-xl font-extrabold text-white leading-tight">
-                    Yugantar <span className="bg-gradient-to-r from-sky-400 via-sky-300 to-orange-400 bg-clip-text text-transparent">Technologies</span>
-                  </h2>
-                  <p className="text-[9px] tracking-[0.16em] uppercase text-slate-300 mt-1 font-semibold flex items-center gap-1.5">
-                    <span className="text-sky-300">INNOVATION TODAY</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block shadow-sm shadow-orange-500/50"></span>
-                    <span className="text-orange-400">A BETTER TOMORROW</span>
-                  </p>
-                </div>
-              </Link>
-              
-              <p className="text-slate-400 leading-relaxed text-sm">
-                Empowering next-generation tech leaders with professional, industry-oriented training and high-performance digital solutions tailored for business success.
-              </p>
+            <p className="text-slate-400 leading-relaxed text-sm max-w-sm">
+              Empowering next-generation tech leaders with professional, industry-oriented training and high-performance digital solutions tailored for business success.
+            </p>
 
-              {/* Social Icons */}
-              <div className="flex items-center gap-3">
-                {[
-                  { href: "https://www.facebook.com/share/16Ao4uJg7S/", icon: Facebook, label: "Facebook" },
-                  { href: "https://www.instagram.com/yugantar_technologies?igsh=Z2Q5cXMxaXg2dm93", icon: Instagram, label: "Instagram" },
-                  { href: "https://www.linkedin.com/company/yugantartechnologies", icon: Linkedin, label: "LinkedIn" },
-                ].map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-all duration-300 hover:border-sky-400/50 hover:bg-sky-500/10 hover:text-sky-300 hover:scale-110 hover:-translate-y-1"
-                      aria-label={item.label}
-                    >
-                      <Icon size={16} />
-                    </a>
-                  );
-                })}
-              </div>
+            {/* Social Icons */}
+            <div className="pt-1 flex items-center gap-3">
+              {[
+                { href: "https://www.facebook.com/share/16Ao4uJg7S/", icon: Facebook, label: "Facebook" },
+                { href: "https://www.instagram.com/yugantar_technologies?igsh=Z2Q5cXMxaXg2dm93", icon: Instagram, label: "Instagram" },
+                { href: "https://www.linkedin.com/company/yugantartechnologies", icon: Linkedin, label: "LinkedIn" },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 flex items-center justify-center transition-all duration-200 hover:border-sky-500/50 hover:bg-sky-500/10 hover:text-sky-400 hover:-translate-y-0.5"
+                    aria-label={item.label}
+                  >
+                    <Icon size={16} />
+                  </a>
+                );
+              })}
             </div>
-
-            {/* Column 2: Popular Courses & Internships */}
-            <div>
-              <h3 className="text-base font-bold text-white uppercase tracking-wider mb-6 pb-2 border-b border-white/10 inline-block">
-                Training & Internships
-              </h3>
-              <ul className="space-y-3.5 text-sm">
-                {[
-                  { label: "IT Internship Programs", path: "/it-internship-ahmedabad" },
-                  { label: "MERN Stack Development", path: "/courses/full-stack-mern" },
-                  { label: "Python Development", path: "/courses/python-development" },
-                  { label: "Java Full Stack", path: "/courses/java-full-stack" },
-                  { label: "UI/UX Design", path: "/courses/ui-ux-design" },
-                  { label: "Data Science & AI/ML", path: "/courses/data-science-ai-ml" },
-                  { label: "Digital Marketing Training", path: "/courses/digital-marketing" },
-                ].map((item) => (
-                  <li key={item.label}>
-                    <Link to={item.path} className="text-slate-400 hover:text-sky-300 transition-colors duration-250 flex items-center gap-1 group">
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 transform -translate-x-1 group-hover:translate-x-0 text-sky-400 text-xs">→</span>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 3: IT Solutions */}
-            <div>
-              <h3 className="text-base font-bold text-white uppercase tracking-wider mb-6 pb-2 border-b border-white/10 inline-block">
-                IT Solutions
-              </h3>
-              <ul className="space-y-3.5 text-sm">
-                {[
-                  { label: "SEO Services", path: "/seo-services-ahmedabad" },
-                  { label: "Website Development", path: "/website-development-ahmedabad" },
-                  { label: "Social Media Marketing", path: "/social-media-marketing-ahmedabad" },
-                  { label: "Digital Marketing Agency", path: "/digital-marketing-ahmedabad" },
-                  { label: "Google Business Profile", path: "/google-business-profile-management-ahmedabad" },
-                  { label: "Performance Marketing", path: "/performance-marketing-ahmedabad" },
-                ].map((item) => (
-                  <li key={item.label}>
-                    <Link to={item.path} className="text-slate-400 hover:text-sky-300 transition-colors duration-250 flex items-center gap-1 group">
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 transform -translate-x-1 group-hover:translate-x-0 text-sky-400 text-xs">→</span>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 4: Contact Info */}
-            <div className="space-y-6">
-              <h3 className="text-base font-bold text-white uppercase tracking-wider mb-2 pb-2 border-b border-white/10 inline-block">
-                Get In Touch
-              </h3>
-              <div className="space-y-4 text-sm text-slate-400">
-                <div className="flex items-start gap-3 text-slate-400">
-                  <MapPin className="text-orange-400 flex-shrink-0 mt-0.5" size={18} />
-                  <div>
-                    <p className="font-semibold text-white">Office Address</p>
-                    <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                      A-604, Sanskrit Galleria, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad, Gujarat, India - 380052
-                    </p>
-                  </div>
-                </div>
-
-                <a href="tel:9054372690" className="flex items-center gap-3 hover:text-white transition group" aria-label="Phone number">
-                  <Phone className="text-sky-400 flex-shrink-0 transition-transform duration-300 group-hover:rotate-12" size={18} />
-                  <div>
-                    <p className="font-semibold text-white group-hover:text-sky-300 transition-colors">Call For Inquiry</p>
-                    <p className="text-sky-400 font-bold text-base mt-0.5">+91 9054372690</p>
-                  </div>
-                </a>
-
-                <a href="mailto:info@yugantartechnologies.com" className="flex items-center gap-3 hover:text-white transition group" aria-label="Email address">
-                  <Mail className="text-sky-400 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-0.5" size={18} />
-                  <p className="text-slate-450 group-hover:text-sky-300 transition-colors font-medium">info@yugantartechnologies.com</p>
-                </a>
-
-                <div className="flex items-center gap-3 text-slate-400">
-                  <Clock className="text-sky-400 flex-shrink-0" size={18} />
-                  <div>
-                    <p className="font-semibold text-white">Office Hours</p>
-                    <p className="text-xs mt-0.5">Mon - Sat: 9:00 AM - 7:00 PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
 
-          {/* Bottom Copyright & Support */}
-          <div className="mt-12 border-t border-white/10 pt-6 text-slate-500 text-sm flex flex-col md:flex-row gap-3 justify-between items-center text-center md:text-left">
-            <p>© {currentYear} Yugantar Technologies. All Rights Reserved.</p>
-            <p className="text-slate-500">
-              Designed & Supported by Yugantar — <span className="text-orange-400/90 font-medium">INNOVATION TODAY • A BETTER TOMORROW</span>.
-            </p>
+          {/* Column 2: Training & Internships (3 cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider pb-3 border-b border-slate-800/90 flex items-center justify-between">
+              <span>Training & Internships</span>
+              <span className="w-5 h-0.5 bg-sky-500 rounded-full" />
+            </h3>
+            <ul className="space-y-2.5 text-sm">
+              {[
+                { label: "IT Internship Programs", path: "/it-internship-ahmedabad" },
+                { label: "MERN Stack Development", path: "/courses/full-stack-mern" },
+                { label: "Python Development", path: "/courses/python-development" },
+                { label: "Java Full Stack", path: "/courses/java-full-stack" },
+                { label: "UI/UX Design", path: "/courses/ui-ux-design" },
+                { label: "Data Science & AI/ML", path: "/courses/data-science-ai-ml" },
+                { label: "Digital Marketing Training", path: "/courses/digital-marketing" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link 
+                    to={item.path} 
+                    className="text-slate-400 hover:text-sky-400 transition-colors duration-200 flex items-center gap-1.5 group text-sm"
+                  >
+                    <span className="text-slate-600 group-hover:text-sky-400 transition-colors text-xs">›</span>
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: IT Solutions (2 cols) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider pb-3 border-b border-slate-800/90 flex items-center justify-between">
+              <span>IT Solutions</span>
+              <span className="w-5 h-0.5 bg-orange-500 rounded-full" />
+            </h3>
+            <ul className="space-y-2.5 text-sm">
+              {[
+                { label: "SEO Services", path: "/seo-services-ahmedabad" },
+                { label: "Website Development", path: "/website-development-ahmedabad" },
+                { label: "Social Media Marketing", path: "/social-media-marketing-ahmedabad" },
+                { label: "Digital Marketing Agency", path: "/digital-marketing-ahmedabad" },
+                { label: "Google Business Profile", path: "/google-business-profile-management-ahmedabad" },
+                { label: "Performance Marketing", path: "/performance-marketing-ahmedabad" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link 
+                    to={item.path} 
+                    className="text-slate-400 hover:text-sky-400 transition-colors duration-200 flex items-center gap-1.5 group text-sm"
+                  >
+                    <span className="text-slate-600 group-hover:text-sky-400 transition-colors text-xs">›</span>
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact & Location (3 cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider pb-3 border-b border-slate-800/90 flex items-center justify-between">
+              <span>Get In Touch</span>
+              <span className="w-5 h-0.5 bg-emerald-500 rounded-full" />
+            </h3>
+            <div className="space-y-3.5 text-sm text-slate-400">
+              <div className="flex items-start gap-3">
+                <MapPin className="text-orange-400 flex-shrink-0 mt-0.5" size={17} />
+                <div>
+                  <p className="font-semibold text-white text-xs uppercase tracking-wide">Office Address</p>
+                  <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
+                    A-604, Sanskrit Galleria, Rangoli Ice Cream, Gurukul Road, Memnagar, Ahmedabad, Gujarat - 380052
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Phone className="text-sky-400 flex-shrink-0 mt-0.5" size={17} />
+                <div>
+                  <p className="font-semibold text-white text-xs uppercase tracking-wide">Call For Inquiry</p>
+                  <div className="flex flex-col gap-0.5 mt-0.5">
+                    <a href="tel:9054372690" className="text-sky-400 hover:text-sky-300 font-bold text-sm transition">
+                      +91 9054372690
+                    </a>
+                    <a href="tel:7859982605" className="text-sky-400 hover:text-sky-300 font-bold text-sm transition">
+                      +91 7859982605
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <a href="mailto:info@yugantartechnologies.com" className="flex items-center gap-3 hover:text-white transition group">
+                <Mail className="text-sky-400 flex-shrink-0" size={17} />
+                <div>
+                  <p className="font-semibold text-white text-xs uppercase tracking-wide">Email Us</p>
+                  <p className="text-slate-300 group-hover:text-sky-400 transition-colors text-xs mt-0.5 font-medium">info@yugantartechnologies.com</p>
+                </div>
+              </a>
+
+              <div className="flex items-center gap-3 text-slate-400">
+                <Clock className="text-emerald-400 flex-shrink-0" size={17} />
+                <div>
+                  <p className="font-semibold text-white text-xs uppercase tracking-wide">Working Hours</p>
+                  <p className="text-xs text-slate-300 mt-0.5">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
+
+        {/* Bottom Bar: Copyright & Tagline */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center md:text-left">
+          <p>© {currentYear} Yugantar Technologies. All Rights Reserved.</p>
+          
+          <div className="flex flex-wrap items-center gap-4 justify-center md:justify-end">
+            <span className="text-slate-400 font-medium">
+              Innovation Today <span className="text-orange-500">•</span> A Better Tomorrow
+            </span>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

@@ -280,9 +280,15 @@ export default function WebsiteDevelopmentAhmedabad() {
               </button>
               <a
                 href="tel:9054372690"
-                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5 text-xs sm:text-sm"
               >
                 Call: +91 9054372690
+              </a>
+              <a
+                href="tel:7859982605"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-sky-400 bg-white hover:bg-sky-50/50 text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-sm hover:-translate-y-0.5 text-xs sm:text-sm"
+              >
+                +91 7859982605
               </a>
             </div>
           </div>
@@ -560,9 +566,15 @@ export default function WebsiteDevelopmentAhmedabad() {
               </button>
               <a
                 href="tel:9054372690"
-                className="border border-slate-700 hover:border-slate-500 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-3.5 rounded-xl transition duration-300"
+                className="border border-slate-700 hover:border-slate-500 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-6 py-3.5 rounded-xl transition duration-300 text-sm"
               >
                 Call: 9054372690
+              </a>
+              <a
+                href="tel:7859982605"
+                className="border border-slate-700 hover:border-slate-500 bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-6 py-3.5 rounded-xl transition duration-300 text-sm"
+              >
+                7859982605
               </a>
             </div>
           </div>

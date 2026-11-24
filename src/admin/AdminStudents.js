@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminSidebar from './AdminSidebar';
 import { studentsAPI } from '../services/studentsAPI';
+import { getCurrentAdmin, logoutAdmin } from './adminAuth';
 
 const AdminStudents = () => {
   const navigate = useNavigate();
@@ -37,7 +38,8 @@ const AdminStudents = () => {
   });
 
   useEffect(() => {
-    if (!localStorage.getItem('adminLoggedIn')) {
+    const admin = getCurrentAdmin();
+    if (!admin.isLoggedIn) {
       navigate('/admin/login');
     } else {
       loadStudents();
@@ -57,7 +59,7 @@ const AdminStudents = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('adminLoggedIn');
+    logoutAdmin();
     navigate('/admin/login');
   };
 

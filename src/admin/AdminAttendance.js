@@ -5,6 +5,7 @@ import QRCode from 'qrcode';
 import * as XLSX from 'xlsx';
 import { studentsAPI } from '../services/studentsAPI';
 import { attendanceAPI } from '../services/attendanceAPI';
+import { getCurrentAdmin, logoutAdmin } from './adminAuth';
 
 const AdminAttendance = () => {
   const navigate = useNavigate();
@@ -36,14 +37,12 @@ const AdminAttendance = () => {
   };
 
   useEffect(() => {
-    const load = async () => {
-      if (!localStorage.getItem('adminLoggedIn')) {
-        navigate('/admin/login');
-      } else {
-        await loadData();
-      }
-    };
-    load();
+    const admin = getCurrentAdmin();
+    if (!admin.isLoggedIn) {
+      navigate('/admin/login');
+    } else {
+      loadData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 
@@ -68,7 +67,7 @@ const AdminAttendance = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('adminLoggedIn');
+    logoutAdmin();
     navigate('/admin/login');
   };
 

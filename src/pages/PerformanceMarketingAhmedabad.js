@@ -231,10 +231,18 @@ export default function PerformanceMarketingAhmedabad() {
 
               <a
                 href="tel:+919054372690"
-                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-orange-400 bg-white text-slate-800 px-6 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-orange-400 bg-white text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs text-xs sm:text-sm"
               >
                 <PhoneCall className="w-4 h-4 text-orange-600" />
-                Call: +91 9054372690
+                <span>Call: +91 9054372690</span>
+              </a>
+
+              <a
+                href="tel:+917859982605"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-orange-400 bg-white text-slate-800 px-5 py-3.5 rounded-xl font-semibold transition duration-300 shadow-xs text-xs sm:text-sm"
+              >
+                <PhoneCall className="w-4 h-4 text-orange-600" />
+                <span>+91 7859982605</span>
               </a>
             </div>
           </div>

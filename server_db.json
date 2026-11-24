@@ -1,0 +1,167 @@
+{
+  "courseInquiries": [
+    {
+      "id": "inq_1795494772641_ue5ax",
+      "_id": "inq_1795494772641_ue5ax",
+      "name": "bkhwdssdssddrere",
+      "email": "ramc35571@gmail.com",
+      "phone": "5566456456",
+      "course": "Cyber Security",
+      "createdAt": "2026-11-24T04:32:52.641Z",
+      "submittedAt": "2026-11-24T04:32:52.641Z",
+      "status": "New"
+    },
+    {
+      "id": "1795112390186",
+      "_id": "1795112390186",
+      "name": "Aarav Shah",
+      "email": "aarav.shah@gmail.com",
+      "phone": "9822334455",
+      "course": "Full Stack Development (MERN)",
+      "createdAt": "2026-11-19T18:19:50.186Z",
+      "submittedAt": "2026-11-19T18:19:50.186Z",
+      "status": "New"
+    },
+    {
+      "id": "seed_c1",
+      "name": "Rahul Sharma",
+      "email": "rahul.sharma@gmail.com",
+      "phone": "9876543210",
+      "course": "Full Stack Development (MERN)",
+      "createdAt": "2026-11-19T13:11:22.150Z",
+      "submittedAt": "2026-11-19T13:11:22.151Z"
+    },
+    {
+      "id": "seed_c2",
+      "name": "Sneha Patel",
+      "email": "sneha.patel@outlook.com",
+      "phone": "9823456789",
+      "course": "Python Development",
+      "createdAt": "2026-11-18T23:11:22.151Z",
+      "submittedAt": "2026-11-18T23:11:22.151Z"
+    }
+  ],
+  "serviceBookings": [
+    {
+      "id": "inq_1795112474994_slmhm",
+      "_id": "inq_1795112474994_slmhm",
+      "name": "bhagwanarm",
+      "email": "bhagwanaramchoudhary2002@gmail.com",
+      "phone": "9190543726",
+      "service": "Website Development",
+      "message": "",
+      "createdAt": "2026-11-19T18:21:14.994Z",
+      "submittedAt": "2026-11-19T18:21:14.994Z",
+      "status": "New"
+    },
+    {
+      "id": "seed_s1",
+      "name": "Amit Trivedi",
+      "email": "amit.trivedi@company.in",
+      "phone": "9988776655",
+      "service": "Website Development",
+      "message": "Looking for an e-commerce website development for our retail store in Ahmedabad.",
+      "createdAt": "2026-11-19T11:11:22.151Z",
+      "submittedAt": "2026-11-19T11:11:22.151Z"
+    },
+    {
+      "id": "seed_s2",
+      "name": "Pooja Mehta",
+      "email": "pooja.mehta@brandvibe.com",
+      "phone": "9123456780",
+      "service": "Digital Marketing",
+      "message": "Need Google Ads & Meta Ads campaign management for lead generation.",
+      "createdAt": "2026-11-18T17:11:22.151Z",
+      "submittedAt": "2026-11-18T17:11:22.151Z"
+    }
+  ],
+  "generalInquiries": [
+    {
+      "id": "seed_g1",
+      "name": "Karan Desai",
+      "email": "karan.desai@gmail.com",
+      "phone": "9898012345",
+      "message": "I want to visit your Memnagar office to discuss custom software development.",
+      "createdAt": "2026-11-19T09:11:22.151Z"
+    }
+  ],
+  "freeConsultations": [
+    {
+      "id": "inq_1795507122031_0l0db",
+      "_id": "inq_1795507122031_0l0db",
+      "name": "jainil",
+      "email": "ramc35571@gmail.com",
+      "phone": "+919265264554",
+      "businessName": "Direct Website Inquiry",
+      "service": "Mobile App Development",
+      "preferredDate": "2026-11-24",
+      "message": "rfgfh [Budget: ₹50,000 - ₹1,00,000]",
+      "status": "New",
+      "createdAt": "2026-11-24T07:58:42.031Z"
+    },
+    {
+      "id": "fc_1795496301225",
+      "_id": "fc_1795496301226",
+      "name": "Chirag Thakkar",
+      "email": "chirag.thakkar@example.com",
+      "phone": "+91 9988776655",
+      "businessName": "N/A",
+      "service": "Website Development",
+      "preferredDate": "2026-11-24",
+      "message": "",
+      "status": "New",
+      "createdAt": "2026-11-24T04:58:21.226Z"
+    },
+    {
+      "id": "fc_1795112351394",
+      "_id": "fc_1795112351394",
+      "name": "Prakash Vaghela",
+      "email": "prakash.v@gmail.com",
+      "phone": "9876500000",
+      "businessName": "N/A",
+      "service": "SEO & Web Development",
+      "preferredDate": "2026-11-19",
+      "message": "Need consultation for school management website in Ahmedabad",
+      "status": "New",
+      "createdAt": "2026-11-19T18:19:11.394Z"
+    },
+    {
+      "id": "fc_seed1",
+      "name": "Vikram Rathi",
+      "email": "vikram@rathienterprises.com",
+      "phone": "9879011223",
+      "businessName": "Rathi Enterprises",
+      "service": "SEO Optimization",
+      "preferredDate": "2026-11-21",
+      "message": "Need consultation on improving Google rankings in Ahmedabad region.",
+      "status": "New",
+      "createdAt": "2026-11-19T07:11:22.151Z"
+    }
+  ],
+  "teamConsultations": [
+    {
+      "id": "tc_seed1",
+      "name": "Deepak Joshi",
+      "email": "deepak.j@techsolutions.com",
+      "phone": "9765432109",
+      "inquiryType": "Technical Architecture & Cloud",
+      "message": "Require a dedicated tech consultation for migrating our legacy portal to cloud.",
+      "createdAt": "2026-11-19T05:11:22.151Z"
+    }
+  ],
+  "internshipInquiries": [
+    {
+      "id": "seed_i1",
+      "name": "Anjali Verma",
+      "email": "anjali.verma@college.edu",
+      "phone": "9812345678",
+      "internship": "React & Node.js Developer Intern",
+      "experience": "Completed 3rd year B.Tech, built 2 MERN projects",
+      "message": "Seeking a 6-month hands-on internship at Yugantar Technologies.",
+      "createdAt": "2026-11-19T02:11:22.151Z",
+      "submittedAt": "2026-11-19T02:11:22.151Z"
+    }
+  ],
+  "students": [],
+  "attendances": []
+}

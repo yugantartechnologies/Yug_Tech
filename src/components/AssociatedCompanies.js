@@ -4,7 +4,6 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const AssociatedCompanies = () => {
-
   const companies = [
     {
       name: "Kevalon Technology",
@@ -41,36 +40,27 @@ const AssociatedCompanies = () => {
   ];
 
   return (
-    <section className="relative w-full py-28 bg-white overflow-hidden">
-
-      {/* subtle corporate texture */}
-      <div className="absolute inset-0 bg-white" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-
+    <section className="relative w-full py-12 sm:py-16 bg-white text-slate-900 overflow-hidden border-b border-slate-200/80">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-orange-500 font-mono text-sm tracking-widest uppercase mb-3">
-            Associated Companies
+        <div className="text-center mb-8 sm:mb-10">
+          <p className="text-sky-600 font-bold text-xs tracking-widest uppercase mb-1.5">
+            Industry Ecosystem & Placement Partners
           </p>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
-            We Are Associated With
-          </h2>
-
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            We proudly connect talented professionals with leading organizations across multiple industries.
-          </p>
+          <h3 className="text-lg sm:text-xl font-extrabold tracking-tight text-slate-800">
+            Trusted By Growing Companies & Leading IT Organizations
+          </h3>
         </div>
 
         {/* Carousel */}
         <Swiper
           modules={[Autoplay]}
-          spaceBetween={28}
+          spaceBetween={20}
           slidesPerView={2}
           loop={true}
           autoplay={{
-            delay: 2200,
+            delay: 2400,
             disableOnInteraction: false,
           }}
           breakpoints={{
@@ -81,22 +71,17 @@ const AssociatedCompanies = () => {
         >
           {companies.map((company, index) => (
             <SwiperSlide key={index}>
-              <div className="site-card h-full flex flex-col items-center justify-center p-6 rounded-2xl border border-slate-200 bg-white">
-
-                {/* Logo container */}
-                <div className="w-full h-20 flex items-center justify-center mb-4">
+              <div className="h-24 sm:h-28 flex flex-col items-center justify-center p-3 rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-slate-300 hover:shadow-md transition-all duration-300 group">
+                <div className="w-full h-12 flex items-center justify-center mb-1.5">
                   <img
                     src={company.logo}
                     alt={company.name}
-                    className="max-h-16 object-contain"
+                    className="max-h-9 max-w-[120px] object-contain filter grayscale group-hover:grayscale-0 opacity-75 group-hover:opacity-100 transition-all duration-300"
                   />
                 </div>
-
-                {/* Name */}
-                <p className="text-sm font-medium text-slate-700">
+                <p className="text-[11px] font-semibold text-slate-600 group-hover:text-slate-900 transition-colors truncate max-w-full">
                   {company.name}
                 </p>
-
               </div>
             </SwiperSlide>
           ))}

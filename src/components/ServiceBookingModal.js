@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import BASE_URL, { fetchFast } from "../BASEURL";
+import { inquiryService, INQUIRY_CATEGORIES } from "../services/inquiryService";
 
 export default function ServiceBookingModal({ service, isOpen, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -39,41 +39,21 @@ export default function ServiceBookingModal({ service, isOpen, onClose, onSucces
     setIsSubmitting(true);
 
     const newBooking = {
-      id: Date.now().toString(),
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
       service: formData.service || service?.title || "IT Solution",
       message: formData.message,
-      createdAt: new Date().toISOString(),
-      submittedAt: new Date().toISOString(),
+      status: "New"
     };
 
-    // 1. Save to localStorage for zero data loss
-    try {
-      const existing = JSON.parse(localStorage.getItem("yug_service_bookings") || "[]");
-      existing.unshift(newBooking);
-      localStorage.setItem("yug_service_bookings", JSON.stringify(existing));
-      window.dispatchEvent(new Event("storage"));
-      window.dispatchEvent(new Event("yug_inquiry_submitted"));
-    } catch (err) {
-      console.error("LocalStorage save error:", err);
-    }
+    const saved = await inquiryService.submitInquiry(
+      INQUIRY_CATEGORIES.SERVICE.storageKey,
+      INQUIRY_CATEGORIES.SERVICE.endpoint,
+      newBooking
+    );
 
-    // 2. Post to backend API
-    try {
-      await fetchFast(`${BASE_URL}/api/service-bookings`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newBooking)
-      }, 3000);
-    } catch (error) {
-      console.warn("Backend endpoint offline, saved locally to queue.");
-    }
-
-    setSubmittedData(newBooking);
+    setSubmittedData(saved);
     setShowSuccess(true);
     setIsSubmitting(false);
   };

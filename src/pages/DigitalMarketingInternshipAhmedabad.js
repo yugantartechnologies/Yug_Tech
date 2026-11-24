@@ -196,7 +196,9 @@ export default function DigitalMarketingInternshipAhmedabad() {
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Have Questions?</p>
               <p className="text-base font-bold text-slate-900 flex items-center gap-2">
                 <PhoneCall className="w-4 h-4 text-emerald-600" />
-                +91 9054372690
+                <a href="tel:9054372690" className="hover:text-emerald-600 transition">+91 9054372690</a>
+                <span className="text-slate-300">/</span>
+                <a href="tel:7859982605" className="hover:text-emerald-600 transition">7859982605</a>
               </p>
             </div>
             <button

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/StudentRegistration.css";
-import BASE_URL, { fetchFast } from "../BASEURL.js";
 import Navbar from "./Navbar.js";
+import { studentsAPI } from "../services/studentsAPI.js";
 
 const InternshipRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -99,51 +99,38 @@ const InternshipRegistrationForm = () => {
 
     setLoading(true);
     try {
-      const response = await fetchFast(`${BASE_URL}/api/students`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      await studentsAPI.create(formData);
+      console.log("Form submitted:", formData);
+      setSuccess(true);
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        mobile: "",
+        dateOfBirth: "",
+        gender: "",
+        type: "",
+        address: {
+          city: "",
+          state: ""
         },
-        body: JSON.stringify(formData),
-      }, 3000);
+        collegeName: "",
+        course: "",
+        branch: "",
+        currentSemester: "",
+        passingYear: "",
+        cgpa: "",
+        internshipType: "",
+        internshipDuration: "",
+        preferredStartDate: "",
+        mode: "",
+      });
 
-      if (response.ok) {
-        console.log("Form submitted:", formData);
-        setSuccess(true);
-        
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          mobile: "",
-          dateOfBirth: "",
-          gender: "",
-          type: "",
-          address: {
-            city: "",
-            state: ""
-          },
-          collegeName: "",
-          course: "",
-          branch: "",
-          currentSemester: "",
-          passingYear: "",
-          cgpa: "",
-          internshipType: "",
-          internshipDuration: "",
-          preferredStartDate: "",
-          mode: "",
-        });
-
-        // Hide success message after 3 seconds
-        setTimeout(() => setSuccess(false), 3000);
-      } else {
-        console.error("Error submitting form:", response.statusText);
-        // Optionally, set an error state here
-      }
+      // Hide success message after 3 seconds
+      setTimeout(() => setSuccess(false), 3000);
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Optionally, set an error state here
     } finally {
       setLoading(false);
     }
